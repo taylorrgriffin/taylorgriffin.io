@@ -19,6 +19,7 @@ const buttonStyles = {
   border: 'none',
   outline: 'none',
   borderRadius: '4px',
+  backgroundColor: 'white'
 }
 
 function App() {
