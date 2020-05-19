@@ -34,10 +34,10 @@ function App() {
           <p>Hi!</p>
           <p className="Paragraph">
             My name is Taylor Griffin, and I am a Software Engineer from Portland, Oregon.
-            I currently work as a developer at the Oregon State University Center for Applied Systems and Software.
+            I currently study Computer Science Systems at Oregon State University, and work at at the OSU Center for Applied Systems and Software.
           </p>
           <p className="Paragraph">
-            I am set to graduate university in June 2020, and am currently looking for full-time Software Engineering employment opportunities.
+            I am set to graduate university in June 2020, and am actively looking for full-time Software Engineering employment opportunities.
             Please add me on LinkedIn or GitHub if you are interested in connecting with me.
           </p>
         </div>
