@@ -13,7 +13,7 @@ import About from './About/About';
 
 function App() {
   return (
-    <div className="App">
+    <div style={styles.container}>
       <Header/>
       <body style={styles.body}>
         <Switch>
@@ -28,11 +28,16 @@ function App() {
 }
 
 let styles = {
+  container: {
+    display: 'flex',
+    flexDirection: 'column',
+  },
   body: {
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
-    // backgroundColor: 'pink'
+    backgroundColor: 'black',
+    minHeight: '67vh'
   }
 }
 

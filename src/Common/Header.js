@@ -35,7 +35,8 @@ let styles = {
     alignItems: 'center',
     justifyContent: 'center',
     backgroundColor: 'white',
-    width: '100%'
+    width: '100%',
+    fontSize: 'calc(10px + 2vmin)'
   },
   headline: {
     display: 'flex',

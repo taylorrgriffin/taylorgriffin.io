@@ -3,14 +3,24 @@ import React from 'react';
 const About = () => {
   return (
     <div style={styles.container}>
-      <p>Hi!</p>
-      <p className="Paragraph">
+      <p style={styles.heading}>Hello!</p>
+      <p>
         My name is Taylor Griffin, and I am a Software Engineer from Portland, Oregon.
-        I currently work as a developer at the Oregon State University Center for Applied Systems and Software.
+        This past June I graduated from Oregon State University Center with a Bachelor of Science degree in Computer Science.
       </p>
-      <p className="Paragraph">
-        In December 2020, I will be looking for full-time Software Engineering employment opportunities.
-        Please add me on LinkedIn or GitHub if you are interested in connecting with me.
+      <p>
+        I am currently pursing full-time software engineering opportunities in Seattle, Portland, and San Francisco.
+      </p>
+      <p>
+        If you wish to connect with me, please add me on <a style={styles.link} href="https://linkedin.com/in/taylor-randolph-griffin">LinkedIn</a>,
+        or get my contact information from my <a style={styles.link} href="/resume">resume</a>.
+      </p>
+      <p>
+        In the meantime, feel free to take a look at some of the projects I have been a part of in the past four years over on the
+        &nbsp;<a style={styles.link} href="/projects">projects</a> page.
+      </p>
+      <p style={styles.heading}>
+        Cheers!
       </p>
     </div>
   );
@@ -21,9 +31,20 @@ let styles = {
     display: 'flex',
     flexDirection: 'column',
     justifyContent: 'center',
-    alignItems: 'center',
-    // backgroundColor: 'grey',
-  }
+    alignItems: 'left',
+    color: 'white',
+    fontSize: 'calc(8px + 2vmin)',
+    marginLeft: '10vw',
+    marginRight: '10vw',
+    textAlign: 'left'
+  },
+  heading: {
+    textAlign: 'center'
+  },
+  link: {
+    color: '#61DAFB',
+    textDecoration: 'none'
+  },
 }
 
 export default About;
