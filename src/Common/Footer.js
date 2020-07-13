@@ -21,7 +21,11 @@ let styles = {
     alignItems: 'center',
     justifyContent: 'center',
     backgroundColor: 'tomato',
-    width: '100%'
+    width: '100%',
+    position: 'absolute',
+    left: '0px',
+    bottom: '0px',
+    right: '0px'
   },
   link: {
     color: '#61DAFB',
