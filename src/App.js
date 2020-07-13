@@ -1,16 +1,14 @@
 import React from 'react';
 
-// import logo from './logo.svg';
 import './App.css';
 
 import Header from './components/Header';
+import Footer from './components/Footer';
 
 function App() {
   return (
     <div className="App">
       <Header/>
-      <body className="App-body">
-        {/* <img src={logo} className="App-logo" alt="logo"/> */}
         {/* <div> */}
           {/* <p>Hi!</p> */}
           {/* <p className="Paragraph">
@@ -21,7 +19,7 @@ function App() {
             In December 2020, I will be looking for full-time Software Engineering employment opportunities.
             Please add me on LinkedIn or GitHub if you are interested in connecting with me.
           </p> */}
-      </body>
+      <Footer/>
     </div>
   );
 }
