@@ -22,12 +22,9 @@ let styles = {
     justifyContent: 'center',
     backgroundColor: 'tomato',
     width: '100%',
-    position: 'absolute',
-    left: '0px',
-    bottom: '0px',
-    right: '0px',
-    fontSize: 'calc(5px + 2vmin)',
-    paddingBottom: '17px'
+    fontSize: 'calc(4px + 2vmin)',
+    minHeight: '8vh',
+    flexWrap: 'wrap'
   },
   link: {
     color: '#61DAFB',

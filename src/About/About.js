@@ -19,9 +19,6 @@ const About = () => {
         In the meantime, feel free to take a look at some of the projects I have been a part of in the past four years over on the
         &nbsp;<a style={styles.link} href="/projects">projects</a> page.
       </p>
-      <p style={styles.heading}>
-        Cheers!
-      </p>
     </div>
   );
 }
@@ -36,7 +33,8 @@ let styles = {
     fontSize: 'calc(8px + 2vmin)',
     marginLeft: '10vw',
     marginRight: '10vw',
-    textAlign: 'left'
+    textAlign: 'left',
+    flex: '1 1 auto'
   },
   heading: {
     textAlign: 'center'

@@ -15,13 +15,13 @@ function App() {
   return (
     <div style={styles.container}>
       <Header/>
-      <body style={styles.body}>
+      <div style={styles.body}>
         <Switch>
           <Route path="/">
             <About/>
           </Route>
         </Switch>
-      </body>
+      </div>
       <Footer/>
     </div>
   );
@@ -31,13 +31,16 @@ let styles = {
   container: {
     display: 'flex',
     flexDirection: 'column',
+    justifyContent: 'center',
+    minHeight: '100vh',
+    flexWrap: 'wrap'
   },
   body: {
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
     backgroundColor: 'black',
-    minHeight: '67vh'
+    flex: '1 1 auto',
   }
 }
 
