@@ -48,8 +48,8 @@ let styles = {
   },
   body: {
     display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
+    alignItems: 'stretch',
+    justifyContent: 'stretch',
     backgroundColor: 'black',
     flex: '1 1 auto',
   }

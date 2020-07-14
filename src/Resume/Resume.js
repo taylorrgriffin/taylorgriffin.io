@@ -42,12 +42,13 @@ let styles = {
     justifyContent: 'center',
     alignItems: 'center',
     color: 'white',
-    marginTop: '3vw',
-    marginBottom: '3vw',
-    marginLeft: '1vw',
-    marginRight: '1vw',
+    paddingTop: '3vw',
+    paddingBottom: '3vw',
+    paddingLeft: '1vw',
+    paddingRight: '1vw',
     textAlign: 'left',
-    flex: '1 1 auto'
+    flex: '1 1 auto',
+    backgroundColor: '#282c34'
   },
   heading: {
     textAlign: 'center'

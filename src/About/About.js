@@ -30,10 +30,11 @@ let styles = {
     alignItems: 'left',
     color: 'white',
     fontSize: 'calc(8px + 2vmin)',
-    marginLeft: '10vw',
-    marginRight: '10vw',
+    paddingLeft: '10vw',
+    paddingRight: '10vw',
     textAlign: 'left',
-    flex: '1 1 auto'
+    flex: '1 1 auto',
+    backgroundColor: '#282c34'
   },
   heading: {
     textAlign: 'center'
