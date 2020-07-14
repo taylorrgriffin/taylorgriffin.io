@@ -6,7 +6,7 @@ const About = () => {
       <p style={styles.heading}>Hello!</p>
       <p>
         My name is Taylor Griffin, and I am a Software Engineer from Portland, Oregon.
-        This past June I graduated from Oregon State University Center with a Bachelor of Science degree in Computer Science.
+        This past June I graduated from Oregon State University Center with a Bachelor's in Computer Science and Magna Cum Laude honors.
       </p>
       <p>
         I am currently pursing full-time software engineering opportunities in Seattle, Portland, and San Francisco.
@@ -16,8 +16,7 @@ const About = () => {
         or get my contact information from my <a style={styles.link} href="/resume">resume</a>.
       </p>
       <p>
-        In the meantime, feel free to take a look at some of the projects I have been a part of in the past four years over on the
-        &nbsp;<a style={styles.link} href="/projects">projects</a> page.
+        In the meantime, feel free to take a look at some of the <a style={styles.link} href="/projects">projects</a> I have been involved in.
       </p>
     </div>
   );

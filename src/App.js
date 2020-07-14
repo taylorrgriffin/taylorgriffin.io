@@ -10,6 +10,8 @@ import Header from './Common/Header';
 import Footer from './Common/Footer';
 
 import About from './About/About';
+import Resume from './Resume/Resume';
+import Projects from './Projects/Projects';
 
 function App() {
   return (
@@ -17,6 +19,15 @@ function App() {
       <Header/>
       <div style={styles.body}>
         <Switch>
+        <Route path="/resume">
+            <Resume/>
+          </Route>
+          <Route path="/projects">
+            <Projects/>
+          </Route>
+          <Route path="/about">
+            <About/>
+          </Route>
           <Route path="/">
             <About/>
           </Route>

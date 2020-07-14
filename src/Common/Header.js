@@ -24,8 +24,8 @@ export const Header = () => {
       </div>
       <div style={styles.navbar}>
         <h3 style={styles.text}><a style={styles.navLink} href="/">About</a></h3>
-        <h3 style={styles.text}><a style={styles.navLink} href="/">Resume</a></h3>
-        <h3 style={styles.text}><a style={styles.navLink} href="/">Projects</a></h3>
+        <h3 style={styles.text}><a style={styles.navLink} href="/resume">Resume</a></h3>
+        <h3 style={styles.text}><a style={styles.navLink} href="/projects">Projects</a></h3>
       </div>
     </header>
   )
