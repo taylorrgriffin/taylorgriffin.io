@@ -11,7 +11,9 @@ import Footer from './Common/Footer';
 
 import About from './About/About';
 import Resume from './Resume/Resume';
+
 import Projects from './Projects/Projects';
+import ProjectHALE from './Projects/ProjectHALE';
 
 function App() {
   return (
@@ -21,6 +23,9 @@ function App() {
         <Switch>
         <Route path="/resume">
             <Resume/>
+          </Route>
+          <Route path="/projects/HALE">
+            <ProjectHALE/>
           </Route>
           <Route path="/projects">
             <Projects/>

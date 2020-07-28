@@ -1,12 +1,14 @@
 import React from 'react';
 import { Grid } from '@material-ui/core';
+import { useHistory } from "react-router-dom";
 
-const ProjectPreview = ({ title, img, description }) => {
+const ProjectPreview = ({ title, img, description, route }) => {
+  let history = useHistory();
   return (
-    <Grid item xs={10} sm={6} lg={4} md={4} spacing={3}>
-      <div style={styles.container}>
+    <Grid item xs={10} sm={6} lg={4} md={4}>
+      <div style={styles.container} onClick={()=>{history.push(`/projects/${route}`)}}>
         <div style={styles.imgContainer}>
-          <img src={img} style={styles.img}/>
+          <img src={img} style={styles.img} alt={`${route} logo`}/>
         </div>
         <div style={styles.info}>
           <h3 style={styles.heading}>{title}</h3>
@@ -22,7 +24,7 @@ let styles = {
     height: "320px",
     color: "white",
     backgroundColor: '#282c34',
-    alignItems: 'center'
+    alignItems: 'center',
   },
   imgContainer: {
     backgroundColor: 'white',

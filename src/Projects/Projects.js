@@ -7,18 +7,29 @@ import ProjectPreview from './ProjectPreview';
 
 const Projects = () => {
   const isTabletOrMobile = useMediaQuery({ query: '(max-width: 601px)' })
-  console.info(`isSmall? : ${isTabletOrMobile}`);
   const styles = style(isTabletOrMobile);
   return (
-    <Grid container spacing={3} style={styles.container} justifyContent="flex-start">
+    <Grid container spacing={3} style={styles.container}>
       <ProjectPreview
         img={HALE}
+        route="HALE"
         title="High Altitude Liquid Engine"
-        description="Multidisciplinary capstone project in collaboration with the Oregon State University American Institute of Aeronautics and Astronautics"/>
-      <ProjectPreview title="Placeholder 2"/>
-      <ProjectPreview title="Placeholder 3"/>
-      <ProjectPreview title="Placeholder 4"/>
-      <ProjectPreview title="Placeholder 5"/>
+        description="Multidisciplinary capstone project in collaboration with the Oregon State University American Institute of Aeronautics and Astronautics" />
+      <ProjectPreview
+        route="TastyBeacon"
+        title="Tasty Beacon"
+        description="Helping food truck vendors and patrons meet supply and demand through an easy to use find-and-order interface" />
+      <ProjectPreview
+        route="xv6"
+        title="Xv6 Operating System"
+        description="A lightweight operating system written in C" />
+      <ProjectPreview
+        route="journal"
+        title="Journal"
+        description="A simple journal application for iOS and Android implemented with React Native, Node.js, and MongoDb" />
+      <ProjectPreview
+        title="taylorgriffin.io"
+        description="This site! A react application running on AWS."/>
     </Grid>
   );
 }
@@ -26,7 +37,6 @@ const Projects = () => {
 const style = isSmallSize => {
   return {
     container: {
-      justifyContent: 'center',
       paddingTop: '30px',
       paddingBottom: '30px',
       paddingLeft: '5%',
