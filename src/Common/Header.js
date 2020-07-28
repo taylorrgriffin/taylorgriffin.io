@@ -1,8 +1,17 @@
 import React from 'react';
-import { useMediaQuery } from 'react-responsive'
+import styled from 'styled-components'
+import { useMediaQuery } from 'react-responsive';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faGithub, faLinkedin } from '@fortawesome/free-brands-svg-icons';
 import { } from '@fortawesome/free-solid-svg-icons'
+
+const Link = styled.a`
+  color: black;
+  text-decoration: none;
+  &:hover {
+    color: tomato;
+  }
+`;
 
 export const Header = () => {
   const isTabletOrMobile = useMediaQuery({ query: '(max-width: 1224px)' });
@@ -12,20 +21,20 @@ export const Header = () => {
       <div style={styles.headline}>
         <h1 style={styles.text}><a style={styles.navLink} href="/">taylorgriffin.io</a></h1>
         <div style={styles.socialLinks}>
-          <a style={styles.socialLink} href="https://github.com/taylorrgriffin">
+          <Link href="https://github.com/taylorrgriffin">
             <FontAwesomeIcon icon={faGithub}/>
             &nbsp;&nbsp;&nbsp;taylorrgriffin
-          </a>
-          <a style={styles.socialLink} href="https://linkedin.com/in/taylor-randolph-griffin">
+          </Link>
+          <Link href="https://linkedin.com/in/taylor-randolph-griffin">
             <FontAwesomeIcon icon={faLinkedin} />
             &nbsp;&nbsp;&nbsp;Taylor Griffin
-          </a>
+          </Link>
         </div>
       </div>
       <div style={styles.navbar}>
-        <h3 style={styles.text}><a style={styles.navLink} href="/">About</a></h3>
-        <h3 style={styles.text}><a style={styles.navLink} href="/resume">Resume</a></h3>
-        <h3 style={styles.text}><a style={styles.navLink} href="/projects">Projects</a></h3>
+        <h3 style={styles.text}><Link href="/">About</Link></h3>
+        <h3 style={styles.text}><Link href="/resume">Resume</Link></h3>
+        <h3 style={styles.text}><Link href="/projects">Projects</Link></h3>
       </div>
     </header>
   )
@@ -59,10 +68,6 @@ const style = (isTabletOrMobile = false) => {
       display: 'flex',
       flexDirection: 'column',
       justifyContent: 'space-between'
-    },
-    socialLink: {
-      color: 'black',
-      textDecoration: 'none'
     },
     navbar: {
       display: 'flex',
