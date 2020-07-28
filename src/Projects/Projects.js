@@ -1,43 +1,39 @@
 import React from 'react';
+import { Grid } from '@material-ui/core';
+import { useMediaQuery } from 'react-responsive';
 
+import HALE from '../assets/HALE.png'
 import ProjectPreview from './ProjectPreview';
 
 const Projects = () => {
+  const isTabletOrMobile = useMediaQuery({ query: '(max-width: 601px)' })
+  console.info(`isSmall? : ${isTabletOrMobile}`);
+  const styles = style(isTabletOrMobile);
   return (
-    <div style={styles.container}>
-      <ProjectPreview/>
-      <ProjectPreview/>
-      <ProjectPreview/>
-      <ProjectPreview/>
-      <ProjectPreview/>
-      <ProjectPreview/>
-    </div>
+    <Grid container spacing={3} style={styles.container} justifyContent="flex-start">
+      <ProjectPreview
+        img={HALE}
+        title="High Altitude Liquid Engine"
+        description="Multidisciplinary capstone project in collaboration with the Oregon State University American Institute of Aeronautics and Astronautics"/>
+      <ProjectPreview title="Placeholder 2"/>
+      <ProjectPreview title="Placeholder 3"/>
+      <ProjectPreview title="Placeholder 4"/>
+      <ProjectPreview title="Placeholder 5"/>
+    </Grid>
   );
 }
 
-let styles = {
-  container: {
-    display: 'flex',
-    justifyContent: 'space-between',
-    backgroundColor: 'white',
-    // flexDirection: 'column',
-    // justifyContent: 'center',
-    // alignItems: 'left',
-    // color: 'white',
-    // fontSize: 'calc(8px + 2vmin)',
-    paddingLeft: '10vw',
-    paddingRight: '10vw',
-    flexWrap: 'wrap',
-    // textAlign: 'left',
-    flex: '1 1 auto'
-  },
-  // heading: {
-  //   textAlign: 'center'
-  // },
-  // link: {
-  //   color: '#61DAFB',
-  //   textDecoration: 'none'
-  // },
+const style = isSmallSize => {
+  return {
+    container: {
+      justifyContent: 'center',
+      paddingTop: '30px',
+      paddingBottom: '30px',
+      paddingLeft: '5%',
+      paddingRight: '5%',
+      justifyContent: isSmallSize ? 'center' : 'flex-start'
+    },
+  }
 }
 
 export default Projects;
