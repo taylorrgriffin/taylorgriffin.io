@@ -1,9 +1,8 @@
 import React from 'react';
-import styled from 'styled-components'
+import styled from 'styled-components';
 import { useMediaQuery } from 'react-responsive';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faGithub, faLinkedin } from '@fortawesome/free-brands-svg-icons';
-import { } from '@fortawesome/free-solid-svg-icons'
 
 const Link = styled.a`
   color: black;

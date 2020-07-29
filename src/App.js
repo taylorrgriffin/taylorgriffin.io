@@ -21,7 +21,7 @@ function App() {
       <Header/>
       <div style={styles.body}>
         <Switch>
-        <Route path="/resume">
+          <Route path="/resume">
             <Resume/>
           </Route>
           <Route path="/projects/HALE">

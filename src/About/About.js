@@ -6,7 +6,7 @@ const About = () => {
       <p style={styles.heading}>Hello!</p>
       <p>
         My name is Taylor Griffin, and I am a Software Engineer from Portland, Oregon.
-        This past June I graduated from Oregon State University Center with a Bachelor's in Computer Science and Magna Cum Laude honors.
+        This past June I graduated from Oregon State University with a Bachelor's in Computer Science and Magna Cum Laude honors.
       </p>
       <p>
         I am currently pursing full-time software engineering opportunities in Seattle, Portland, and San Francisco.
