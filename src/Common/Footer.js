@@ -31,7 +31,7 @@ let styles = {
     textDecoration: 'none'
   },
   logo: {
-    height: '5vmin',
+    height: '4.5vmin',
     pointerEvents: 'none',
     animation: 'App-logo-spin infinite 10s linear'
   }

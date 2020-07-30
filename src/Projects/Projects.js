@@ -12,25 +12,26 @@ const Projects = () => {
   const isTabletOrMobile = useMediaQuery({ query: '(max-width: 601px)' })
   const styles = style(isTabletOrMobile);
   return (
-    <Grid container spacing={3} style={styles.container}>
-      <ProjectPreview
-        img={HALE}
-        route="HALE"
-        backgroundColor="white"
-        title="High Altitude Liquid Engine"
-        description="Multidisciplinary capstone project in collaboration with the Oregon State University American Institute of Aeronautics and Astronautics" />
-      {/* <ProjectPreview
-        route="TastyBeacon"
-        backgroundColor="white"
-        title="Tasty Beacon"
-        description="Helping food truck vendors and patrons meet supply and demand through an easy to use find-and-order interface" /> */}
-      {/* <ProjectPreview
-        img={xv6}
-        route="xv6"
-        stretch={true}
-        backgroundColor="black"
-        title="Xv6 Operating System"
-        description="A lightweight operating system written in C" /> */}
+    <div style={styles.gridContainer}>
+      <Grid container style={styles.container} spacing={3}>
+        <ProjectPreview
+          img={HALE}
+          route="HALE"
+          backgroundColor="white"
+          title="High Altitude Liquid Engine"
+          description="Multidisciplinary capstone project in collaboration with the Oregon State University American Institute of Aeronautics and Astronautics" />
+        {/* <ProjectPreview
+          route="TastyBeacon"
+          backgroundColor="white"
+          title="Tasty Beacon"
+          description="Helping food truck vendors and patrons meet supply and demand through an easy to use find-and-order interface" />
+        <ProjectPreview
+          img={xv6}
+          route="xv6"
+          stretch={true}
+          backgroundColor="black"
+          title="Xv6 Operating System"
+          description="A lightweight operating system written in C" /> */}
       {/* <ProjectPreview
         route="journal"
         title="Journal"
@@ -41,19 +42,26 @@ const Projects = () => {
         route="taylorgriffinio"
         title="taylorgriffin.io"
         description="This site! A react application running on AWS."/> */}
-    </Grid>
+      </Grid>
+    </div>
   );
 }
 
 const style = isSmallSize => {
   return {
+    gridContainer: {
+      display: 'flex',
+      padding: '15px',
+      flex: 1,
+      backgroundColor: '#282c34'
+    },
     container: {
       paddingTop: '30px',
       paddingBottom: '30px',
       paddingLeft: '5%',
       paddingRight: '5%',
       justifyContent: isSmallSize ? 'center' : 'flex-start',
-      backgroundColor: '#282c34'
+      backgroundColor: '#282c34',
     },
   }
 }
