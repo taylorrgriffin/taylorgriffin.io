@@ -6,6 +6,8 @@ import xv6 from '../assets/xv6.jpg';
 import HALE from '../assets/HALE.png';
 import taylorgriffin from '../assets/taylorgriffin.svg';
 
+import BeerbookPreview from '../assets/Beerbook_Preview.png';
+
 import ProjectPreview from './ProjectPreview';
 
 const Projects = () => {
@@ -20,6 +22,13 @@ const Projects = () => {
           backgroundColor="white"
           title="High Altitude Liquid Engine"
           description="Multidisciplinary capstone project in collaboration with the Oregon State University American Institute of Aeronautics and Astronautics" />
+        {/* <ProjectPreview
+          img={BeerbookPreview}
+          backgroundColor="white"
+          // stretch={true}
+          route="Beerbook"
+          title="Beerbook"
+          description="Beerbook is a site to get information about all of your favorite beers, written in React for my Advanced Web Development Final"/> */}
         {/* <ProjectPreview
           route="TastyBeacon"
           backgroundColor="white"
@@ -36,12 +45,12 @@ const Projects = () => {
         route="journal"
         title="Journal"
         description="A simple journal application for iOS and Android implemented with React Native, Node.js, and MongoDb" /> */}
-      {/* <ProjectPreview
+      <ProjectPreview
         img={taylorgriffin}
         backgroundColor="white"
         route="taylorgriffinio"
         title="taylorgriffin.io"
-        description="This site! A react application running on AWS."/> */}
+        description="This site! A React application running on AWS."/>
       </Grid>
     </div>
   );

@@ -1,10 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
-// import { useMediaQuery } from 'react-responsive';
 
-// import HALE from '../assets/HALE.png'
-
-import Template from '../Common/ProjectTemplate';
+import Template from '../../Common/ProjectTemplate';
 
 const Paragraph = styled.p`
   color: white;
@@ -18,7 +15,7 @@ const Spacer = styled.hr`
   margin-bottom: 20px;
 `;
 
-const ProjectHALE = () => {
+const Project = () => {
   return (
     <div style={styles.container}>
       <Template
@@ -67,4 +64,4 @@ let styles = {
   },
 }
 
-export default ProjectHALE;
+export default Project;
