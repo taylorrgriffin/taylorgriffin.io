@@ -28,11 +28,20 @@ let Link = styled.a`
   }
 `;
 
-const Template = ({ title, content }) => {
+const LogoContainer = styled.div`
+  text-align: center;
+`;
+
+const Logo = styled.img`
+  width: 350px;
+`;
+
+const Template = ({ title, content, logo, logoAlt }) => {
   return(
     <Heading>
       <Headline>{title}</Headline>
       <SubHeadline>{content}</SubHeadline>
+      <LogoContainer><Logo src={logo} alt={logoAlt}/></LogoContainer>
       <Link href="/projects"><FontAwesomeIcon icon={faArrowLeft} />&nbsp;&nbsp;Back to Projects</Link>
     </Heading>
   )

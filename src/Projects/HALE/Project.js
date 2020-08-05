@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 
+import HALE from '../../assets/HALE.png';
 import Template from '../../Common/ProjectTemplate';
 
 const Paragraph = styled.p`
@@ -21,6 +22,8 @@ const Project = () => {
     <div style={styles.container}>
       <Template
         title="High Altitude Liquid Engine"
+        logo={HALE}
+        logoAlt="HALE Logo"
         content="Oregon State University American Institute of Aeronautics and Astronautics"/>
       <Paragraph>
         <Spacer/>

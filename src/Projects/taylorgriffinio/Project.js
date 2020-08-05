@@ -1,6 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
 
+import taylorgriffin from '../../assets/taylorgriffin.svg';
+
 import Template from '../../Common/ProjectTemplate';
 
 const Paragraph = styled.p`
@@ -21,10 +23,11 @@ const Taylorgriffinio = () => {
     <div style={styles.container}>
       <Template
         title="taylorgriffin.io"
+        logo={taylorgriffin}
+        logoAlt="React logo"
         content="My personal website, built with React and hosted on AWS"/>
       <Paragraph>
         <Spacer/>
-        <h2>Background</h2>
         This website started as a way for me to test my React skills, and serve as a portfolio and hub of information to show off to potential employers.
         <br/><br/>
         Eventually, I'd like to use it as a place to write about my journey as a software engineer, and create tutorials and content for beginner to intermediate programmers.
