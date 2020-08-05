@@ -9,9 +9,11 @@ let Heading = styled.div`
 
 let Headline = styled.h1`
   color: white;
+  font-size: 2em;
+  font-weight: bolder;
 `;
 
-let SubHeadline = styled.h3`
+let SubHeadline = styled.h2`
   color: white;
 `;
 
@@ -20,6 +22,10 @@ let Link = styled.a`
   float: left;
   margin-left: 10%;
   text-decoration: none;
+  font-size: 1.5em;
+  &:hover {
+    color: tomato;
+  }
 `;
 
 const Template = ({ title, content }) => {

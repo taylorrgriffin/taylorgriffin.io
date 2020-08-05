@@ -37,7 +37,9 @@ let styles = {
     backgroundColor: '#282c34'
   },
   heading: {
-    textAlign: 'center'
+    textAlign: 'center',
+    fontSize: '2em',
+    fontWeight: 'bolder'
   },
   link: {
     color: '#61DAFB',

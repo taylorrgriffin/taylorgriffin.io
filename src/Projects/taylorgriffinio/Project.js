@@ -8,6 +8,7 @@ const Paragraph = styled.p`
   text-align: left;
   padding-left: 10%;
   padding-right: 10%;
+  font-size: 1.4em;
 `;
 
 const Spacer = styled.hr`
@@ -23,6 +24,7 @@ const Taylorgriffinio = () => {
         content="My personal website, built with React and hosted on AWS"/>
       <Paragraph>
         <Spacer/>
+        <h2>Background</h2>
         This website started as a way for me to test my React skills, and serve as a portfolio and hub of information to show off to potential employers.
         <br/><br/>
         Eventually, I'd like to use it as a place to write about my journey as a software engineer, and create tutorials and content for beginner to intermediate programmers.
