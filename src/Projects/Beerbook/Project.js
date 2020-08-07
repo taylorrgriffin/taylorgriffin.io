@@ -2,10 +2,12 @@ import React from 'react';
 import styled from 'styled-components';
 
 import Template from '../../Common/ProjectTemplate';
+import PhotoGallery from '../../Common/PhotoGallery';
 
 import MugPNG from '../../assets/beer_mug.png';
-// import BeersPNG from '../../assets/Beerbook_Beers.png';
-// import SearchPNG from '../../assets/Beerbook_Search.png';
+import HomePNG from '../../assets/Beerbook_Home.png';
+import BeersPNG from '../../assets/Beerbook_Beers.png';
+import SearchPNG from '../../assets/Beerbook_Search.png';
 
 const Paragraph = styled.p`
   color: white;
@@ -52,6 +54,12 @@ const Beerbook = () => {
           <li>Pointing API requests through a cors-anywhere server to prevent cross-origin request rejection</li>
           <li>Designing interactive and attractive user experiences with React</li>
         </ul>
+        <h2>Gallery</h2>
+        <PhotoGallery images={[
+          HomePNG,
+          BeersPNG,
+          SearchPNG,
+        ]}/>
       </Paragraph>
     </div>
   );
