@@ -15,7 +15,7 @@ import Resume from './Resume/Resume';
 import Projects from './Projects/Projects';
 
 import HALE from './Projects/HALE/Project';
-// import Beerbook from './Projects/Beerbook/Project';
+import Beerbook from './Projects/Beerbook/Project';
 import Taylorgriffinio from './Projects/taylorgriffinio/Project';
 
 function App() {
@@ -30,9 +30,9 @@ function App() {
           <Route path="/projects/HALE">
             <HALE/>
           </Route>
-          {/* <Route path="/projects/Beerbook">
+          <Route path="/projects/Beerbook">
             <Beerbook/>
-          </Route> */}
+          </Route>
           <Route path="/projects/taylorgriffinio">
             <Taylorgriffinio/>
           </Route>

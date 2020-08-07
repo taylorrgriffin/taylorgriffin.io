@@ -12,17 +12,20 @@ const Div = styled.div`
     color: white;
     background-color: black;
     align-items: center;
+    border: 2px solid white;
     &:hover {
       cursor: pointer;
+      border: 2px solid tomato;
     }
-    ${Heading}:hover & {
+    /* TODO: fix this hover effect on the heading */
+    /* ${Heading}:hover & {
       color: tomato;
-    }
+    } */
 `;
 
-const ProjectPreview = ({ title, img, description, route, stretch, backgroundColor }) => {
+const ProjectPreview = ({ title, img, description, route, stretch, backgroundColor, width }) => {
   let history = useHistory();
-  let styles = style(backgroundColor);
+  let styles = style(backgroundColor, width ? width : '210px');
   return (
     <Grid item xs={10} sm={6} lg={4} md={4}>
       <Div onClick={()=>{history.push(`/projects/${route}`)}}>
@@ -38,15 +41,9 @@ const ProjectPreview = ({ title, img, description, route, stretch, backgroundCol
   );
 }
 
-const style = (backgroundColor) =>
+const style = (backgroundColor, width) =>
 {
   return {
-    container: {
-      height: "320px",
-      color: "white",
-      backgroundColor: 'black',
-      alignItems: 'center',
-    },
     imgContainer: {
       backgroundColor: backgroundColor,
       height: '200px',
@@ -54,7 +51,7 @@ const style = (backgroundColor) =>
       justifyContent: 'center'
     },
     img: {
-      width: '210px',
+      width: width,
       alignSelf: 'center',
       alignItems: 'center'
     },

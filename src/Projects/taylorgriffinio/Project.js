@@ -24,6 +24,7 @@ const Taylorgriffinio = () => {
       <Template
         title="taylorgriffin.io"
         logo={taylorgriffin}
+        repo="https://github.com/taylorrgriffin/taylorgriffin.io"
         logoAlt="React logo"
         content="My personal website, built with React and hosted on AWS"/>
       <Paragraph>

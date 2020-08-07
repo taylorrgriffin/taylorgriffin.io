@@ -6,7 +6,7 @@ import xv6 from '../assets/xv6.jpg';
 import HALE from '../assets/HALE.png';
 import taylorgriffin from '../assets/taylorgriffin.svg';
 
-import BeerbookPreview from '../assets/Beerbook_Preview.png';
+import BeerbookPreview from '../assets/beer_mug.png';
 
 import ProjectPreview from './ProjectPreview';
 
@@ -19,16 +19,9 @@ const Projects = () => {
         <ProjectPreview
           img={HALE}
           route="HALE"
-          backgroundColor="white"
+          backgroundColor="black"
           title="High Altitude Liquid Engine"
           description="Multidisciplinary capstone project in collaboration with the Oregon State University American Institute of Aeronautics and Astronautics" />
-        {/* <ProjectPreview
-          img={BeerbookPreview}
-          backgroundColor="white"
-          // stretch={true}
-          route="Beerbook"
-          title="Beerbook"
-          description="Beerbook is a site to get information about all of your favorite beers, written in React for my Advanced Web Development Final"/> */}
         {/* <ProjectPreview
           route="TastyBeacon"
           backgroundColor="white"
@@ -45,12 +38,20 @@ const Projects = () => {
         route="journal"
         title="Journal"
         description="A simple journal application for iOS and Android implemented with React Native, Node.js, and MongoDb" /> */}
-      <ProjectPreview
-        img={taylorgriffin}
-        backgroundColor="white"
-        route="taylorgriffinio"
-        title="taylorgriffin.io"
-        description="This site! A React application running on AWS."/>
+        <ProjectPreview
+          img={taylorgriffin}
+          backgroundColor="black"
+          route="taylorgriffinio"
+          stretch={true}
+          title="taylorgriffin.io"
+          description="This site! A React application running on AWS."/>
+        <ProjectPreview
+          img={BeerbookPreview}
+          width={140}
+          backgroundColor="black"
+          route="Beerbook"
+          title="Beerbook"
+          description="A site to get information about all of your favorite beers, written in React for my Advanced Web Development Final"/>
       </Grid>
     </div>
   );
