@@ -9,6 +9,9 @@ import HomePNG from '../../assets/Beerbook_Home.png';
 import BeersPNG from '../../assets/Beerbook_Beers.png';
 import SearchPNG from '../../assets/Beerbook_Search.png';
 
+import { faBeer } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+
 const Paragraph = styled.p`
   color: white;
   text-align: left;
@@ -27,14 +30,26 @@ const Spacer = styled.hr`
   margin-bottom: 20px;
 `;
 
+const BeerIcon = () => (
+  <FontAwesomeIcon
+    icon={faBeer}
+    style={{
+      alignSelf: 'center',
+      fontSize: '100px',
+      color: 'tomato'
+    }} />
+);
+
 const Beerbook = () => {
   return (
     <div style={styles.container}>
       <Template
-        logo={MugPNG}
-        logoWidth={"150px"}
+      Icon={BeerIcon}
+        // logo={MugPNG}
+        // logoWidth={"150px"}
         title="Beerbook"
         repo="https://github.com/taylorrgriffin/Beerbook"
+        repoName="Beerbook"
         content="A familar looking React application for finding information about your favorite beers"/>
       <Paragraph>
         <Spacer/>

@@ -31,6 +31,8 @@ let Link = styled.a`
 
 const LogoContainer = styled.div`
   text-align: center;
+  /* display: flex; */
+  /* justify-content: center; */
 `;
 
 const Logo = styled.img`
@@ -50,21 +52,33 @@ const GitHubLink = styled.a`
   }
 `;
 
-const Template = ({ title, content, logo, logoWidth, logoAlt, repo }) => {
+const Template = ({ title, content, logo, logoWidth, logoAlt, Icon,repo, repoName, repoAlt, repoAltName }) => {
   return(
     <Heading>
       <Headline>{title}</Headline>
       <SubHeadline>{content}</SubHeadline>
-      <LogoContainer><Logo src={logo} alt={logoAlt} style={{ width: logoWidth ? logoWidth : undefined }}/></LogoContainer>
+      <LogoContainer>
+        {logo && <Logo src={logo} alt={logoAlt} style={{ width: logoWidth ? logoWidth : undefined }}/>}
+        {Icon && <Icon/>}
+      </LogoContainer>
       <RepoHeadline>
         {
         repo &&
         <GitHubLink href={repo}>
             <FontAwesomeIcon icon={faGithub}/>
-            &nbsp;&nbsp;&nbsp;{title}
+            &nbsp;&nbsp;&nbsp;{repoName}
         </GitHubLink>
         }
-      </RepoHeadline>
+        </RepoHeadline>
+        <RepoHeadline>
+        {
+        repoAlt &&
+        <GitHubLink href={repoAlt}>
+            <FontAwesomeIcon icon={faGithub}/>
+            &nbsp;&nbsp;&nbsp;{repoAltName}
+        </GitHubLink>
+        }
+        </RepoHeadline>
       <Link href="/projects"><FontAwesomeIcon icon={faArrowLeft} />&nbsp;&nbsp;Back to Projects</Link>
     </Heading>
   )

@@ -23,14 +23,15 @@ const Div = styled.div`
     } */
 `;
 
-const ProjectPreview = ({ title, img, description, route, stretch, backgroundColor, width }) => {
+const ProjectPreview = ({ title, img, Icon, description, route, stretch, backgroundColor, width }) => {
   let history = useHistory();
   let styles = style(backgroundColor, width ? width : '210px');
   return (
     <Grid item xs={10} sm={6} lg={4} md={4}>
       <Div onClick={()=>{history.push(`/projects/${route}`)}}>
         <div style={styles.imgContainer}>
-          <img src={img} style={stretch ? styles.stretchedImg : styles.img} alt={`${route} logo`}/>
+          {Icon && <Icon/>}
+          {img && <img src={img} style={stretch ? styles.stretchedImg : styles.img} alt={`${route} logo`}/>}
         </div>
         <div style={styles.info}>
           <Heading>{title}</Heading>

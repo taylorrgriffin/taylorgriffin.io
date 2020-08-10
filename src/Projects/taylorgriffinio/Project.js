@@ -1,7 +1,10 @@
 import React from 'react';
 import styled from 'styled-components';
 
-import taylorgriffin from '../../assets/taylorgriffin.svg';
+// import taylorgriffin from '../../assets/taylorgriffin.svg';
+import { faUser } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+
 
 import Template from '../../Common/ProjectTemplate';
 
@@ -18,14 +21,24 @@ const Spacer = styled.hr`
   margin-bottom: 20px;
 `;
 
+const UserIcon = () => (
+  <FontAwesomeIcon
+    icon={faUser}
+    style={{
+      alignSelf: 'center',
+      fontSize: '100px',
+      color: 'tomato'
+    }} />
+);
+
 const Taylorgriffinio = () => {
   return (
     <div style={styles.container}>
       <Template
         title="taylorgriffin.io"
-        logo={taylorgriffin}
+        Icon={UserIcon}
         repo="https://github.com/taylorrgriffin/taylorgriffin.io"
-        logoAlt="React logo"
+        repoName="taylorgriffin.io"
         content="My personal website, built with React and hosted on AWS"/>
       <Paragraph>
         <Spacer/>
