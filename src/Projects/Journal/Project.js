@@ -57,7 +57,8 @@ const Project = () => {
           <li>Using the Expo build pipeline to deploy a React Native application to both iOS and Android devices</li>
           <li>Creating RESTful endpoints on a Node.js express server for read, write, update, and delete operations</li>
           <li>Developing methods to interface with a MongoDb database for CRUD operations</li>
-          <li>Designing and developing fluid user interface with React Native</li>
+          <li>Making RESTful API calls from React Native to a Node.js expres server</li>
+          <li>Designing and developing fluid user interfaces with dynamic data in React Native</li>
         </ul>
         <h2>Gallery</h2>
         Screenshots coming soon!
