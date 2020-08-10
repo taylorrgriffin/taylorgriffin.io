@@ -38,6 +38,11 @@ const Projects = () => {
           title="High Altitude Liquid Engine"
           Icon={RocketIcon}
           description="Multidisciplinary capstone project in collaboration with the Oregon State University American Institute of Aeronautics and Astronautics" />
+        <ProjectPreview
+          route="Beerbook"
+          title="Beerbook"
+          Icon={BeerIcon}
+          description="A site to get information about all of your favorite beers, written in React for my Advanced Web Development Final"/>
         {/* <ProjectPreview
           route="TastyBeacon"
           backgroundColor="white"
@@ -60,11 +65,6 @@ const Projects = () => {
           title="taylorgriffin.io"
           Icon={PortraitIcon}
           description="This site! A React application running on AWS."/>
-        <ProjectPreview
-          route="Beerbook"
-          title="Beerbook"
-          Icon={BeerIcon}
-          description="A site to get information about all of your favorite beers, written in React for my Advanced Web Development Final"/>
       </Grid>
     </div>
   );
