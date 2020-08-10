@@ -9,7 +9,7 @@ const About = () => {
         This past June I graduated from Oregon State University with a Bachelor's in Computer Science and Magna Cum Laude honors.
       </p>
       <p>
-        I am currently pursuing full-time software engineering opportunities in Seattle, Portland, and San Francisco.
+        I am currently pursuing full-time software engineering opportunities on the West Coast.
       </p>
       <p>
         If you wish to connect with me, please add me on <a style={styles.link} href="https://linkedin.com/in/taylor-randolph-griffin">LinkedIn</a>,
