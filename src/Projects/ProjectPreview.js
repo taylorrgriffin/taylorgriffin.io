@@ -8,10 +8,14 @@ const Heading = styled.h3`
 `;
 
 const Div = styled.div`
-    height: 320px;
+    /* TODO: decide how tall these should be  */
+    /* height: 320px; */
     color: white;
     background-color: black;
-    align-items: center;
+    flex-direction: row;
+    align-content: center;
+    justify-content: center;
+    padding-bottom: 20px;
     border: 3px solid white;
     &:hover {
       cursor: pointer;
@@ -55,7 +59,7 @@ const style = (backgroundColor, width) =>
   return {
     imgContainer: {
       backgroundColor: backgroundColor,
-      height: '200px',
+      height: '120px',
       display: 'flex',
       justifyContent: 'center'
     },
