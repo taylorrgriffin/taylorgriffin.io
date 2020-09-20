@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import { Grid } from '@material-ui/core';
+import { Grid, Chip } from '@material-ui/core';
 import { useHistory } from "react-router-dom";
 
 const Heading = styled.h3`
@@ -12,18 +12,20 @@ const Div = styled.div`
     color: white;
     background-color: black;
     align-items: center;
-    border: 2px solid white;
+    border: 3px solid white;
     &:hover {
       cursor: pointer;
-      border: 2px solid tomato;
+      border: 3px solid tomato;
     }
-    /* TODO: fix this hover effect on the heading */
-    /* ${Heading}:hover & {
-      color: tomato;
-    } */
 `;
 
-const ProjectPreview = ({ title, img, Icon, description, route, stretch, backgroundColor, width }) => {
+const LabelGroup = styled.div`
+  flex-direction: 'column';
+  margin-left: 10px;
+  margin-right: 10px;
+`;
+
+const ProjectPreview = ({ title, img, Icon, description, route, stretch, backgroundColor, width, labels }) => {
   let history = useHistory();
   let styles = style(backgroundColor, width ? width : '210px');
   return (
@@ -37,6 +39,12 @@ const ProjectPreview = ({ title, img, Icon, description, route, stretch, backgro
           <Heading>{title}</Heading>
           <div style={styles.description}>{description}</div>
         </div>
+        {labels && labels.length > 0 && <LabelGroup>
+          {labels.map((label) => {
+            return <Chip label={label} style={{ backgroundColor: 'black', color: 'tomato', border: 'solid 2px tomato', margin: 1, marginRight: 2 }}/>
+          })}
+        </LabelGroup>
+        }
       </Div>
     </Grid>
   );

@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import { useRouteMatch } from "react-router-dom";
 import { useMediaQuery } from 'react-responsive';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faGithub, faLinkedin } from '@fortawesome/free-brands-svg-icons';
@@ -31,9 +32,29 @@ export const Header = () => {
         </div>
       </div>
       <div style={styles.navbar}>
-        <h3 style={styles.text}><Link href="/">About</Link></h3>
-        <h3 style={styles.text}><Link href="/resume">Resume</Link></h3>
-        <h3 style={styles.text}><Link href="/projects">Projects</Link></h3>
+        <h3 style={{
+          margin: 0,
+          padding: 20,
+          color: 'black',
+          borderBottom: useRouteMatch({path: "/about"}) ? 'tomato 6px solid' : undefined
+        }}>
+          <Link href="/" style={{color: useRouteMatch({path: "/about"}) ? 'tomato' : 'black',}}>About</Link>
+        </h3>
+        <h3 style={{
+          margin: 0,
+          padding: 20,
+          color: 'black',
+          borderBottom: useRouteMatch({path: "/resume"}) ? 'tomato 6px solid' : undefined
+        }}>
+          <Link href="/resume" style={{color: useRouteMatch({path: "/resume"}) ? 'tomato' : 'black'}}>Resume</Link></h3>
+          <h3 style={{
+          margin: 0,
+          padding: 20,
+          color: 'black',
+          borderBottom: useRouteMatch({path: "/projects"}) ? 'tomato 6px solid' : undefined
+        }}>
+          <Link href="/projects" style={{color: useRouteMatch({path: "/projects"}) ? 'tomato' : 'black'}}>Projects</Link>
+        </h3>
       </div>
     </header>
   )
@@ -57,9 +78,6 @@ const style = (isTabletOrMobile = false) => {
       alignItems: 'center',
       width: '100%',
       justifyContent: 'center'
-    },
-    text: {
-      color: 'black'
     },
     socialLinks: {
       position: isTabletOrMobile ? undefined : 'absolute',

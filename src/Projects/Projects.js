@@ -37,12 +37,14 @@ const Projects = () => {
           route="HALE"
           title="High Altitude Liquid Engine"
           Icon={RocketIcon}
-          description="Multidisciplinary capstone project in collaboration with the Oregon State University American Institute of Aeronautics and Astronautics" />
+          labels={['Python', 'Javascript', 'Node.js', 'MongoDB']}
+          description="Senior capstone project in collaboration with OSU AIAA" />
         <ProjectPreview
           route="Beerbook"
           title="Beerbook"
           Icon={BeerIcon}
-          description="A site to get information about all of your favorite beers, written in React for my Advanced Web Development Final"/>
+          labels={['React']}
+          description="A site to get information about all of your favorite beers"/>
         {/* <ProjectPreview
           route="TastyBeacon"
           backgroundColor="white"
@@ -59,12 +61,14 @@ const Projects = () => {
           route="journal"
           title="Journal"
           Icon={JournalIcon}
-          description="A simple journal application for iOS and Android implemented with React Native, Node.js, and MongoDb" />
+          labels={['React Native', 'Node.js', 'MongoDB', 'Expo']}
+          description="A simple journal application for iOS and Android" />
         <ProjectPreview
           route="taylorgriffinio"
           title="taylorgriffin.io"
           Icon={PortraitIcon}
-          description="This site! A React application running on AWS."/>
+          labels={['React', 'AWS']}
+          description="This site!"/>
       </Grid>
     </div>
   );
