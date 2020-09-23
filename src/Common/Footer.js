@@ -20,14 +20,15 @@ let styles = {
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'center',
-    backgroundColor: 'tomato',
+    backgroundColor: '#20232a',
     width: '100%',
     fontSize: 'calc(4px + 2vmin)',
     minHeight: '8vh',
-    flexWrap: 'wrap'
+    flexWrap: 'wrap',
+    color: 'white'
   },
   link: {
-    color: '#61DAFB',
+    color: 'tomato',
     textDecoration: 'none'
   },
   logo: {

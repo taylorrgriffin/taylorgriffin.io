@@ -4,9 +4,20 @@ import { useRouteMatch } from "react-router-dom";
 import { useMediaQuery } from 'react-responsive';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faGithub, faLinkedin } from '@fortawesome/free-brands-svg-icons';
+import { faCode } from '@fortawesome/free-solid-svg-icons'
 
 const Link = styled.a`
-  color: black;
+  color: white;
+  size: 10px;
+  text-decoration: none;
+  &:hover {
+    color: tomato;
+  }
+`;
+
+const SocialLink = styled.a`
+  color: white;
+  size: 5px;
   text-decoration: none;
   &:hover {
     color: tomato;
@@ -15,86 +26,124 @@ const Link = styled.a`
 
 export const Header = () => {
   const isTabletOrMobile = useMediaQuery({ query: '(max-width: 1224px)' });
-  const styles = style(isTabletOrMobile);
+  const isMobile = useMediaQuery({ query: '(max-width: 768px)' });
+  const styles = style(isTabletOrMobile, isMobile);
   return (
     <header style={styles.header}>
-      <div style={styles.headline}>
-        <h1 style={styles.text}><a style={styles.navLink} href="/">taylorgriffin.io</a></h1>
-        <div style={styles.socialLinks}>
-          <Link href="https://github.com/taylorrgriffin">
-            <FontAwesomeIcon icon={faGithub}/>
-            &nbsp;&nbsp;&nbsp;taylorrgriffin
-          </Link>
-          <Link href="https://linkedin.com/in/taylor-randolph-griffin">
-            <FontAwesomeIcon icon={faLinkedin} />
-            &nbsp;&nbsp;&nbsp;Taylor Griffin
-          </Link>
-        </div>
-      </div>
       <div style={styles.navbar}>
-        <h3 style={{
-          margin: 0,
-          padding: 20,
-          color: 'black',
-          borderBottom: useRouteMatch({path: "/about"}) ? 'tomato 6px solid' : undefined
-        }}>
-          <Link href="/" style={{color: useRouteMatch({path: "/about"}) ? 'tomato' : 'black',}}>About</Link>
-        </h3>
-        <h3 style={{
-          margin: 0,
-          padding: 20,
-          color: 'black',
-          borderBottom: useRouteMatch({path: "/resume"}) ? 'tomato 6px solid' : undefined
-        }}>
-          <Link href="/resume" style={{color: useRouteMatch({path: "/resume"}) ? 'tomato' : 'black'}}>Resume</Link></h3>
+        <div style={styles.titleContainer}>
+          <a style={styles.text} href="/"><FontAwesomeIcon icon={faCode}/>&nbsp;&nbsp;taylorgriffin.io</a>
+        </div>
+        {
+          isMobile && 
+          <div style={styles.socialLinks}>
+            <SocialLink href="https://github.com/taylorrgriffin">
+              <FontAwesomeIcon icon={faGithub}/>
+              &nbsp;&nbsp;&nbsp;taylorrgriffin
+            </SocialLink>
+            <SocialLink href="https://linkedin.com/in/taylor-randolph-griffin">
+              <FontAwesomeIcon icon={faLinkedin} />
+              &nbsp;&nbsp;&nbsp;Taylor Griffin
+            </SocialLink>
+          </div>
+        }
+        <div style={styles.links}>
           <h3 style={{
-          margin: 0,
-          padding: 20,
-          color: 'black',
-          borderBottom: useRouteMatch({path: "/projects"}) ? 'tomato 6px solid' : undefined
-        }}>
-          <Link href="/projects" style={{color: useRouteMatch({path: "/projects"}) ? 'tomato' : 'black'}}>Projects</Link>
-        </h3>
+            margin: 0,
+            padding: 20,
+            fontSize: 20,
+            borderBottom: useRouteMatch({path: "/about"}) ? 'tomato 6px solid' : undefined
+          }}>
+            <Link href="/" style={{color: useRouteMatch({path: "/about"}) ? 'tomato' : 'white',}}>About</Link>
+          </h3>
+          <h3 style={{
+            margin: 0,
+            padding: 20,
+            fontSize: 20,
+            borderBottom: useRouteMatch({path: "/resume"}) ? 'tomato 6px solid' : undefined
+          }}>
+            <Link href="/resume" style={{color: useRouteMatch({path: "/resume"}) ? 'tomato' : 'white'}}>Resume</Link></h3>
+            <h3 style={{
+            margin: 0,
+            padding: 20,
+            fontSize: 20,
+            borderBottom: useRouteMatch({path: "/projects"}) ? 'tomato 6px solid' : undefined
+          }}>
+            <Link href="/projects" style={{color: useRouteMatch({path: "/projects"}) ? 'tomato' : 'white'}}>Projects</Link>
+          </h3>
+        </div>
+        {
+          !isMobile && 
+          <div style={styles.socialLinks}>
+            <Link href="https://github.com/taylorrgriffin">
+              <FontAwesomeIcon icon={faGithub}/>
+              &nbsp;&nbsp;&nbsp;taylorrgriffin
+            </Link>
+            <Link href="https://linkedin.com/in/taylor-randolph-griffin">
+              <FontAwesomeIcon icon={faLinkedin} />
+              &nbsp;&nbsp;&nbsp;Taylor Griffin
+            </Link>
+          </div>
+        }
       </div>
     </header>
   )
 }
 
-const style = (isTabletOrMobile = false) => {
+const style = (isTabletOrMobile = false, isMobile = false) => {
   return {
     header: {
       display: 'flex',
-      flexDirection: 'column',
       flexWrap: 'wrap',
       alignItems: 'center',
       justifyContent: 'center',
-      backgroundColor: 'white',
+      backgroundColor: '#20232a',
       width: '100%',
-      fontSize: 'calc(10px + 2vmin)'
+      fontSize: 'calc(10px + 2vmin)',
+      padding: 0,
     },
     headline: {
       display: 'flex',
       flexDirection: isTabletOrMobile ? 'column' : 'row',
       alignItems: 'center',
       width: '100%',
-      justifyContent: 'center'
+      justifyContent: 'center',
     },
     socialLinks: {
-      position: isTabletOrMobile ? undefined : 'absolute',
-      right: isTabletOrMobile ? undefined : '100px',
       display: 'flex',
-      flexDirection: 'column',
-      justifyContent: 'space-between'
+      paddingTop: isMobile ? 10 : undefined,
+      flexDirection: isMobile ? 'row' : 'column',
+      justifyContent: isMobile ? 'space-evenly' : 'space-around',
+      width: isMobile ? '70%' : undefined
     },
     navbar: {
       display: 'flex',
-      flexDirection: 'row',
+      flexDirection: isMobile ? 'column' : 'row',
       justifyContent: 'space-evenly',
+      alignItems: isMobile ? 'center' : undefined,
       width: '100%'
     },
+    links: {
+      display: 'flex',
+      flexDirection: 'row',
+      justifyContent: 'space-evenly',
+      flex: isMobile ? 1 : 0.75,
+      width: isMobile ? '80%' : undefined
+    },
     navLink: {
-      color: 'black',
+      color: 'white',
       textDecoration: 'none'
+    },
+    titleContainer: {
+      display: 'flex',
+      flexDirection: 'column',
+      justifyContent: 'center'
+    },
+    text: {
+      fontSize: 25,
+      color: 'tomato',
+      textDecoration: 'none',
+      fontWeight: 800
     }
   }
 }
