@@ -9,6 +9,7 @@ import './App.css';
 
 import Header from './Common/Header';
 import Footer from './Common/Footer';
+import PageNotFound from './Common/404';
 
 import About from './About/About';
 import Resume from './Resume/Resume';
@@ -47,8 +48,11 @@ function App() {
           <Route path="/about">
             <About/>
           </Route>
-          <Route path="/">
+          <Route path="/" exact={true}>
             <Redirect to="/about" />
+          </Route>
+          <Route path="*">
+            <PageNotFound/>
           </Route>
         </Switch>
       </div>
