@@ -77,11 +77,10 @@ let styles = {
     flexWrap: 'wrap'
   },
   body: {
+    flex: 1,
     display: 'flex',
-    alignItems: 'stretch',
-    justifyContent: 'stretch',
-    backgroundColor: 'black',
-    flex: '1 1 auto',
+    // TODO: figure out how to remove this without ruining Grid layout
+    backgroundColor: '#000000'
   }
 }
 
@@ -107,12 +106,32 @@ const theme = createMuiTheme({
     }
   },
   typography: {
+    h1: {
+      color: '#FFFFFF'
+    },
+    h2: {
+      color: '#FFFFFF',
+    },
+    h3: {
+      color: '#FFFFFF'
+    },
     h5: {
       color: '#FFFFFF'
+    },
+    h6: {
+      color: '#FFFFFF',
     },
     body1: {
       color: '#FFFFFF',
       opacity: '60%'
+    },
+    body2: {
+      color: '#FFFFFF',
+      opacity: '83%'
+    },
+    body: {
+      color: '#FFFFFF',
+      padding: 0,
     }
   }
 })
