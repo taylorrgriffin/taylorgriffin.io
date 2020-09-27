@@ -1,50 +1,74 @@
 import React from 'react';
 import { Grid } from '@material-ui/core';
 import { useMediaQuery } from 'react-responsive';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faBook, faBeer, faRocket, faUser } from '@fortawesome/free-solid-svg-icons';
+// import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+// import { faBook, faBeer, faRocket, faUser } from '@fortawesome/free-solid-svg-icons';
 
-// import xv6 from '../assets/xv6.jpg';
-// import HALE from '../assets/HALE.png';
+import HALE from '../assets/HALE.png';
+import TB from '../assets/tastybeacon-cropped.png';
+import AST from '../assets/python.png';
 // import taylorgriffin from '../assets/taylorgriffin.svg';
 
 // import BeerbookPreview from '../assets/beer_mug.png';
 
 import ProjectPreview from './ProjectPreview';
 
-const Icon = ({ name }) => (
-  <FontAwesomeIcon
-    icon={name}
-    style={{
-      alignSelf: 'center',
-      fontSize: '100px',
-      color: 'tomato'
-    }} />
-);
+// const Icon = ({ name }) => (
+//   <FontAwesomeIcon
+//     icon={name}
+//     style={{
+//       alignSelf: 'center',
+//       fontSize: '100px',
+//       color: 'tomato'
+//     }} />
+// );
 
-const BeerIcon = () => (<Icon name={faBeer}/>)
-const RocketIcon = () => (<Icon name={faRocket}/>);
-const JournalIcon = () => (<Icon name={faBook}/>);
-const PortraitIcon = () => (<Icon name={faUser}/>);
+// const BeerIcon = () => (<Icon name={faBeer}/>)
+// const RocketIcon = () => (<Icon name={faRocket}/>);
+// const JournalIcon = () => (<Icon name={faBook}/>);
+// const PortraitIcon = () => (<Icon name={faUser}/>);
 
 const Projects = () => {
   const isTabletOrMobile = useMediaQuery({ query: '(max-width: 601px)' })
   const styles = style(isTabletOrMobile);
   return (
-    <div style={styles.gridContainer}>
       <Grid container style={styles.container} spacing={3}>
         <ProjectPreview
           route="HALE"
+          heading="High Altitude Liquid Engine"
+          caption={`Sensor data pipeline for liquid engine testing apparatus.
+          Developed for Oregon State University American Insitute of 
+          Aeronautics and Astronautics.`}
+          img={HALE}
+        />
+        <ProjectPreview
+          route="python-ast"
+          heading="Python Abstract Syntax Tree Generator"
+          caption={`Generate abstract syntax tree from simple Python Syntax.
+          Written in C++ using Bison and Flex. Click learn more to try it out for yourself!`}
+          img={AST}
+          repo={'https://github.com/taylorrgriffin/python-ast'}
+        />
+        <ProjectPreview
+          route="tastybeacon"
+          heading="Tasty Beacon"
+          caption={`Helping food truck vendors and patrons meet supply and demand through an easy to use find-and-order interface.
+          React Native application available on iOS and Android.`}
+          img={TB}
+        />
+
+        {/* <ProjectPreview
+          route="HALE"
           title="High Altitude Liquid Engine"
-          Icon={RocketIcon}
+          // Icon={RocketIcon}
           labels={['Python', 'Javascript', 'Node.js', 'MongoDB']}
-          description="Senior capstone project in collaboration with OSU AIAA" />
+          description="Sensor data pipeline for liquid engine testing apparatus" />
         <ProjectPreview
           route="Beerbook"
           title="Beerbook"
           Icon={BeerIcon}
           labels={['React']}
-          description="A site to get information about all of your favorite beers"/>
+          description="A site to get information about all of your favorite beers"/> */}
         {/* <ProjectPreview
           route="TastyBeacon"
           backgroundColor="white"
@@ -57,7 +81,7 @@ const Projects = () => {
           backgroundColor="black"
           title="Xv6 Operating System"
           description="A lightweight operating system written in C" /> */}
-        <ProjectPreview
+        {/* <ProjectPreview
           route="journal"
           title="Journal"
           Icon={JournalIcon}
@@ -68,27 +92,23 @@ const Projects = () => {
           title="taylorgriffin.io"
           Icon={PortraitIcon}
           labels={['React', 'AWS']}
-          description="This site!"/>
+          description="This site!"/> */}
       </Grid>
-    </div>
   );
 }
 
 const style = isSmallSize => {
   return {
-    gridContainer: {
-      display: 'flex',
-      padding: '15px',
-      flex: 1,
-      backgroundColor: '#282c34'
-    },
     container: {
-      paddingTop: '30px',
-      paddingBottom: '30px',
       paddingLeft: '5%',
       paddingRight: '5%',
       justifyContent: isSmallSize ? 'center' : 'flex-start',
-      backgroundColor: '#282c34',
+      backgroundColor: '#000000',
+      width: '99vw',
+      minHeight: '75vh',
+      alignSelf: 'center',
+      marginTop: 40,
+      marginBottom: 40,
     },
   }
 }

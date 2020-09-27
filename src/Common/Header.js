@@ -11,7 +11,7 @@ const Link = styled.a`
   size: 10px;
   text-decoration: none;
   &:hover {
-    color: tomato;
+    color: #BB86FC;
   }
 `;
 
@@ -20,13 +20,13 @@ const SocialLink = styled.a`
   size: 5px;
   text-decoration: none;
   &:hover {
-    color: tomato;
+    color: #BB86FC;
   }
 `;
 
 export const Header = () => {
   const isTabletOrMobile = useMediaQuery({ query: '(max-width: 1224px)' });
-  const isMobile = useMediaQuery({ query: '(max-width: 768px)' });
+  const isMobile = useMediaQuery({ query: '(max-width: 800px)' });
   const styles = style(isTabletOrMobile, isMobile);
   return (
     <header style={styles.header}>
@@ -52,24 +52,33 @@ export const Header = () => {
             margin: 0,
             padding: 20,
             fontSize: 20,
-            borderBottom: useRouteMatch({path: "/about"}) ? 'tomato 6px solid' : undefined
+            fontWeight: 500,
+            lineHeight: 1.75,
+            textTransform: "uppercase",
+            borderBottom: useRouteMatch({path: "/about"}) ? '#BB86FC 6px solid' : undefined
           }}>
-            <Link href="/" style={{color: useRouteMatch({path: "/about"}) ? 'tomato' : 'white',}}>About</Link>
+            <Link href="/" style={{color: useRouteMatch({path: "/about"}) ? '#BB86FC' : 'white',}}>About</Link>
           </h3>
           <h3 style={{
             margin: 0,
             padding: 20,
             fontSize: 20,
-            borderBottom: useRouteMatch({path: "/resume"}) ? 'tomato 6px solid' : undefined
+            fontWeight: 500,
+            lineHeight: 1.75,
+            textTransform: "uppercase",
+            borderBottom: useRouteMatch({path: "/resume"}) ? '#BB86FC 6px solid' : undefined
           }}>
-            <Link href="/resume" style={{color: useRouteMatch({path: "/resume"}) ? 'tomato' : 'white'}}>Resume</Link></h3>
+            <Link href="/resume" style={{color: useRouteMatch({path: "/resume"}) ? '#BB86FC' : 'white'}}>RESUME</Link></h3>
             <h3 style={{
             margin: 0,
             padding: 20,
             fontSize: 20,
-            borderBottom: useRouteMatch({path: "/projects"}) ? 'tomato 6px solid' : undefined
+            fontWeight: 500,
+            lineHeight: 1.75,
+            textTransform: "uppercase",
+            borderBottom: useRouteMatch({path: "/projects"}) ? '#BB86FC 6px solid' : undefined
           }}>
-            <Link href="/projects" style={{color: useRouteMatch({path: "/projects"}) ? 'tomato' : 'white'}}>Projects</Link>
+            <Link href="/projects" style={{color: useRouteMatch({path: "/projects"}) ? '#BB86FC' : 'white'}}>PROJECTS</Link>
           </h3>
         </div>
         {
@@ -97,7 +106,7 @@ const style = (isTabletOrMobile = false, isMobile = false) => {
       flexWrap: 'wrap',
       alignItems: 'center',
       justifyContent: 'center',
-      backgroundColor: '#20232a',
+      backgroundColor: '#121212',
       width: '100%',
       fontSize: 'calc(10px + 2vmin)',
       padding: 0,
@@ -140,10 +149,11 @@ const style = (isTabletOrMobile = false, isMobile = false) => {
       justifyContent: 'center'
     },
     text: {
-      fontSize: 25,
-      color: 'tomato',
+      fontSize: isMobile ? 36 : 28,
+      color: '#BB86FC',
       textDecoration: 'none',
-      fontWeight: 800
+      fontWeight: 700,
+      lineHeight: 1.75,
     }
   }
 }

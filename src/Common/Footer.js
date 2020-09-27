@@ -20,7 +20,7 @@ let styles = {
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'center',
-    backgroundColor: '#20232a',
+    backgroundColor: '#121212',
     width: '100%',
     fontSize: 'calc(4px + 2vmin)',
     minHeight: '8vh',
@@ -28,7 +28,7 @@ let styles = {
     color: 'white'
   },
   link: {
-    color: 'tomato',
+    color: '#BB86FC',
     textDecoration: 'none'
   },
   logo: {

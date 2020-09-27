@@ -10,12 +10,13 @@ let Heading = styled.div`
 
 let Headline = styled.h1`
   color: white;
-  font-size: 2em;
+  font-size: 3em;
   font-weight: bolder;
 `;
 
 let SubHeadline = styled.h2`
   color: white;
+  font-size: 1.8em;
 `;
 
 let Link = styled.a`
