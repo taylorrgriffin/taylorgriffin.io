@@ -21,6 +21,7 @@ import HALE from './Projects/HALE/Project';
 import Journal from './Projects/Journal/Project';
 import Beerbook from './Projects/Beerbook/Project';
 import PythonAST from './Projects/Python-ast/Project';
+import TastyBeacon from './Projects/TastyBeacon/Project';
 import Taylorgriffinio from './Projects/taylorgriffinio/Project';
 
 function App() {
@@ -47,6 +48,9 @@ function App() {
             </Route>
             <Route path="/projects/python-ast">
               <PythonAST/>
+            </Route>
+            <Route path="/projects/tastybeacon">
+              <TastyBeacon/>
             </Route>
             <Route path="/projects">
               <Projects/>
