@@ -105,6 +105,76 @@ const Project = () => {
         </Typography>
         <Gallery imageSteps={screenshots} />
       </div>
+      <div style={styles.container}>
+        <Typography variant="h3">
+          What went well?
+        </Typography>
+        <Typography variant="body">
+          <br/><br/>
+          <ul>
+            <li>
+              Application is easy to scale and allows for rapid feature development
+              <ul>
+                <li>State management infrastructure is clean and easy to use</li>
+                <li>GraphQL data can easily be mocked for unit testing</li>
+                <li>Navigation was set up well</li>
+              </ul>
+            </li>
+            <li>
+              API and Database deployment is easy and fast
+              <ul>
+                <li>Backend can be torn down and spun up in under 5 seconds</li>
+                <li>CI/CD integration is straightforward with Docker</li>
+              </ul>
+            </li>
+          </ul>
+        </Typography>
+      </div>
+      <div style={styles.container}>
+        <Typography variant="h3">
+          What could have gone better?
+        </Typography>
+        <Typography variant="body">
+          <br/><br/>
+          <ul>
+            <li>
+              Trying to force one paradigm to fit the whole app
+              <ul>
+                <li>Tried choosing Hooks vs. seperation of presentational/business logic</li>
+                <li>In reality, both paradigms can be used in conjunction depending on which one fits each page best</li>
+              </ul>
+            </li>
+            <li>
+              Using Feature-Driven Development instead of Test-Driven Development
+              <ul>
+                <li>Componenets often had to be reworked to be testable</li>
+                <li>Lead to large time waste</li>
+              </ul>
+            </li>
+            <li>
+              Using an ORM instead of writing raw SQL
+              <ul>
+                <li>Convineince was minimal</li>
+                <li>More complex queries became a huge hassel</li>
+                <li>Spherical Law of Consines took much longer to decipher using Knex</li>
+              </ul>
+            </li>
+          </ul>
+        </Typography>
+      </div>
+      <div style={styles.container}>
+        <Typography variant="h3">
+          Final Takeaways
+        </Typography>
+        <Typography variant="body">
+          <br/><br/>
+          <ul>
+            <li>Be mindful of big decisions, but don’t let fear of mistakes paralyze you</li>
+            <li>Early on invest time into testing infrastructure</li>
+            <li>Utilize test-driven development whenever possible</li>
+          </ul>
+        </Typography>
+      </div>
     </div>
   );
 }
