@@ -1,49 +1,17 @@
 import React, { useState } from 'react';
-import styled from 'styled-components';
-import Editor from 'react-simple-code-editor';
+import { Alert } from '@material-ui/lab';
+import { HashLink as Link } from 'react-router-hash-link';
 import { highlight, languages } from 'prismjs/components/prism-core';
+import { Typography, Button, ButtonGroup, MuiThemeProvider, createMuiTheme } from '@material-ui/core';
+import Editor from 'react-simple-code-editor';
 import 'prismjs/components/prism-python';
+import '../../prism-alt.css';
 
-import '../../prism.css';
-
+import AST from '../../assets/python.png';
+import ProjectHeading from '../ProjectHeading';
 import { example1, example2, example3 } from './examples';
 
-import Template from '../../Common/ProjectTemplate';
-
-const Paragraph = styled.p`
-  color: white;
-  text-align: left;
-  padding-left: 10%;
-  padding-right: 10%;
-  font-size: 1.4em;
-`;
-
-const Spacer = styled.hr`
-  margin-top: 60px;
-  margin-bottom: 20px;
-`;
-
-const Button = styled.button`
-  background-color: white;
-  font-size: 18px;
-  padding: 5px;
-  border: 3px solid black;
-  &:hover {
-    cursor: pointer;
-    /* background-color: tomato;
-    color: white; */
-  }
-`;
-
-// const JournalIcon = () => (
-//   <FontAwesomeIcon
-//     icon={faBook}
-//     style={{
-//       alignSelf: 'center',
-//       fontSize: '100px',
-//       color: 'tomato'
-//     }} />
-// );
+const errorTheme = createMuiTheme({ palette: { primary: { main: '#CF6679' } } });
 
 const generateAST = (input, setImgCode, setLoading, setErr) => {
   setLoading(true);
@@ -75,101 +43,171 @@ const generateAST = (input, setImgCode, setLoading, setErr) => {
 
 const Project = () => {
   const [err, setErr] = useState(null);
+  const [defImg, setDefImg] = useState(true);
   const [loading, setLoading] = useState(false);
   const [imgCode, setImgCode] = useState(null);
-  const [inputCode, setInputCode] = useState('');
+  const [inputCode, setInputCode] = useState(example3);
 
   return (
-    <div style={styles.container}>
-      <Template
-        title="Python AST Visualization"
+    <div style={styles.parentContainer}>
+      <ProjectHeading 
+        heading="Python Abstract Syntax Tree Visualizer"
+        subHeading={`Visualize abstract syntax tree from simple Python Syntax.
+        Utilizes a Flex scanner and a Bison parser to generate a Graphviz specification. Uses GraphViz to display the generated spec.
+        Visualizations are served as PNGs from taylorgriffin.io.api.`}
+        imgSrc={AST}
+        labels={['C++', 'Bison', 'Flex', 'Bash']}
         repo="https://github.com/taylorrgriffin/python-ast"
-        repoName="python-ast" />
-      <Paragraph>
-        <Spacer/>
-        <div style={{ display: 'flex', justifyContent: 'center', flexDirection: 'column', alignItems: 'center'}}>
-          <div style={styles.examples}>
-            <Button onClick={() => {
-              setInputCode(example1);
-              generateAST(example1, setImgCode, setLoading, setErr);
-            }}>
-              Example 1
-            </Button>
-            <Button onClick={() => {
-              setInputCode(example2);
-              generateAST(example2, setImgCode, setLoading, setErr);
-            }}>
-              Example 2
-            </Button>
-            <Button onClick={() => {
-              setInputCode(example3);
-              generateAST(example3, setImgCode, setLoading, setErr);
-            }}>
-              Example 3
-            </Button>
-          </div>
-          <Editor
-            value={inputCode}
-            onValueChange={code => setInputCode(code)}
-            highlight={code => highlight(code, languages.python)}
-            padding={10}
-            style={styles.editor}
-          />
-        </div>
-        <div style={styles.submitButtons}>
+        repoName="python-ast"
+      />
+      <div style={styles.container}>
+        <Typography variant="h3" style={{ marginBottom: 20 }}>
+          Demo
+        </Typography>
+        <Editor
+          value={inputCode}
+          onValueChange={code => setInputCode(code)}
+          highlight={code => highlight(code, languages.python)}
+          padding={10}
+          style={styles.editor}
+        />
+        <ButtonGroup color="secondary" aria-label="outlined secondary button group" style={{ marginTop: 10 }}>
           <Button onClick={() => {
+            setDefImg(false);
+            setInputCode(example1);
+            generateAST(example1, setImgCode, setLoading, setErr);
+          }}>Example 1</Button>
+          <Button onClick={() => {
+            setDefImg(false);
+            setInputCode(example2);
+            generateAST(example2, setImgCode, setLoading, setErr);
+          }}>Example 2</Button>
+          <Button onClick={() => {
+            setDefImg(false);
+            setInputCode(example3);
+            generateAST(example3, setImgCode, setLoading, setErr);
+          }}>Example 3</Button>
+        </ButtonGroup>
+        <div style={styles.actionButtons}>
+          <MuiThemeProvider theme={errorTheme}>
+            <Button variant="outlined" color='primary' style={{ marginRight: 10 }} onClick={() => {
+              setDefImg(false);
+              setImgCode(null);
+              setInputCode('# edit code here\n');
+              setLoading(false);
+            }}>
+              Clear Input
+            </Button>
+          </MuiThemeProvider>
+          <Button variant="outlined" color="primary" style={{ marginLeft: 10 }} onClick={() => {
             if (inputCode.length < 1) {
               setErr("Please enter valid python code, or click one of the examples.");
+              setInputCode("# edit code here\n")
             }
             else {
               generateAST(inputCode, setImgCode, setLoading, setErr)
             }
           }}>
-            Generate AST
+            Generate Visualization
           </Button>
         </div>
-        { err || <div><p style={styles.errText}>{err}</p></div> }
-        { loading || imgCode && <Spacer/> }
+        { err && <div><Alert severity="error" variant="outlined" color="error" style={{ color: '#CF6679' }}>{err}</Alert></div> }
         {/* { loading || imgCode && <div style={styles.spinnerParent}><Spinner/></div>} */}
+        { defImg && <div style={styles.imgParent}><img src={`http://localhost:8080/python-ast/`} style={styles.AST}/></div>}
         { imgCode && <div style={styles.imgParent}><img src={`http://localhost:8080/python-ast/${imgCode}`} style={styles.AST}/></div>}
-      </Paragraph>
+        <Typography variant="body">
+          <br/><br/>
+          Reminder: only "simplified" python syntax is supported. See below for more.
+        </Typography>
+      </div>
+      <div style={styles.container}>
+        <Typography variant="h3">
+          Background
+        </Typography>
+        <Typography variant="body">
+          <br/><br/>
+          This project accepts code written with simple python syntax and creates a graphviz specification representing the source program.
+          The produced graphviz spec can be used to generate an visualization of the abstract syntax tree.
+          <br/><br/>
+          The program first utilizes a flex scanner to ensure the input consists of entirely valid symbols.
+          If the symbols are all valid, a bison parser ensures that the input follows all syntatical rules.
+          Lastly, if the first two conditions are met, the graphviz specification is assembled and printed to stdout.
+          <br/><br/>
+          Please note, this program is not compatible will all python syntax, merely a subset that we will refer to as "Simple Python Syntax".
+          Note that this limitation is by design.
+          This program is intended to be used in a greater python compiler, and a different component in the compiler would be
+          responsible for reducing more advanced python syntax into simple syntax. For more, see the
+          section <Link to="#syntax" style={{ color: '#03DACE', textDecoration: 'none' }}>below</Link> on Syntax.
+        </Typography>
+      </div>
+      <div style={styles.container}>
+        <Typography variant="h3" id="syntax">
+          Syntax
+        </Typography>
+        <Typography variant="body">
+          <br/><br/>
+          The following syntatic structures are supported:
+          <ul>
+            <li>Assignments (excluding strings)</li>
+            <li>Arithmetic</li>
+            <li>If statements</li>
+            <li>While loops</li>
+            <li>Break statements</li>
+          </ul>
+        </Typography>
+      </div>
     </div>
   );
 }
 
 let styles = {
+  parentContainer: {
+    backgroundColor: '#000000',
+    paddingLeft: '10vw',
+    paddingRight: '10vw',
+    display: 'flex',
+    flexDirection: 'column',
+    justifyContent: 'center',
+    alignItems: 'center',
+    flexWrap: 'wrap',
+    width: '100%'
+  },
   container: {
-    flex: 1,
-    backgroundColor: '#282c34'
+    display: 'flex',
+    flexDirection: 'column',
+    justifyContent: 'center',
+    alignItems: 'center',
+    color: 'white',
+    fontSize: 'calc(8px + 2vmin)',
+    paddingTop: 20,
+    paddingLeft: '5vw',
+    paddingRight: '5vw',
+    textAlign: 'left',
+    backgroundColor: '#121212',
+    borderRadius: 25,
+    marginTop: 10,
+    marginBottom: 20,
+    paddingBottom: 20,
+    minWidth: '100%',
+    boxSizing: "border-box"
   },
   link: {
-    color: '#61DAFB',
+    color: '#03DAC6',
     textDecoration: 'none'
   },
   editor: {
     fontFamily: '"Fira code", "Fira Mono", monospace',
     fontSize: 16,
-    backgroundColor: 'white',
-    color: 'black',
-    width: '40%',
+    width: '40vw',
     justifyContent: 'center',
     minHeight: 100,
-    border: '3px solid black'
   },
-  examples: {
-    width: '40%',
+  actionButtons: {
+    marginTop: 20,
+    marginBottom: 20,
     display: 'flex',
     justifyContent: 'space-between',
-    marginBottom: 10
-  },
-  submitButtons: {
-    marginTop: 20,
-    display: 'flex',
-    justifyContent: 'center'
-  },
-  spinnerParent: {
-    justifyContent: 'center',
-    alignItems: 'center',
+    // minWidth: '20vw'
   },
   imgParent: {
     display: 'flex',
@@ -179,9 +217,9 @@ let styles = {
   AST: {
     maxWidth: '80%',
   },
-  errText: {
-    color: 'red',
-  }
+  // errText: {
+  //   color: 'red',
+  // }
 }
 
 export default Project;

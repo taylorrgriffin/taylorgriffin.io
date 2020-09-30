@@ -1,10 +1,11 @@
 import React from 'react';
 import { useMediaQuery } from 'react-responsive';
 import { Typography, Chip, Link } from '@material-ui/core';
+import { faGithub } from '@fortawesome/free-brands-svg-icons';
 import { faArrowLeft } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
-const ProjectHeading = ({ heading, subHeading, imgSrc, labels }) => {
+const ProjectHeading = ({ heading, subHeading, imgSrc, labels, repo, repoName }) => {
   const isNarrow = useMediaQuery({ query: '(max-width: 600px)' });
   const style = styles(isNarrow);
   return(
@@ -23,6 +24,7 @@ const ProjectHeading = ({ heading, subHeading, imgSrc, labels }) => {
           })}
         </div>
       }
+      {repo && <Link style={{ marginTop: 10 }} href={repo}><FontAwesomeIcon icon={faGithub} />&nbsp;&nbsp;{repoName}</Link>}
       <Link href="/projects" style={{ alignSelf: 'start' }}><FontAwesomeIcon icon={faArrowLeft} />&nbsp;&nbsp;Back to Projects</Link>
     </div>
   );

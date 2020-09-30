@@ -43,7 +43,7 @@ const Projects = () => {
         />
         <ProjectPreview
           route="python-ast"
-          heading="Python Abstract Syntax Tree Generator"
+          heading="Python Abstract Syntax Tree Visualizer"
           caption={`Generate abstract syntax tree from simple Python Syntax.
           Written in C++ using Bison and Flex. Click learn more to try it out for yourself!`}
           img={AST}
