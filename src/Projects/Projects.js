@@ -56,7 +56,13 @@ const Projects = () => {
           React Native application available on iOS and Android.`}
           img={TB}
         />
-
+        <ProjectPreview
+          route="journal"
+          heading="Journal App"
+          caption={`Simple journal application created with React Native and Expo, available for iOS and Android.
+          Supports creating, editing, and deleting notes. Consumes Node.js backend, powered by MongoDB.`}
+          repo={`https://github.com/taylorrgriffin/JournalApp`}
+        />
         {/* <ProjectPreview
           route="HALE"
           title="High Altitude Liquid Engine"

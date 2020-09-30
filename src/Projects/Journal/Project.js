@@ -1,80 +1,113 @@
 import React from 'react';
 import styled from 'styled-components';
 
-import Template from '../../Common/ProjectTemplate';
-import { faBook } from '@fortawesome/free-solid-svg-icons';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { Typography } from '@material-ui/core'
 
-
-const Paragraph = styled.p`
-  color: white;
-  text-align: left;
-  padding-left: 10%;
-  padding-right: 10%;
-  font-size: 1.4em;
-`;
-
-const Spacer = styled.hr`
-  margin-top: 60px;
-  margin-bottom: 20px;
-`;
+import Gallery from '../../Common/Gallery';
+import ProjectHeading from '../ProjectHeading';
+import journal_home from '../../assets/journal_home.png';
+import journal_add from '../../assets/journal_add.png';
+import journal_edit from '../../assets/journal_edit.png';
 
 const Link = styled.a`
-  color: #61DAFB;
+  color: #03DACE;
   text-decoration: none;
 `;
 
-const JournalIcon = () => (
-  <FontAwesomeIcon
-    icon={faBook}
-    style={{
-      alignSelf: 'center',
-      fontSize: '100px',
-      color: 'tomato'
-    }} />
-);
+const imageSteps = [
+  {
+    label: 'Journal - Home',
+    src: journal_home,
+  },
+  {
+    label: 'Journal - Add entry',
+    src: journal_add,
+  },
+  {
+    label: 'Journal - Edit entry',
+    src: journal_edit,
+  },
+];
 
 const Project = () => {
   return (
-    <div style={styles.container}>
-      <Template
-        title="Journal"
+    <div style={styles.parentContainer}>
+      <ProjectHeading 
+        heading="Journal App"
+        subHeading={`Simple journal application created with React Native and Expo, available for iOS and Android.
+          Supports creating, editing, and deleting notes. Consumes Node.js backend, powered by MongoDB.`}
+        // imgSrc={AST}
+        labels={['React Native', 'Expo', 'Node.js', 'Docker', 'MongoDB']}
         repo="https://github.com/taylorrgriffin/JournalApp"
-        repoName="Journal App"
-        repoAlt="https://github.com/taylorrgriffin/JournalAPI"
-        repoAltName="Journal API"
-        Icon={JournalIcon}
-        content="Journal application available for Android and iOS"/>
-      <Paragraph>
-        <Spacer/>
-        <h2>Background</h2>
-        Journal is a simple journaling application I created for my special projects course at OSU under the guidence and mentorship of <Link href="https://github.com/robwhess">Rob Hess</Link>.
-        <br/><br/>
-        The purpose of the project was to practice creating an application that utilizes React Native, Node.js, and MongoDb and demonstrates CRUD functionality (create, read, update, delete).
-        <h2>Learning outcomes</h2>
-        A few of the key skills I was able to practice while developing Journal were:
-        <ul>
-          <li>Using the Expo build pipeline to deploy a React Native application to both iOS and Android devices</li>
-          <li>Creating RESTful endpoints on a Node.js express server for read, write, update, and delete operations</li>
-          <li>Developing methods to interface with a MongoDb database for CRUD operations</li>
-          <li>Making RESTful API calls from React Native to a Node.js expres server</li>
-          <li>Designing and developing fluid user interfaces with dynamic data in React Native</li>
-        </ul>
-        <h2>Gallery</h2>
-        Screenshots coming soon!
-      </Paragraph>
+        repoName="JournalApp"
+      />
+      <div style={styles.container}>
+        <Typography variant="h3">
+          Background
+        </Typography>
+        <Typography variant="body">
+          <br/><br/>
+          Journal is a simple journaling application I created for my special projects course at OSU under the guidence and mentorship of <Link href="https://github.com/robwhess">Rob Hess</Link>.
+          <br/><br/>
+           The purpose of the project was to practice creating an application that utilizes React Native, Node.js, and MongoDb and demonstrates CRUD functionality (create, read, update, delete).
+        </Typography>
+      </div>
+      <div style={styles.container}>
+        <Typography variant="h3">
+          Learning outcomes
+        </Typography>
+        <Typography variant="body">
+          <br/><br/>
+          A few of the key skills I was able to practice while developing Journal were:
+          <ul>
+            <li>Using the Expo build pipeline to deploy a React Native application to both iOS and Android devices</li>
+            <li>Creating RESTful endpoints on a Node.js express server for read, write, update, and delete operations</li>
+            <li>Developing methods to interface with a MongoDb database for CRUD operations</li>
+            <li>Making RESTful API calls from React Native to a Node.js expres server</li>
+            <li>Designing and developing fluid user interfaces with dynamic data in React Native</li>
+          </ul>
+        </Typography>
+      </div>
+      <div style={styles.container}>
+        <Typography variant="h3">
+          Gallery
+        </Typography>
+        <Gallery imageSteps={imageSteps} />
+      </div>
     </div>
   );
 }
 
 let styles = {
-  container: {
-    flex: 1,
-    backgroundColor: '#282c34'
+  parentContainer: {
+    backgroundColor: '#000000',
+    paddingLeft: '10vw',
+    paddingRight: '10vw',
+    display: 'flex',
+    flexDirection: 'column',
+    justifyContent: 'center',
+    alignItems: 'center',
+    flexWrap: 'wrap',
+    width: '100%'
   },
-  link: {
-    color: '#61DAFB',
-    textDecoration: 'none'
+  container: {
+    display: 'flex',
+    flexDirection: 'column',
+    justifyContent: 'center',
+    alignItems: 'center',
+    color: 'white',
+    fontSize: 'calc(8px + 2vmin)',
+    paddingTop: 20,
+    paddingLeft: '5vw',
+    paddingRight: '5vw',
+    textAlign: 'left',
+    backgroundColor: '#121212',
+    borderRadius: 25,
+    marginTop: 10,
+    marginBottom: 20,
+    paddingBottom: 20,
+    minWidth: '100%',
+    boxSizing: "border-box"
   },
 }
 
