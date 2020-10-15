@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Alert } from '@material-ui/lab';
 import { HashLink as Link } from 'react-router-hash-link';
 import { highlight, languages } from 'prismjs/components/prism-core';
-import { Typography, Button, ButtonGroup, MuiThemeProvider, createMuiTheme } from '@material-ui/core';
+import { Typography, Button, ButtonGroup, MuiThemeProvider, createMuiTheme, Link as MaterialLink } from '@material-ui/core';
 import Editor from 'react-simple-code-editor';
 import 'prismjs/components/prism-python';
 import '../../prism-alt.css';
@@ -13,8 +13,9 @@ import { example1, example2, example3 } from './examples';
 
 const errorTheme = createMuiTheme({ palette: { primary: { main: '#CF6679' } } });
 
-const generateAST = (input, setImgCode, setLoading, setErr) => {
+const generateAST = (input, setImgCode, setLoading, setErr, setDefImg) => {
   setLoading(true);
+  setDefImg(false);
   setErr(null);
   fetch(
     "http://localhost:8080/python-ast", {
@@ -46,7 +47,7 @@ const Project = () => {
   const [defImg, setDefImg] = useState(true);
   const [loading, setLoading] = useState(false);
   const [imgCode, setImgCode] = useState(null);
-  const [inputCode, setInputCode] = useState(example3);
+  const [inputCode, setInputCode] = useState(example1);
 
   return (
     <div style={styles.parentContainer}>
@@ -75,17 +76,17 @@ const Project = () => {
           <Button onClick={() => {
             setDefImg(false);
             setInputCode(example1);
-            generateAST(example1, setImgCode, setLoading, setErr);
+            generateAST(example1, setImgCode, setLoading, setErr, setDefImg);
           }}>Example 1</Button>
           <Button onClick={() => {
             setDefImg(false);
             setInputCode(example2);
-            generateAST(example2, setImgCode, setLoading, setErr);
+            generateAST(example2, setImgCode, setLoading, setErr, setDefImg);
           }}>Example 2</Button>
           <Button onClick={() => {
             setDefImg(false);
             setInputCode(example3);
-            generateAST(example3, setImgCode, setLoading, setErr);
+            generateAST(example3, setImgCode, setLoading, setErr, setDefImg);
           }}>Example 3</Button>
         </ButtonGroup>
         <div style={styles.actionButtons}>
@@ -105,7 +106,7 @@ const Project = () => {
               setInputCode("# edit code here\n")
             }
             else {
-              generateAST(inputCode, setImgCode, setLoading, setErr)
+              generateAST(inputCode, setImgCode, setLoading, setErr, setDefImg)
             }
           }}>
             Generate Visualization
@@ -115,6 +116,7 @@ const Project = () => {
         {/* { loading || imgCode && <div style={styles.spinnerParent}><Spinner/></div>} */}
         { defImg && <div style={styles.imgParent}><img src={`http://localhost:8080/python-ast/`} style={styles.AST}/></div>}
         { imgCode && <div style={styles.imgParent}><img src={`http://localhost:8080/python-ast/${imgCode}`} style={styles.AST}/></div>}
+        { (imgCode || defImg) &&  <MaterialLink target="_blank" href={defImg ? `http://localhost:8080/python-ast` : `http://localhost:8080/python-ast/${imgCode}`}>Download AST</MaterialLink>}
         <Typography variant="body">
           <br/><br/>
           Reminder: only "simplified" python syntax is supported. See below for more.
