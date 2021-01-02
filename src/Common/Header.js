@@ -4,7 +4,7 @@ import { useRouteMatch } from "react-router-dom";
 import { useMediaQuery } from 'react-responsive';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faGithub, faLinkedin } from '@fortawesome/free-brands-svg-icons';
-import { faCode } from '@fortawesome/free-solid-svg-icons'
+import { faTerminal } from '@fortawesome/free-solid-svg-icons'
 
 const Link = styled.a`
   color: white;
@@ -32,7 +32,7 @@ export const Header = () => {
     <header style={styles.header}>
       <div style={styles.navbar}>
         <div style={styles.titleContainer}>
-          <a style={styles.text} href="/"><FontAwesomeIcon icon={faCode}/>&nbsp;&nbsp;taylorgriffin.io</a>
+          <a style={styles.text} href="/"><FontAwesomeIcon icon={faTerminal}/>&nbsp;&nbsp;taylorgriffin.io</a>
         </div>
         {
           isMobile && 

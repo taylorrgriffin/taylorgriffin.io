@@ -7,7 +7,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 // import { faArrowAltCircleDown as downloadIcon } from '@fortawesome/free-regular-svg-icons';
 
 
-import pdf from '../assets/Resume_07_06_20.pdf';
+import pdf from '../assets/Taylor_Griffin_Resume.pdf';
 
 // weird hack needed to enable react-pdf
 pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.js`;
@@ -56,7 +56,7 @@ const Resume = () => {
           }}>Download</Button>
         </div>
         <Document
-          file={require('../assets/Resume_07_06_20.pdf')}
+          file={require('../assets/Taylor_Griffin_Resume.pdf')}
           onLoadError={() => {console.error("Failed to load pdf.")}}
           onLoadSuccess={()=>{ console.info("Loaded pdf.") }}>
           <Page
