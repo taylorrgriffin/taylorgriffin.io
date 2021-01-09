@@ -1,7 +1,7 @@
 const https = require("https");
 
 module.exports = {
-  apiBaseUrl: 'https://localhost:9000/api',
+  apiBaseUrl: 'https://api.taylorgriffin.io/api',
   httpsAgent: new https.Agent({
     rejectUnauthorized: false
   })
