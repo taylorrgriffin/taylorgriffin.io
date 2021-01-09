@@ -4,13 +4,13 @@ const About = () => {
   return (
     <div style={styles.parentContainer}>
       <div style={styles.container}>
-        <p style={styles.heading}>Hello!</p>
+        <p style={styles.heading}>Welcome!</p>
         <p>
           My name is Taylor Griffin, and I am a Software Engineer based out of Portland, Oregon.
           This past June I graduated from Oregon State University with a Bachelor's in Computer Science and Magna Cum Laude honors.
         </p>
         <p>
-          I am currently working as a Software Development Engineer at Cambia Health Solutions.
+          I currently work as a Software Development Engineer at Cambia Health Solutions, where I focus on backend and database development.
         </p>
         <p>
           If you wish to connect with me, please add me on <a style={styles.link} href="https://linkedin.com/in/taylor-randolph-griffin">LinkedIn</a>,
@@ -43,6 +43,7 @@ let styles = {
     paddingLeft: '5vw',
     paddingRight: '5vw',
     textAlign: 'left',
+    // backgroundColor: '#18191a',
     backgroundColor: '#121212',
     width: '70vw',
     borderRadius: 25

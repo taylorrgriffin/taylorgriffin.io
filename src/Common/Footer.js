@@ -21,6 +21,7 @@ let styles = {
     alignItems: 'center',
     justifyContent: 'center',
     backgroundColor: '#121212',
+    // backgroundColor: '#242526',
     width: '100%',
     fontSize: 'calc(4px + 2vmin)',
     minHeight: '8vh',

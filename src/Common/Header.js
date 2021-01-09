@@ -107,6 +107,7 @@ const style = (isTabletOrMobile = false, isMobile = false) => {
       alignItems: 'center',
       justifyContent: 'center',
       backgroundColor: '#121212',
+      // backgroundColor: '#242526',
       width: '100%',
       fontSize: 'calc(10px + 2vmin)',
       padding: 0,
