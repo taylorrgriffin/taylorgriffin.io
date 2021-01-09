@@ -6,24 +6,37 @@ import { Typography, Button, ButtonGroup, MuiThemeProvider, createMuiTheme, Link
 import Editor from 'react-simple-code-editor';
 import 'prismjs/components/prism-python';
 import '../../prism-alt.css';
-
 import AST from '../../assets/python.png';
 import ProjectHeading from '../ProjectHeading';
 import { example1, example2, example3 } from './examples';
 
+import { apiKey } from '../../secrets';
+import { apiBaseUrl, httpsAgent } from '../../config';
+
+const apiUrl = `${apiBaseUrl}/python-ast`
+const apiUrlExt = `apiKey=${apiKey}`;
+
 const errorTheme = createMuiTheme({ palette: { primary: { main: '#CF6679' } } });
 
-const generateAST = (input, setImgCode, setLoading, setErr, setDefImg) => {
+// enforce proper formatting of python source code
+const resolvePyStr = (str) => {
+  // if string is not empty, ensure it ends in a newline
+  if (str.length > 0 && str.slice(-1) != '\n') {
+    str = str.concat('\n');
+  }
+  return str
+}
+
+
+const generateAST = (input, setImgCode, setLoading, setErr) => {
+  let sourceCode = resolvePyStr(input);
   setLoading(true);
-  setDefImg(false);
   setErr(null);
   fetch(
-    "http://localhost:8080/python-ast", {
+    apiUrl, {
+    agent: httpsAgent,
     method: 'POST',
-    body: JSON.stringify({
-      // ensure input string ends with newline
-      python: input.slice(-1) == '\n' ? input : input.concat('\n')
-    }),
+    body: JSON.stringify({ python: sourceCode }),
     headers: { 'Content-Type': 'application/json' }
   }).then((res) => {
     if (!res.ok) {
@@ -44,9 +57,8 @@ const generateAST = (input, setImgCode, setLoading, setErr, setDefImg) => {
 
 const Project = () => {
   const [err, setErr] = useState(null);
-  const [defImg, setDefImg] = useState(true);
   const [loading, setLoading] = useState(false);
-  const [imgCode, setImgCode] = useState(null);
+  const [imgCode, setImgCode] = useState("");
   const [inputCode, setInputCode] = useState(example1);
 
   return (
@@ -74,25 +86,21 @@ const Project = () => {
         />
         <ButtonGroup color="secondary" aria-label="outlined secondary button group" style={{ marginTop: 10 }}>
           <Button onClick={() => {
-            setDefImg(false);
             setInputCode(example1);
-            generateAST(example1, setImgCode, setLoading, setErr, setDefImg);
+            generateAST(example1, setImgCode, setLoading, setErr);
           }}>Example 1</Button>
           <Button onClick={() => {
-            setDefImg(false);
             setInputCode(example2);
-            generateAST(example2, setImgCode, setLoading, setErr, setDefImg);
+            generateAST(example2, setImgCode, setLoading, setErr);
           }}>Example 2</Button>
           <Button onClick={() => {
-            setDefImg(false);
             setInputCode(example3);
-            generateAST(example3, setImgCode, setLoading, setErr, setDefImg);
+            generateAST(example3, setImgCode, setLoading, setErr);
           }}>Example 3</Button>
         </ButtonGroup>
         <div style={styles.actionButtons}>
           <MuiThemeProvider theme={errorTheme}>
             <Button variant="outlined" color='primary' style={{ marginRight: 10 }} onClick={() => {
-              setDefImg(false);
               setImgCode(null);
               setInputCode('# edit code here\n');
               setLoading(false);
@@ -106,7 +114,7 @@ const Project = () => {
               setInputCode("# edit code here\n")
             }
             else {
-              generateAST(inputCode, setImgCode, setLoading, setErr, setDefImg)
+              generateAST(inputCode, setImgCode, setLoading, setErr)
             }
           }}>
             Generate Visualization
@@ -114,9 +122,8 @@ const Project = () => {
         </div>
         { err && <div><Alert severity="error" variant="outlined" color="error" style={{ color: '#CF6679' }}>{err}</Alert></div> }
         {/* { loading || imgCode && <div style={styles.spinnerParent}><Spinner/></div>} */}
-        { defImg && <div style={styles.imgParent}><img src={`http://localhost:8080/python-ast/`} style={styles.AST}/></div>}
-        { imgCode && <div style={styles.imgParent}><img src={`http://localhost:8080/python-ast/${imgCode}`} style={styles.AST}/></div>}
-        { (imgCode || defImg) &&  <MaterialLink target="_blank" href={defImg ? `http://localhost:8080/python-ast` : `http://localhost:8080/python-ast/${imgCode}`}>Download AST</MaterialLink>}
+        <div style={styles.imgParent}><img src={`${apiUrl}/${imgCode}?${apiUrlExt}`} style={styles.AST}/></div>
+        <MaterialLink target="_blank" href={`${apiUrl}/${imgCode}?${apiUrlExt}`}>Download AST</MaterialLink>
         <Typography variant="body">
           <br/><br/>
           Reminder: only "simplified" python syntax is supported. See below for more.
@@ -219,9 +226,6 @@ let styles = {
   AST: {
     maxWidth: '80%',
   },
-  // errText: {
-  //   color: 'red',
-  // }
 }
 
 export default Project;
