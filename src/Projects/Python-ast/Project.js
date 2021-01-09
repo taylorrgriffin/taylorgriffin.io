@@ -11,13 +11,20 @@ import ProjectHeading from '../ProjectHeading';
 import { example1, example2, example3 } from './examples';
 
 import { apiKey } from '../../secrets';
-import { apiBaseUrl, httpsAgent } from '../../config';
+import config from '../../config';
 
+// configure environment for parsing config options
+const ENV = process.env.REACT_APP_ENV ? process.env.REACT_APP_ENV : 'dev';
+
+// configure api url
+const apiBaseUrl = config[ENV].apiBaseUrl;
 const apiUrl = `${apiBaseUrl}/python-ast`
 const apiUrlExt = `apiKey=${apiKey}`;
 
+// TODO: move this to styling
 const errorTheme = createMuiTheme({ palette: { primary: { main: '#CF6679' } } });
 
+// TODO: consider moving this within main component
 // enforce proper formatting of python source code
 const resolvePyStr = (str) => {
   // if string is not empty, ensure it ends in a newline
@@ -27,14 +34,14 @@ const resolvePyStr = (str) => {
   return str
 }
 
-
+// TODO: probably move this within main componenet so you don't need to pass references
 const generateAST = (input, setImgCode, setLoading, setErr) => {
   let sourceCode = resolvePyStr(input);
+  console.info(sourceCode)
   setLoading(true);
   setErr(null);
   fetch(
-    apiUrl, {
-    agent: httpsAgent,
+    `${apiUrl}?${apiUrlExt}`, {
     method: 'POST',
     body: JSON.stringify({ python: sourceCode }),
     headers: { 'Content-Type': 'application/json' }
@@ -74,6 +81,7 @@ const Project = () => {
         repoName="python-ast"
       />
       <div style={styles.container}>
+        {/* TODO: change styling to try to put these next to each other */}
         <Typography variant="h3" style={{ marginBottom: 20 }}>
           Demo
         </Typography>
@@ -121,7 +129,9 @@ const Project = () => {
           </Button>
         </div>
         { err && <div><Alert severity="error" variant="outlined" color="error" style={{ color: '#CF6679' }}>{err}</Alert></div> }
+        {/* TODO: incorperate spinner  */}
         {/* { loading || imgCode && <div style={styles.spinnerParent}><Spinner/></div>} */}
+        {/* TODO: figure out how to catch 404 and display error */}
         <div style={styles.imgParent}><img src={`${apiUrl}/${imgCode}?${apiUrlExt}`} style={styles.AST}/></div>
         <MaterialLink target="_blank" href={`${apiUrl}/${imgCode}?${apiUrlExt}`}>Download AST</MaterialLink>
         <Typography variant="body">
@@ -169,6 +179,7 @@ const Project = () => {
   );
 }
 
+// TODO: move all styles out into seperate styles folder
 let styles = {
   parentContainer: {
     backgroundColor: '#000000',
