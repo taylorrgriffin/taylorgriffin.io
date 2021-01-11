@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Alert } from '@material-ui/lab';
 import { HashLink as Link } from 'react-router-hash-link';
 import { highlight, languages } from 'prismjs/components/prism-core';
-import { Typography, Button, ButtonGroup, MuiThemeProvider, createMuiTheme, Link as MaterialLink } from '@material-ui/core';
+import { Typography, Button, ButtonGroup, MuiThemeProvider, createMuiTheme, Link as MaterialLink, ListItem, List } from '@material-ui/core';
 import Editor from 'react-simple-code-editor';
 import 'prismjs/components/prism-python';
 import '../../prism-alt.css';
@@ -70,21 +70,28 @@ const Project = () => {
 
   return (
     <div style={styles.parentContainer}>
-      <ProjectHeading 
+      {/* <ProjectHeading 
         heading="Python Abstract Syntax Tree Visualizer"
         subHeading={`Visualize abstract syntax tree from simple Python Syntax.
         Utilizes a Flex scanner and a Bison parser to generate a Graphviz specification. Uses GraphViz to display the generated spec.
-        Visualizations are served as PNGs from taylorgriffin.io.api.`}
+        Visualizations are served as PNGs from api.taylorgriffin.io`}
         imgSrc={AST}
         labels={['C++', 'Bison', 'Flex', 'Bash']}
         repo="https://github.com/taylorrgriffin/python-ast"
         repoName="python-ast"
-      />
+      /> */}
       <div style={styles.container}>
         {/* TODO: change styling to try to put these next to each other */}
-        <Typography variant="h3" style={{ marginBottom: 20 }}>
-          Demo
+        <Typography variant="h3" style={{ marginBottom: 20 }}>Python Abstract Syntax Tree Visualizer</Typography>
+        <Typography variant="lead">
+        Visualize <MaterialLink href="https://en.wikipedia.org/wiki/Abstract_syntax_tree">abstract syntax tree</MaterialLink> from simplified Python syntax.
+        Flex scanner and Bison parser generate tokens to generate a GraphViz specification. Uses GraphViz to display the generated spec.
+        Visualizations are served as PNGs from <MaterialLink href="https://api.taylorgriffin.io">api.taylorgriffin.io</MaterialLink>
         </Typography>
+        {/* TODO: add navigation back to projects */}
+        {/* TODO: add floating navigation bar on left */}
+        {/* TODO: change orientation to column view on smaller width */}
+        <div style={styles.wrapContainer}>
         <Editor
           value={inputCode}
           onValueChange={code => setInputCode(code)}
@@ -92,6 +99,8 @@ const Project = () => {
           padding={10}
           style={styles.editor}
         />
+        { !err && <div style={styles.imgParent}><img src={`${apiUrl}/${imgCode}?${apiUrlExt}`} style={styles.AST}/></div>}
+        </div>
         <ButtonGroup color="secondary" aria-label="outlined secondary button group" style={{ marginTop: 10 }}>
           <Button onClick={() => {
             setInputCode(example1);
@@ -132,20 +141,58 @@ const Project = () => {
         {/* TODO: incorperate spinner  */}
         {/* { loading || imgCode && <div style={styles.spinnerParent}><Spinner/></div>} */}
         {/* TODO: figure out how to catch 404 and display error */}
-        <div style={styles.imgParent}><img src={`${apiUrl}/${imgCode}?${apiUrlExt}`} style={styles.AST}/></div>
-        <MaterialLink target="_blank" href={`${apiUrl}/${imgCode}?${apiUrlExt}`}>Download AST</MaterialLink>
-        <Typography variant="body">
-          <br/><br/>
-          Reminder: only "simplified" python syntax is supported. See below for more.
-        </Typography>
+        { !err && <MaterialLink target="_blank" href={`${apiUrl}/${imgCode}?${apiUrlExt}`}>Download AST</MaterialLink>}
+      </div>
+      {/* TODO: add styling to these */}
+      <div style={styles.container}>
+        <Typography variant="h3">Supported Syntax</Typography>
+        <div style={{ flex: '1', flexDirection: 'row', flexWrap: 'wrap', alignItems: 'flex-start', justifyContent: 'space-around' }}>
+          <div style={{ display: 'inline-block' }}>
+            <Typography variant="h5">Data Types</Typography>
+            <ul>
+              <li>Integer</li>
+              <li>Float</li>
+              <li>Boolean</li>
+            </ul>
+          </div>
+          <div style={{ display: 'inline-block' }}>
+            <Typography variant="h5">Arithmetic</Typography>
+            <ul>
+              <li>Addition</li>
+              <li>Subtraction</li>
+              <li>Multiplication</li>
+              <li>Division</li>
+            </ul>
+          </div>
+          <div style={{ display: 'inline-block' }}>
+            <Typography variant="h5">Comparisons</Typography>
+            <ul>
+              <li>==</li>
+              <li>!=</li>
+              <li>&lt;</li>
+              <li>&gt;</li>
+              <li>&lt;=</li>
+              <li>&gt;=</li>
+            </ul>
+          </div>
+          <div style={{ display: 'inline-block' }}>
+            <Typography variant="h5">Branching Statements</Typography>
+            <ul>
+              <li>If</li>
+              <li>If ... Else</li>
+              <li>While</li>
+              <li>Break</li>
+            </ul>
+          </div>
+        </div>
       </div>
       <div style={styles.container}>
-        <Typography variant="h3">
-          Background
-        </Typography>
-        <Typography variant="body">
+        {/* TODO: finish description */}
+        <Typography variant="h3">Background</Typography>
+        <Typography>
           <br/><br/>
-          This project accepts code written with simple python syntax and creates a graphviz specification representing the source program.
+          Add description here
+          {/* This project accepts code written with simple python syntax and creates a graphviz specification representing the source program.
           The produced graphviz spec can be used to generate an visualization of the abstract syntax tree.
           <br/><br/>
           The program first utilizes a flex scanner to ensure the input consists of entirely valid symbols.
@@ -156,24 +203,18 @@ const Project = () => {
           Note that this limitation is by design.
           This program is intended to be used in a greater python compiler, and a different component in the compiler would be
           responsible for reducing more advanced python syntax into simple syntax. For more, see the
-          section <Link to="#syntax" style={{ color: '#03DACE', textDecoration: 'none' }}>below</Link> on Syntax.
+          section <Link to="#syntax" style={{ color: '#03DACE', textDecoration: 'none' }}>below</Link> on Syntax. */}
         </Typography>
       </div>
+      {/* TODO: finish FAQs */}
       <div style={styles.container}>
-        <Typography variant="h3" id="syntax">
-          Syntax
-        </Typography>
-        <Typography variant="body">
-          <br/><br/>
-          The following syntatic structures are supported:
-          <ul>
-            <li>Assignments (excluding strings)</li>
-            <li>Arithmetic</li>
-            <li>If statements</li>
-            <li>While loops</li>
-            <li>Break statements</li>
-          </ul>
-        </Typography>
+        <Typography variant="h4">Frequently Asked Questions (FAQ)</Typography>
+        <Typography variant="h5">Why did you make this...?</Typography>
+        <Typography>Add answer here</Typography>
+        <Typography variant="h5">Why is only limited syntax supported?</Typography>
+        <Typography>Add answer here</Typography>
+        <Typography variant="h5">How can I learn more about compilers?</Typography>
+        <Typography>Add answer here</Typography>    
       </div>
     </div>
   );
@@ -182,7 +223,9 @@ const Project = () => {
 // TODO: move all styles out into seperate styles folder
 let styles = {
   parentContainer: {
-    backgroundColor: '#000000',
+    // backgroundColor: '#000000',
+    // backgroundColor: '#121212',
+    backgroundColor: '#18191a',
     paddingLeft: '10vw',
     paddingRight: '10vw',
     display: 'flex',
@@ -200,10 +243,11 @@ let styles = {
     color: 'white',
     fontSize: 'calc(8px + 2vmin)',
     paddingTop: 20,
-    paddingLeft: '5vw',
-    paddingRight: '5vw',
+    // paddingLeft: '5vw',
+    // paddingRight: '5vw',
     textAlign: 'left',
-    backgroundColor: '#121212',
+    backgroundColor: '#18191a',
+    // backgroundColor: '#121212',
     borderRadius: 25,
     marginTop: 10,
     marginBottom: 20,
@@ -237,6 +281,12 @@ let styles = {
   AST: {
     maxWidth: '80%',
   },
+  wrapContainer: {
+    paddingTop: 30,
+    display: 'flex',
+    justifyContent: 'space-around',
+    flexDirection: 'row'
+  }
 }
 
 export default Project;
