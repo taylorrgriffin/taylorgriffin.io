@@ -1,11 +1,17 @@
 import React, { useState } from 'react';
 import { Alert } from '@material-ui/lab';
+import { useMediaQuery } from 'react-responsive'
 import { HashLink as Link } from 'react-router-hash-link';
 import { highlight, languages } from 'prismjs/components/prism-core';
-import { Typography, Button, ButtonGroup, MuiThemeProvider, createMuiTheme, Link as MaterialLink, ListItem, List } from '@material-ui/core';
+import { Typography, Button, ButtonGroup, MuiThemeProvider, createMuiTheme, Link as MaterialLink, Chip } from '@material-ui/core';
+import { faGithub } from '@fortawesome/free-brands-svg-icons';
+import { faArrowLeft } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import Editor from 'react-simple-code-editor';
 import 'prismjs/components/prism-python';
 import '../../prism-alt.css';
+
+import Controls from './controls';
 import AST from '../../assets/python.png';
 import ProjectHeading from '../ProjectHeading';
 import { example1, example2, example3 } from './examples';
@@ -68,75 +74,57 @@ const Project = () => {
   const [imgCode, setImgCode] = useState("");
   const [inputCode, setInputCode] = useState(example1);
 
+  const isDesktop = useMediaQuery({ minWidth: 984 });
+  const styles = style(isDesktop);
+
+  console.info(isDesktop);
+
+  const repo = "https://github.com/taylorrgriffin/python-ast";
+  const labels = ['C++', 'Bison', 'Flex', 'Bash'];
+
   return (
     <div style={styles.parentContainer}>
-      {/* <ProjectHeading 
-        heading="Python Abstract Syntax Tree Visualizer"
-        subHeading={`Visualize abstract syntax tree from simple Python Syntax.
-        Utilizes a Flex scanner and a Bison parser to generate a Graphviz specification. Uses GraphViz to display the generated spec.
-        Visualizations are served as PNGs from api.taylorgriffin.io`}
-        imgSrc={AST}
-        labels={['C++', 'Bison', 'Flex', 'Bash']}
-        repo="https://github.com/taylorrgriffin/python-ast"
-        repoName="python-ast"
-      /> */}
       <div style={styles.container}>
-        {/* TODO: change styling to try to put these next to each other */}
+        {/* Title and links */}
         <Typography variant="h3" style={{ marginBottom: 20 }}>Python Abstract Syntax Tree Visualizer</Typography>
+        {
+          labels && <div style={styles.labels}>
+            {labels.map((label) => {
+              return <Chip color="secondary" label={label} variant="outlined" style={styles.label} />
+            })}
+          </div>
+        }
+        <MaterialLink style={{ marginTop: 10, marginBottom: 5 }} href={repo}><FontAwesomeIcon icon={faGithub} />&nbsp;&nbsp;python-ast</MaterialLink>
+        <MaterialLink href="/projects" style={{ alignSelf: 'start', marginBottom: 10 }}><FontAwesomeIcon icon={faArrowLeft} />&nbsp;&nbsp;Back to Projects</MaterialLink>
+        {/* Description */}
         <Typography variant="lead">
         Visualize <MaterialLink href="https://en.wikipedia.org/wiki/Abstract_syntax_tree">abstract syntax tree</MaterialLink> from simplified Python syntax.
         Flex scanner and Bison parser generate tokens to generate a GraphViz specification. Uses GraphViz to display the generated spec.
         Visualizations are served as PNGs from <MaterialLink href="https://api.taylorgriffin.io">api.taylorgriffin.io</MaterialLink>
         </Typography>
-        {/* TODO: add navigation back to projects */}
-        {/* TODO: add floating navigation bar on left */}
-        {/* TODO: change orientation to column view on smaller width */}
+        {/* TODO: add floating nav bar on left */}
         <div style={styles.wrapContainer}>
-        <Editor
-          value={inputCode}
-          onValueChange={code => setInputCode(code)}
-          highlight={code => highlight(code, languages.python)}
-          padding={10}
-          style={styles.editor}
-        />
+        <div>
+          <div style={styles.editorWrapper}>
+            <Editor
+              value={inputCode}
+              onValueChange={code => setInputCode(code)}
+              highlight={code => highlight(code, languages.python)}
+              padding={10}
+              style={styles.editor} />
+          </div>
+          <Controls
+            generateAST={generateAST}
+            setImgCode={setImgCode}
+            setInputCode={setInputCode}
+            setLoading={setLoading}
+            setErr={setErr}
+            inputCode={inputCode} />
+        </div>
         { !err && <div style={styles.imgParent}><img src={`${apiUrl}/${imgCode}?${apiUrlExt}`} style={styles.AST}/></div>}
         </div>
-        <ButtonGroup color="secondary" aria-label="outlined secondary button group" style={{ marginTop: 10 }}>
-          <Button onClick={() => {
-            setInputCode(example1);
-            generateAST(example1, setImgCode, setLoading, setErr);
-          }}>Example 1</Button>
-          <Button onClick={() => {
-            setInputCode(example2);
-            generateAST(example2, setImgCode, setLoading, setErr);
-          }}>Example 2</Button>
-          <Button onClick={() => {
-            setInputCode(example3);
-            generateAST(example3, setImgCode, setLoading, setErr);
-          }}>Example 3</Button>
-        </ButtonGroup>
-        <div style={styles.actionButtons}>
-          <MuiThemeProvider theme={errorTheme}>
-            <Button variant="outlined" color='primary' style={{ marginRight: 10 }} onClick={() => {
-              setImgCode(null);
-              setInputCode('# edit code here\n');
-              setLoading(false);
-            }}>
-              Clear Input
-            </Button>
-          </MuiThemeProvider>
-          <Button variant="outlined" color="primary" style={{ marginLeft: 10 }} onClick={() => {
-            if (inputCode.length < 1) {
-              setErr("Please enter valid python code, or click one of the examples.");
-              setInputCode("# edit code here\n")
-            }
-            else {
-              generateAST(inputCode, setImgCode, setLoading, setErr)
-            }
-          }}>
-            Generate Visualization
-          </Button>
-        </div>
+        
+        
         { err && <div><Alert severity="error" variant="outlined" color="error" style={{ color: '#CF6679' }}>{err}</Alert></div> }
         {/* TODO: incorperate spinner  */}
         {/* { loading || imgCode && <div style={styles.spinnerParent}><Spinner/></div>} */}
@@ -221,13 +209,13 @@ const Project = () => {
 }
 
 // TODO: move all styles out into seperate styles folder
-let styles = {
+const style = isDesktop => ({
   parentContainer: {
     // backgroundColor: '#000000',
     // backgroundColor: '#121212',
     backgroundColor: '#18191a',
     paddingLeft: '10vw',
-    paddingRight: '10vw',
+    paddingRight: '6vw',
     display: 'flex',
     flexDirection: 'column',
     justifyContent: 'center',
@@ -259,12 +247,18 @@ let styles = {
     color: '#03DAC6',
     textDecoration: 'none'
   },
+  editorWrapper: {
+    display: 'flex',
+    justifyContent: 'center'
+  },
   editor: {
     fontFamily: '"Fira code", "Fira Mono", monospace',
     fontSize: 16,
-    width: '40vw',
+    width: isDesktop ? '40vw' : '60vw',
     justifyContent: 'center',
     minHeight: 100,
+    // alignItems: 'center',
+    // alignSelf: 'center',
   },
   actionButtons: {
     marginTop: 20,
@@ -285,8 +279,17 @@ let styles = {
     paddingTop: 30,
     display: 'flex',
     justifyContent: 'space-around',
-    flexDirection: 'row'
-  }
-}
+    flexDirection: 'column',
+    flexDirection: isDesktop ? 'row' : 'column',
+  },
+  label: {
+    margin: 5
+  },
+  labels: {
+    display: 'flex',
+    justifyContent: 'flex-start',
+    flexWrap: 'wrap'
+  },
+})
 
 export default Project;
