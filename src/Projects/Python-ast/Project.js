@@ -131,20 +131,19 @@ const Project = () => {
         {/* TODO: figure out how to catch 404 and display error */}
         { !err && <MaterialLink target="_blank" href={`${apiUrl}/${imgCode}?${apiUrlExt}`}>Download AST</MaterialLink>}
       </div>
-      {/* TODO: add styling to these */}
       <div style={styles.container}>
         <Typography variant="h3">Supported Syntax</Typography>
-        <div style={{ flex: '1', flexDirection: 'row', flexWrap: 'wrap', alignItems: 'flex-start', justifyContent: 'space-around' }}>
-          <div style={{ display: 'inline-block' }}>
-            <Typography variant="h5">Data Types</Typography>
+        <div style={styles.listItems}>
+          <div>
+            <em><Typography variant="h5" fontS>Data Types</Typography></em>
             <ul>
               <li>Integer</li>
               <li>Float</li>
               <li>Boolean</li>
             </ul>
           </div>
-          <div style={{ display: 'inline-block' }}>
-            <Typography variant="h5">Arithmetic</Typography>
+          <div>
+            <em><Typography variant="h5">Arithmetic</Typography></em>
             <ul>
               <li>Addition</li>
               <li>Subtraction</li>
@@ -152,8 +151,8 @@ const Project = () => {
               <li>Division</li>
             </ul>
           </div>
-          <div style={{ display: 'inline-block' }}>
-            <Typography variant="h5">Comparisons</Typography>
+          <div>
+            <em><Typography variant="h5">Comparisons</Typography></em>
             <ul>
               <li>==</li>
               <li>!=</li>
@@ -163,8 +162,8 @@ const Project = () => {
               <li>&gt;=</li>
             </ul>
           </div>
-          <div style={{ display: 'inline-block' }}>
-            <Typography variant="h5">Branching Statements</Typography>
+          <div>
+            <em><Typography variant="h5">Branching Statements</Typography></em>
             <ul>
               <li>If</li>
               <li>If ... Else</li>
@@ -279,7 +278,6 @@ const style = isDesktop => ({
     paddingTop: 30,
     display: 'flex',
     justifyContent: 'space-around',
-    flexDirection: 'column',
     flexDirection: isDesktop ? 'row' : 'column',
   },
   label: {
@@ -290,6 +288,14 @@ const style = isDesktop => ({
     justifyContent: 'flex-start',
     flexWrap: 'wrap'
   },
+  listItems: {
+    width: '70vw',
+    flexWrap: 'wrap',
+    paddingTop: 20,
+    display: 'flex',
+    justifyContent: 'space-around',
+    flexDirection: 'row'
+  }
 })
 
 export default Project;
