@@ -174,34 +174,40 @@ const Project = () => {
         </div>
       </div>
       <div style={styles.container}>
-        {/* TODO: finish description */}
         <Typography variant="h3">Background</Typography>
         <Typography>
           <br/><br/>
-          Add description here
-          {/* This project accepts code written with simple python syntax and creates a graphviz specification representing the source program.
+          This project accepts code written with simple python syntax and creates a graphviz specification representing the source program.
           The produced graphviz spec can be used to generate an visualization of the abstract syntax tree.
           <br/><br/>
           The program first utilizes a flex scanner to ensure the input consists of entirely valid symbols.
           If the symbols are all valid, a bison parser ensures that the input follows all syntatical rules.
           Lastly, if the first two conditions are met, the graphviz specification is assembled and printed to stdout.
           <br/><br/>
-          Please note, this program is not compatible will all python syntax, merely a subset that we will refer to as "Simple Python Syntax".
+          Please note, this program is not compatible will all python syntax, merely a subset that we will refer to as "Simplified Python Syntax".
           Note that this limitation is by design.
-          This program is intended to be used in a greater python compiler, and a different component in the compiler would be
-          responsible for reducing more advanced python syntax into simple syntax. For more, see the
-          section <Link to="#syntax" style={{ color: '#03DACE', textDecoration: 'none' }}>below</Link> on Syntax. */}
         </Typography>
       </div>
-      {/* TODO: finish FAQs */}
       <div style={styles.container}>
         <Typography variant="h4">Frequently Asked Questions (FAQ)</Typography>
+        <br/>
         <Typography variant="h5">Why did you make this...?</Typography>
-        <Typography>Add answer here</Typography>
+        <Typography>
+          This project started as a homework assignment for my compilers course in college. I found the concepts and implementation very interesting, 
+          so I decided to transform it into an interactive web experience. In the future I am planning on adding more projects to this site, some of which 
+          will likely be related to compilers as well.
+        </Typography>
         <Typography variant="h5">Why is only limited syntax supported?</Typography>
-        <Typography>Add answer here</Typography>
+        <Typography>
+          This program is intended to be used in a greater python compiler, and a different component in the compiler would be
+          responsible for reducing more advanced python syntax into simplified syntax. In general, much of the syntax of modern programming languages 
+          can be reduced into more primitive syntax, and exist merely for the convenience and efficiency of the programmer. 
+        </Typography>
         <Typography variant="h5">How can I learn more about compilers?</Typography>
-        <Typography>Add answer here</Typography>    
+        <Typography>
+          There's lots of great resources out there to learn about compiler design and theory. If you're just getting started, I'd recommend 
+          checking out <MaterialLink href="https://www.geeksforgeeks.org/introduction-of-compiler-design/">Introduction of Compiler Design</MaterialLink>.
+        </Typography>    
       </div>
     </div>
   );
