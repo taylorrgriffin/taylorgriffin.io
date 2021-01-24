@@ -1,9 +1,8 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import { Alert } from '@material-ui/lab';
-import { useMediaQuery } from 'react-responsive'
-import { HashLink as Link } from 'react-router-hash-link';
+import { useMediaQuery } from 'react-responsive';
 import { highlight, languages } from 'prismjs/components/prism-core';
-import { Typography, Button, ButtonGroup, MuiThemeProvider, createMuiTheme, Link as MaterialLink, Chip } from '@material-ui/core';
+import { Typography, Link as MaterialLink, Chip } from '@material-ui/core';
 import { faGithub } from '@fortawesome/free-brands-svg-icons';
 import { faArrowLeft } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -12,9 +11,7 @@ import 'prismjs/components/prism-python';
 import '../../prism-alt.css';
 
 import Controls from './controls';
-import AST from '../../assets/python.png';
-import ProjectHeading from '../ProjectHeading';
-import { example1, example2, example3 } from './examples';
+import { example1 } from './examples';
 
 import { apiKey } from '../../secrets';
 import config from '../../config';
@@ -27,24 +24,20 @@ const apiBaseUrl = config[ENV].apiBaseUrl;
 const apiUrl = `${apiBaseUrl}/python-ast`
 const apiUrlExt = `apiKey=${apiKey}`;
 
-// TODO: move this to styling
-const errorTheme = createMuiTheme({ palette: { primary: { main: '#CF6679' } } });
-
 // TODO: consider moving this within main component
 // enforce proper formatting of python source code
 const resolvePyStr = (str) => {
   // if string is not empty, ensure it ends in a newline
-  if (str.length > 0 && str.slice(-1) != '\n') {
+  if (str.length > 0 && str.slice(-1) !== '\n') {
     str = str.concat('\n');
   }
   return str
 }
 
 // TODO: probably move this within main componenet so you don't need to pass references
-const generateAST = (input, setImgCode, setLoading, setErr) => {
+const generateAST = (input, setImgCode, setErr) => {
   let sourceCode = resolvePyStr(input);
-  console.info(sourceCode)
-  setLoading(true);
+  // setLoading(true);
   setErr(null);
   fetch(
     `${apiUrl}?${apiUrlExt}`, {
@@ -53,7 +46,7 @@ const generateAST = (input, setImgCode, setLoading, setErr) => {
     headers: { 'Content-Type': 'application/json' }
   }).then((res) => {
     if (!res.ok) {
-      setLoading(false);
+      // setLoading(false);
       setErr("Incorrect/Unsupported syntax, please try again or click on one of the examples");
       throw Error("Error fetching data.");
     }
@@ -63,24 +56,31 @@ const generateAST = (input, setImgCode, setLoading, setErr) => {
   }).catch((err) => {
     console.error(err);
     setErr("Incorrect/Unsupported syntax, please try again or click on one of the examples");
-    setLoading(false);
+    // setLoading(false);
   });
-  setLoading(false);
+  // setLoading(false);
 }
 
 const Project = () => {
   const [err, setErr] = useState(null);
-  const [loading, setLoading] = useState(false);
+  // const [loading, setLoading] = useState(false);
   const [imgCode, setImgCode] = useState("");
   const [inputCode, setInputCode] = useState(example1);
+
+  const inputRef = useRef();
 
   const isDesktop = useMediaQuery({ minWidth: 984 });
   const styles = style(isDesktop);
 
-  console.info(isDesktop);
-
   const repo = "https://github.com/taylorrgriffin/python-ast";
-  const labels = ['C++', 'Bison', 'Flex', 'Bash'];
+  const labels = ['C++', 'Bison', 'Flex', 'Bash', 'JavaScript'];
+
+
+  // useEffect(() => {
+  //   if (inputRef) {
+  //     inputRef.current.focus();
+  //   }
+  // }, []);
 
   return (
     <div style={styles.parentContainer}>
@@ -99,8 +99,8 @@ const Project = () => {
         {/* Description */}
         <Typography variant="lead">
         Visualize <MaterialLink href="https://en.wikipedia.org/wiki/Abstract_syntax_tree">abstract syntax tree</MaterialLink> from simplified Python syntax.
-        Flex scanner and Bison parser generate tokens to generate a GraphViz specification. Uses GraphViz to display the generated spec.
-        Visualizations are served as PNGs from <MaterialLink href="https://api.taylorgriffin.io">api.taylorgriffin.io</MaterialLink>
+        Write some Python code in the editor and click "Generate Visualization", 
+        or select one of the examples to try it out!
         </Typography>
         {/* TODO: add floating nav bar on left */}
         <div style={styles.wrapContainer}>
@@ -110,6 +110,8 @@ const Project = () => {
               value={inputCode}
               onValueChange={code => setInputCode(code)}
               highlight={code => highlight(code, languages.python)}
+              autoFocus={true}
+              ref={inputRef}
               padding={10}
               style={styles.editor} />
           </div>
@@ -117,18 +119,24 @@ const Project = () => {
             generateAST={generateAST}
             setImgCode={setImgCode}
             setInputCode={setInputCode}
-            setLoading={setLoading}
+            // setLoading={setLoading}
             setErr={setErr}
+            // setFocus={()=>{}}
             inputCode={inputCode} />
         </div>
-        { !err && <div style={styles.imgParent}><img src={`${apiUrl}/${imgCode}?${apiUrlExt}`} style={styles.AST}/></div>}
+        { !err && <div style={styles.imgParent}>
+          <img
+            alt="Python code AST visualization"
+            src={`${apiUrl}/${imgCode}?${apiUrlExt}`}
+            onError={(e)=>{e.target.onerror = null; e.target.src=""}}
+            style={styles.AST} />
+        </div>}
         </div>
         
         
         { err && <div><Alert severity="error" variant="outlined" color="error" style={{ color: '#CF6679' }}>{err}</Alert></div> }
         {/* TODO: incorperate spinner  */}
-        {/* { loading || imgCode && <div style={styles.spinnerParent}><Spinner/></div>} */}
-        {/* TODO: figure out how to catch 404 and display error */}
+        {/* { loading && <div style={styles.spinnerParent}><CircularProgress color="secondary" /></div>} */}
         { !err && <MaterialLink target="_blank" href={`${apiUrl}/${imgCode}?${apiUrlExt}`}>Download AST</MaterialLink>}
       </div>
       <div style={styles.container}>
@@ -191,6 +199,11 @@ const Project = () => {
       <div style={styles.container}>
         <Typography variant="h4">Frequently Asked Questions (FAQ)</Typography>
         <br/>
+        <Typography variant="h5">What is an Abstract Syntax Tree?</Typography>
+        <Typography>
+          An abstract syntax tree (AST), is a data structure that can be used to represent code. The reason it is abstract, is because instead of dislaying every character that appears in the code,
+           it merely represents syntax of each statement. ASTs are useful for a multitude of applications including compilers, algorithms, and program analysis.
+        </Typography>
         <Typography variant="h5">Why did you make this...?</Typography>
         <Typography>
           This project started as a homework assignment for my compilers course in college. I found the concepts and implementation very interesting, 
@@ -216,8 +229,6 @@ const Project = () => {
 // TODO: move all styles out into seperate styles folder
 const style = isDesktop => ({
   parentContainer: {
-    // backgroundColor: '#000000',
-    // backgroundColor: '#121212',
     backgroundColor: '#18191a',
     paddingLeft: '10vw',
     paddingRight: '6vw',
@@ -236,11 +247,8 @@ const style = isDesktop => ({
     color: 'white',
     fontSize: 'calc(8px + 2vmin)',
     paddingTop: 20,
-    // paddingLeft: '5vw',
-    // paddingRight: '5vw',
     textAlign: 'left',
     backgroundColor: '#18191a',
-    // backgroundColor: '#121212',
     borderRadius: 25,
     marginTop: 10,
     marginBottom: 20,
@@ -262,15 +270,12 @@ const style = isDesktop => ({
     width: isDesktop ? '40vw' : '60vw',
     justifyContent: 'center',
     minHeight: 100,
-    // alignItems: 'center',
-    // alignSelf: 'center',
   },
   actionButtons: {
     marginTop: 20,
     marginBottom: 20,
     display: 'flex',
     justifyContent: 'space-between',
-    // minWidth: '20vw'
   },
   imgParent: {
     display: 'flex',
