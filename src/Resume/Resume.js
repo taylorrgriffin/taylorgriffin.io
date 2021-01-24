@@ -1,9 +1,9 @@
 import React from 'react';
-import styled from 'styled-components';
+// import styled from 'styled-components';
 import { Button } from '@material-ui/core';
 import { useMediaQuery } from 'react-responsive';
 import { pdfjs, Document, Page } from 'react-pdf';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+// import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 // import { faArrowAltCircleDown as downloadIcon } from '@fortawesome/free-regular-svg-icons';
 
 
@@ -12,27 +12,27 @@ import pdf from '../assets/Taylor_Griffin_Resume.pdf';
 // weird hack needed to enable react-pdf
 pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.js`;
 
-const Download = styled.a`
-  color: white;
-  text-align: center;
-  text-decoration: none;
-  font-size: 24px;
-  &:hover {
-    cursor: pointer;
-    color: tomato;
-    svg {
-      color: tomato;
-    }
-    path {
-      color: tomato;
-    }
-  }
-  margin-bottom: 15;
-`;
+// const Download = styled.a`
+//   color: white;
+//   text-align: center;
+//   text-decoration: none;
+//   font-size: 24px;
+//   &:hover {
+//     cursor: pointer;
+//     color: tomato;
+//     svg {
+//       color: tomato;
+//     }
+//     path {
+//       color: tomato;
+//     }
+//   }
+//   margin-bottom: 15;
+// `;
 
-const Icon = styled(FontAwesomeIcon)`
-  font-size: 150px;
-`;
+// const Icon = styled(FontAwesomeIcon)`
+//   font-size: 150px;
+// `;
 
 const Resume = () => {
   const isMobile = useMediaQuery({ query: '(max-width: 768px)' });

@@ -4,7 +4,7 @@ import styled from 'styled-components';
 import Template from '../../Common/ProjectTemplate';
 import PhotoGallery from '../../Common/PhotoGallery';
 
-import MugPNG from '../../assets/beer_mug.png';
+// import MugPNG from '../../assets/beer_mug.png';
 import HomePNG from '../../assets/Beerbook_Home.png';
 import BeersPNG from '../../assets/Beerbook_Beers.png';
 import SearchPNG from '../../assets/Beerbook_Search.png';

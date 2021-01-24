@@ -1,7 +1,7 @@
 import React from 'react';
 // import '../../glow.css';
 import { example1, example2, example3 } from './examples';
-import { Typography, Button, ButtonGroup, MuiThemeProvider, createMuiTheme, Link as MaterialLink, Chip } from '@material-ui/core';
+import { Button, ButtonGroup, MuiThemeProvider, createMuiTheme } from '@material-ui/core';
 
 // TODO: implement glowing box
 // <div id="text">
@@ -31,7 +31,7 @@ const Controls = ({ generateAST, setImgCode, setInputCode, setLoading, setErr, i
           <Button variant="outlined" color='primary' style={{ marginRight: 10 }} onClick={() => {
             setImgCode(null);
             setInputCode('# edit code here\n');
-            setLoading(false);
+            // setLoading(false);
           }}>
             Clear Input
           </Button>

@@ -16,7 +16,7 @@ const ProjectHeading = ({ heading, subHeading, imgSrc, labels, repo, repoName })
       <Typography variant="h5" component="p">
         {subHeading}
       </Typography>
-      <img src={imgSrc} style={style.img} />
+      <img src={imgSrc} style={style.img} alt="Project logo"/>
       {
         labels && <div style={style.labels}>
           {labels.map((label) => {
