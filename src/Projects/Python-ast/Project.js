@@ -1,14 +1,17 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import { Alert } from '@material-ui/lab';
-import { HashLink as Link } from 'react-router-hash-link';
+import { useMediaQuery } from 'react-responsive';
 import { highlight, languages } from 'prismjs/components/prism-core';
-import { Typography, Button, ButtonGroup, MuiThemeProvider, createMuiTheme, Link as MaterialLink } from '@material-ui/core';
+import { Typography, Link as MaterialLink, Chip } from '@material-ui/core';
+import { faGithub } from '@fortawesome/free-brands-svg-icons';
+import { faArrowLeft } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import Editor from 'react-simple-code-editor';
 import 'prismjs/components/prism-python';
 import '../../prism-alt.css';
-import AST from '../../assets/python.png';
-import ProjectHeading from '../ProjectHeading';
-import { example1, example2, example3 } from './examples';
+
+import Controls from './controls';
+import { example1 } from './examples';
 
 import { apiKey } from '../../secrets';
 import config from '../../config';
@@ -21,24 +24,20 @@ const apiBaseUrl = config[ENV].apiBaseUrl;
 const apiUrl = `${apiBaseUrl}/python-ast`
 const apiUrlExt = `apiKey=${apiKey}`;
 
-// TODO: move this to styling
-const errorTheme = createMuiTheme({ palette: { primary: { main: '#CF6679' } } });
-
 // TODO: consider moving this within main component
 // enforce proper formatting of python source code
 const resolvePyStr = (str) => {
   // if string is not empty, ensure it ends in a newline
-  if (str.length > 0 && str.slice(-1) != '\n') {
+  if (str.length > 0 && str.slice(-1) !== '\n') {
     str = str.concat('\n');
   }
   return str
 }
 
 // TODO: probably move this within main componenet so you don't need to pass references
-const generateAST = (input, setImgCode, setLoading, setErr) => {
+const generateAST = (input, setImgCode, setErr) => {
   let sourceCode = resolvePyStr(input);
-  console.info(sourceCode)
-  setLoading(true);
+  // setLoading(true);
   setErr(null);
   fetch(
     `${apiUrl}?${apiUrlExt}`, {
@@ -47,7 +46,7 @@ const generateAST = (input, setImgCode, setLoading, setErr) => {
     headers: { 'Content-Type': 'application/json' }
   }).then((res) => {
     if (!res.ok) {
-      setLoading(false);
+      // setLoading(false);
       setErr("Incorrect/Unsupported syntax, please try again or click on one of the examples");
       throw Error("Error fetching data.");
     }
@@ -57,93 +56,134 @@ const generateAST = (input, setImgCode, setLoading, setErr) => {
   }).catch((err) => {
     console.error(err);
     setErr("Incorrect/Unsupported syntax, please try again or click on one of the examples");
-    setLoading(false);
+    // setLoading(false);
   });
-  setLoading(false);
+  // setLoading(false);
 }
 
 const Project = () => {
   const [err, setErr] = useState(null);
-  const [loading, setLoading] = useState(false);
+  // const [loading, setLoading] = useState(false);
   const [imgCode, setImgCode] = useState("");
   const [inputCode, setInputCode] = useState(example1);
 
+  const inputRef = useRef();
+
+  const isDesktop = useMediaQuery({ minWidth: 984 });
+  const styles = style(isDesktop);
+
+  const repo = "https://github.com/taylorrgriffin/python-ast";
+  const labels = ['C++', 'Bison', 'Flex', 'Bash', 'JavaScript'];
+
+
+  // useEffect(() => {
+  //   if (inputRef) {
+  //     inputRef.current.focus();
+  //   }
+  // }, []);
+
   return (
     <div style={styles.parentContainer}>
-      <ProjectHeading 
-        heading="Python Abstract Syntax Tree Visualizer"
-        subHeading={`Visualize abstract syntax tree from simple Python Syntax.
-        Utilizes a Flex scanner and a Bison parser to generate a Graphviz specification. Uses GraphViz to display the generated spec.
-        Visualizations are served as PNGs from taylorgriffin.io.api.`}
-        imgSrc={AST}
-        labels={['C++', 'Bison', 'Flex', 'Bash']}
-        repo="https://github.com/taylorrgriffin/python-ast"
-        repoName="python-ast"
-      />
       <div style={styles.container}>
-        {/* TODO: change styling to try to put these next to each other */}
-        <Typography variant="h3" style={{ marginBottom: 20 }}>
-          Demo
+        {/* Title and links */}
+        <Typography variant="h3" style={{ marginBottom: 20 }}>Python Abstract Syntax Tree Visualizer</Typography>
+        {
+          labels && <div style={styles.labels}>
+            {labels.map((label) => {
+              return <Chip color="secondary" label={label} variant="outlined" style={styles.label} />
+            })}
+          </div>
+        }
+        <MaterialLink style={{ marginTop: 10, marginBottom: 5 }} href={repo}><FontAwesomeIcon icon={faGithub} />&nbsp;&nbsp;python-ast</MaterialLink>
+        <MaterialLink href="/projects" style={{ alignSelf: 'start', marginBottom: 10 }}><FontAwesomeIcon icon={faArrowLeft} />&nbsp;&nbsp;Back to Projects</MaterialLink>
+        {/* Description */}
+        <Typography variant="lead">
+        Visualize <MaterialLink href="https://en.wikipedia.org/wiki/Abstract_syntax_tree">abstract syntax tree</MaterialLink> from simplified Python syntax.
+        Write some Python code in the editor and click "Generate Visualization", 
+        or select one of the examples to try it out!
         </Typography>
-        <Editor
-          value={inputCode}
-          onValueChange={code => setInputCode(code)}
-          highlight={code => highlight(code, languages.python)}
-          padding={10}
-          style={styles.editor}
-        />
-        <ButtonGroup color="secondary" aria-label="outlined secondary button group" style={{ marginTop: 10 }}>
-          <Button onClick={() => {
-            setInputCode(example1);
-            generateAST(example1, setImgCode, setLoading, setErr);
-          }}>Example 1</Button>
-          <Button onClick={() => {
-            setInputCode(example2);
-            generateAST(example2, setImgCode, setLoading, setErr);
-          }}>Example 2</Button>
-          <Button onClick={() => {
-            setInputCode(example3);
-            generateAST(example3, setImgCode, setLoading, setErr);
-          }}>Example 3</Button>
-        </ButtonGroup>
-        <div style={styles.actionButtons}>
-          <MuiThemeProvider theme={errorTheme}>
-            <Button variant="outlined" color='primary' style={{ marginRight: 10 }} onClick={() => {
-              setImgCode(null);
-              setInputCode('# edit code here\n');
-              setLoading(false);
-            }}>
-              Clear Input
-            </Button>
-          </MuiThemeProvider>
-          <Button variant="outlined" color="primary" style={{ marginLeft: 10 }} onClick={() => {
-            if (inputCode.length < 1) {
-              setErr("Please enter valid python code, or click one of the examples.");
-              setInputCode("# edit code here\n")
-            }
-            else {
-              generateAST(inputCode, setImgCode, setLoading, setErr)
-            }
-          }}>
-            Generate Visualization
-          </Button>
+        {/* TODO: add floating nav bar on left */}
+        <div style={styles.wrapContainer}>
+        <div>
+          <div style={styles.editorWrapper}>
+            <Editor
+              value={inputCode}
+              onValueChange={code => setInputCode(code)}
+              highlight={code => highlight(code, languages.python)}
+              autoFocus={true}
+              ref={inputRef}
+              padding={10}
+              style={styles.editor} />
+          </div>
+          <Controls
+            generateAST={generateAST}
+            setImgCode={setImgCode}
+            setInputCode={setInputCode}
+            // setLoading={setLoading}
+            setErr={setErr}
+            // setFocus={()=>{}}
+            inputCode={inputCode} />
         </div>
+        { !err && <div style={styles.imgParent}>
+          <img
+            alt="Python code AST visualization"
+            src={`${apiUrl}/${imgCode}?${apiUrlExt}`}
+            onError={(e)=>{e.target.onerror = null; e.target.src=""}}
+            style={styles.AST} />
+        </div>}
+        </div>
+        
+        
         { err && <div><Alert severity="error" variant="outlined" color="error" style={{ color: '#CF6679' }}>{err}</Alert></div> }
         {/* TODO: incorperate spinner  */}
-        {/* { loading || imgCode && <div style={styles.spinnerParent}><Spinner/></div>} */}
-        {/* TODO: figure out how to catch 404 and display error */}
-        <div style={styles.imgParent}><img src={`${apiUrl}/${imgCode}?${apiUrlExt}`} style={styles.AST}/></div>
-        <MaterialLink target="_blank" href={`${apiUrl}/${imgCode}?${apiUrlExt}`}>Download AST</MaterialLink>
-        <Typography variant="body">
-          <br/><br/>
-          Reminder: only "simplified" python syntax is supported. See below for more.
-        </Typography>
+        {/* { loading && <div style={styles.spinnerParent}><CircularProgress color="secondary" /></div>} */}
+        { !err && <MaterialLink target="_blank" href={`${apiUrl}/${imgCode}?${apiUrlExt}`}>Download AST</MaterialLink>}
       </div>
       <div style={styles.container}>
-        <Typography variant="h3">
-          Background
-        </Typography>
-        <Typography variant="body">
+        <Typography variant="h3">Supported Syntax</Typography>
+        <div style={styles.listItems}>
+          <div>
+            <em><Typography variant="h5" fontS>Data Types</Typography></em>
+            <ul>
+              <li>Integer</li>
+              <li>Float</li>
+              <li>Boolean</li>
+            </ul>
+          </div>
+          <div>
+            <em><Typography variant="h5">Arithmetic</Typography></em>
+            <ul>
+              <li>Addition</li>
+              <li>Subtraction</li>
+              <li>Multiplication</li>
+              <li>Division</li>
+            </ul>
+          </div>
+          <div>
+            <em><Typography variant="h5">Comparisons</Typography></em>
+            <ul>
+              <li>==</li>
+              <li>!=</li>
+              <li>&lt;</li>
+              <li>&gt;</li>
+              <li>&lt;=</li>
+              <li>&gt;=</li>
+            </ul>
+          </div>
+          <div>
+            <em><Typography variant="h5">Branching Statements</Typography></em>
+            <ul>
+              <li>If</li>
+              <li>If ... Else</li>
+              <li>While</li>
+              <li>Break</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div style={styles.container}>
+        <Typography variant="h3">Background</Typography>
+        <Typography>
           <br/><br/>
           This project accepts code written with simple python syntax and creates a graphviz specification representing the source program.
           The produced graphviz spec can be used to generate an visualization of the abstract syntax tree.
@@ -152,39 +192,46 @@ const Project = () => {
           If the symbols are all valid, a bison parser ensures that the input follows all syntatical rules.
           Lastly, if the first two conditions are met, the graphviz specification is assembled and printed to stdout.
           <br/><br/>
-          Please note, this program is not compatible will all python syntax, merely a subset that we will refer to as "Simple Python Syntax".
+          Please note, this program is not compatible will all python syntax, merely a subset that we will refer to as "Simplified Python Syntax".
           Note that this limitation is by design.
-          This program is intended to be used in a greater python compiler, and a different component in the compiler would be
-          responsible for reducing more advanced python syntax into simple syntax. For more, see the
-          section <Link to="#syntax" style={{ color: '#03DACE', textDecoration: 'none' }}>below</Link> on Syntax.
         </Typography>
       </div>
       <div style={styles.container}>
-        <Typography variant="h3" id="syntax">
-          Syntax
+        <Typography variant="h4">Frequently Asked Questions (FAQ)</Typography>
+        <br/>
+        <Typography variant="h5">What is an Abstract Syntax Tree?</Typography>
+        <Typography>
+          An abstract syntax tree (AST), is a data structure that can be used to represent code. The reason it is abstract, is because instead of dislaying every character that appears in the code,
+           it merely represents syntax of each statement. ASTs are useful for a multitude of applications including compilers, algorithms, and program analysis.
         </Typography>
-        <Typography variant="body">
-          <br/><br/>
-          The following syntatic structures are supported:
-          <ul>
-            <li>Assignments (excluding strings)</li>
-            <li>Arithmetic</li>
-            <li>If statements</li>
-            <li>While loops</li>
-            <li>Break statements</li>
-          </ul>
+        <Typography variant="h5">Why did you make this...?</Typography>
+        <Typography>
+          This project started as a homework assignment for my compilers course in college. I found the concepts and implementation very interesting, 
+          so I decided to transform it into an interactive web experience. In the future I am planning on adding more projects to this site, some of which 
+          will likely be related to compilers as well.
         </Typography>
+        <Typography variant="h5">Why is only limited syntax supported?</Typography>
+        <Typography>
+          This program is intended to be used in a greater python compiler, and a different component in the compiler would be
+          responsible for reducing more advanced python syntax into simplified syntax. In general, much of the syntax of modern programming languages 
+          can be reduced into more primitive syntax, and exist merely for the convenience and efficiency of the programmer. 
+        </Typography>
+        <Typography variant="h5">How can I learn more about compilers?</Typography>
+        <Typography>
+          There's lots of great resources out there to learn about compiler design and theory. If you're just getting started, I'd recommend 
+          checking out <MaterialLink href="https://www.geeksforgeeks.org/introduction-of-compiler-design/">Introduction of Compiler Design</MaterialLink>.
+        </Typography>    
       </div>
     </div>
   );
 }
 
 // TODO: move all styles out into seperate styles folder
-let styles = {
+const style = isDesktop => ({
   parentContainer: {
-    backgroundColor: '#000000',
+    backgroundColor: '#18191a',
     paddingLeft: '10vw',
-    paddingRight: '10vw',
+    paddingRight: '6vw',
     display: 'flex',
     flexDirection: 'column',
     justifyContent: 'center',
@@ -200,10 +247,8 @@ let styles = {
     color: 'white',
     fontSize: 'calc(8px + 2vmin)',
     paddingTop: 20,
-    paddingLeft: '5vw',
-    paddingRight: '5vw',
     textAlign: 'left',
-    backgroundColor: '#121212',
+    backgroundColor: '#18191a',
     borderRadius: 25,
     marginTop: 10,
     marginBottom: 20,
@@ -215,10 +260,14 @@ let styles = {
     color: '#03DAC6',
     textDecoration: 'none'
   },
+  editorWrapper: {
+    display: 'flex',
+    justifyContent: 'center'
+  },
   editor: {
     fontFamily: '"Fira code", "Fira Mono", monospace',
     fontSize: 16,
-    width: '40vw',
+    width: isDesktop ? '40vw' : '60vw',
     justifyContent: 'center',
     minHeight: 100,
   },
@@ -227,7 +276,6 @@ let styles = {
     marginBottom: 20,
     display: 'flex',
     justifyContent: 'space-between',
-    // minWidth: '20vw'
   },
   imgParent: {
     display: 'flex',
@@ -237,6 +285,28 @@ let styles = {
   AST: {
     maxWidth: '80%',
   },
-}
+  wrapContainer: {
+    paddingTop: 30,
+    display: 'flex',
+    justifyContent: 'space-around',
+    flexDirection: isDesktop ? 'row' : 'column',
+  },
+  label: {
+    margin: 5
+  },
+  labels: {
+    display: 'flex',
+    justifyContent: 'flex-start',
+    flexWrap: 'wrap'
+  },
+  listItems: {
+    width: '70vw',
+    flexWrap: 'wrap',
+    paddingTop: 20,
+    display: 'flex',
+    justifyContent: 'space-around',
+    flexDirection: 'row'
+  }
+})
 
 export default Project;

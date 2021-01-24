@@ -9,10 +9,11 @@ import {
   Typography,
   CardActionArea,
   Button,
-  Icon,
-  IconButton } from '@material-ui/core';
-import { faGithub } from '@fortawesome/free-brands-svg-icons';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+  // Icon,
+  // IconButton
+} from '@material-ui/core';
+// import { faGithub } from '@fortawesome/free-brands-svg-icons';
+// import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 const ProjectPreview = ({ heading, caption, img, route, repo }) => {
   let history = useHistory();
@@ -22,7 +23,7 @@ const ProjectPreview = ({ heading, caption, img, route, repo }) => {
       <Card style={styles.root}>
         <CardActionArea onClick={() => { history.push(`/projects/${route}`) }}>
           <CardMedia style={styles.imgContainer}>
-            <img src={img} style={styles.img}/>
+            <img src={img} style={styles.img} alt="Project logo" />
           </CardMedia>
           <CardContent>
             <Typography gutterBottom variant="h5" component="h2">
