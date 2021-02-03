@@ -1,58 +1,24 @@
 import React from 'react';
-// import styled from 'styled-components';
-import { Button } from '@material-ui/core';
+import { Button, Typography } from '@material-ui/core';
 import { useMediaQuery } from 'react-responsive';
 import { pdfjs, Document, Page } from 'react-pdf';
-// import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-// import { faArrowAltCircleDown as downloadIcon } from '@fortawesome/free-regular-svg-icons';
-
-
-import pdf from '../assets/Taylor_Griffin_Resume.pdf';
+import { BACKGROUND, PAGE_BACKGROUND, BORDER } from '../styles/colors';
 
 // weird hack needed to enable react-pdf
 pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.js`;
-
-// const Download = styled.a`
-//   color: white;
-//   text-align: center;
-//   text-decoration: none;
-//   font-size: 24px;
-//   &:hover {
-//     cursor: pointer;
-//     color: tomato;
-//     svg {
-//       color: tomato;
-//     }
-//     path {
-//       color: tomato;
-//     }
-//   }
-//   margin-bottom: 15;
-// `;
-
-// const Icon = styled(FontAwesomeIcon)`
-//   font-size: 150px;
-// `;
 
 const Resume = () => {
   const isMobile = useMediaQuery({ query: '(max-width: 768px)' });
   const isTabletOrMobile = useMediaQuery({ query: '(max-width: 1224px)' });
 
-  let resumeAspectRatio = isMobile ? 0.78 : isTabletOrMobile ? 1.2 : 1.9;
+  let resumeAspectRatio = isMobile ? 0.7 : isTabletOrMobile ? 1.0 : 1.7;
 
   return (
     <div style={styles.container}>
       <div style={styles.parent}>
-        {/* <div style={styles.span}>
-          <Download href={pdf} download>
-            Download&nbsp;&nbsp;
-            <Icon icon={downloadIcon} style={styles.downloadLink}/>
-          </Download>
-        </div> */}
         <div style={styles.span}>
-          {/* TODO: fix download functionality */}
-          <Button variant="outlined" color="primary" download onClick={()=>{
-            window.location.href = pdf
+          <Button variant="outlined" color="primary" download="Taylor_Griffin_Resume.pdf" onClick={()=>{
+            window.location.href = '/Taylor_Griffin_Resume.pdf'
           }}>Download</Button>
         </div>
         <Document
@@ -81,25 +47,13 @@ let styles = {
     paddingRight: '1vw',
     textAlign: 'left',
     flex: '1 1 auto',
-    backgroundColor: '#000000'
+    backgroundColor: BACKGROUND
   },
   parent: {
-    backgroundColor: '#121212',
+    backgroundColor: PAGE_BACKGROUND,
     padding: '3vw',
-    borderRadius: 25
-  },
-  heading: {
-    textAlign: 'center'
-  },
-  link: {
-    color: '#61DAFB',
-    textDecoration: 'none'
-  },
-  downloadLink: {
-    color: 'white',
-    fontSize: '30px',
-    textDecoration: 'none',
-    margin: '0px'
+    borderRadius: 18,
+    border: `1px solid ${BORDER}`
   },
   span: {
     display: 'flex',

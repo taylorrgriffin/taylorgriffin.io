@@ -5,8 +5,9 @@ import {
   Redirect
 } from 'react-router-dom';
 
-import './App.css';
-import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
+import theme from './styles/theme';
+import { BACKGROUND } from './styles/colors';
+import { ThemeProvider } from '@material-ui/core/styles';
 
 import Header from './Common/Header';
 import Footer from './Common/Footer';
@@ -83,61 +84,8 @@ let styles = {
   body: {
     flex: 1,
     display: 'flex',
-    // TODO: figure out how to remove this without ruining Grid layout
-    backgroundColor: '#000000'
+    backgroundColor: BACKGROUND
   }
 }
-
-const theme = createMuiTheme({
-  palette: {
-    primary: {
-      main: '#BB86FC'
-    },
-    secondary: {
-      main: '#03DAC6'
-    },
-    primaryVariant: {
-      main: '#3700B3'
-    },
-    error: {
-      main: '#CF6679'
-    },
-    textPrimary: {
-      main: '#FFFFFF'
-    },
-    textSecondary: {
-      main: '#FFFFFF'
-    }
-  },
-  typography: {
-    h1: {
-      color: '#FFFFFF'
-    },
-    h2: {
-      color: '#FFFFFF',
-    },
-    h3: {
-      color: '#FFFFFF'
-    },
-    h5: {
-      color: '#FFFFFF'
-    },
-    h6: {
-      color: '#FFFFFF',
-    },
-    body1: {
-      color: '#FFFFFF',
-      opacity: '60%'
-    },
-    body2: {
-      color: '#FFFFFF',
-      opacity: '83%'
-    },
-    body: {
-      color: '#FFFFFF',
-      padding: 0,
-    }
-  }
-})
 
 export default App;

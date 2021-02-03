@@ -1,29 +1,29 @@
 import React from 'react';
 // import '../../glow.css';
 import { example1, example2, example3 } from './examples';
-import { Button, ButtonGroup, MuiThemeProvider, createMuiTheme } from '@material-ui/core';
+import { Button, ButtonGroup, MuiThemeProvider } from '@material-ui/core';
+
+import errorTheme from '../../styles/errorTheme';
 
 // TODO: implement glowing box
 // <div id="text">
 // </div>
 
-const Controls = ({ generateAST, setImgCode, setInputCode, setLoading, setErr, inputCode }) => {
-  const errorTheme = createMuiTheme({ palette: { primary: { main: '#CF6679' } } });
-
+const Controls = ({ generateAST, setImgCode, setInputCode, setErr, inputCode }) => {
   return (
     <div style={styles.container}>
       <ButtonGroup color="secondary" aria-label="outlined secondary button group" style={{ marginTop: 10 }}>
         <Button onClick={() => {
           setInputCode(example1);
-          generateAST(example1, setImgCode, setLoading, setErr);
+          generateAST(example1, setImgCode, setErr);
         }}>Example 1</Button>
         <Button onClick={() => {
           setInputCode(example2);
-          generateAST(example2, setImgCode, setLoading, setErr);
+          generateAST(example2, setImgCode, setErr);
         }}>Example 2</Button>
         <Button onClick={() => {
           setInputCode(example3);
-          generateAST(example3, setImgCode, setLoading, setErr);
+          generateAST(example3, setImgCode, setErr);
         }}>Example 3</Button>
       </ButtonGroup>
       <div style={styles.actionButtons}>
@@ -31,7 +31,6 @@ const Controls = ({ generateAST, setImgCode, setInputCode, setLoading, setErr, i
           <Button variant="outlined" color='primary' style={{ marginRight: 10 }} onClick={() => {
             setImgCode(null);
             setInputCode('# edit code here\n');
-            // setLoading(false);
           }}>
             Clear Input
           </Button>
@@ -42,7 +41,7 @@ const Controls = ({ generateAST, setImgCode, setInputCode, setLoading, setErr, i
             setInputCode("# edit code here\n")
           }
           else {
-            generateAST(inputCode, setImgCode, setLoading, setErr)
+            generateAST(inputCode, setImgCode, setErr)
           }
         }}>
           Generate Visualization

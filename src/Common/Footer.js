@@ -1,6 +1,6 @@
 import React from 'react';
-
-import logo from '../logo.svg';
+import logo from '../assets/logo.svg';
+import { PRIMARY, FOOTER_BACKGROUND, BORDER } from '../styles/colors';
 
 export const Footer = () => {
   return (
@@ -20,17 +20,16 @@ let styles = {
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'center',
-    // backgroundColor: '#121212',
-    backgroundColor: '#303846',
-    // backgroundColor: '#242526',
+    backgroundColor: FOOTER_BACKGROUND,
     width: '100%',
     fontSize: 'calc(4px + 2vmin)',
     minHeight: '8vh',
     flexWrap: 'wrap',
-    color: 'white'
+    color: 'white',
+    borderTop: `1px solid ${BORDER}`
   },
   link: {
-    color: '#BB86FC',
+    color: PRIMARY,
     textDecoration: 'none'
   },
   logo: {

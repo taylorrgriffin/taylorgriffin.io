@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from '@material-ui/core';
 import { Typography } from '@material-ui/core';
 import ProjectHeading from '../ProjectHeading';
 
@@ -67,7 +68,7 @@ const Project = () => {
         </Typography>
         <Typography variant="body">
           <br/><br/>
-          The HALE project is still in developement, though I am now only minorly involved since I have graduated and left OSU. For more on HALE, you can read about what the team is up to on the <a style={styles.link} href="https://osuaiaa.com/hale">OSU AIAA website</a>.
+          The HALE project is still in developement, though I am now only minorly involved since I have graduated and left OSU. For more on HALE, you can read about what the team is up to on the <Link color="secondary" underline="none" href="https://osuaiaa.com/hale">OSU AIAA website</Link>.
         </Typography>
       </div>
     </div>
@@ -103,10 +104,6 @@ let styles = {
     marginBottom: 20,
     paddingBottom: 20,
     boxSizing: "border-box"
-  },
-  link: {
-    color: '#03DAC6',
-    textDecoration: 'none'
   },
 }
 

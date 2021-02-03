@@ -8,7 +8,7 @@ import { faArrowLeft } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import Editor from 'react-simple-code-editor';
 import 'prismjs/components/prism-python';
-import '../../prism-alt.css';
+import '../../styles/prism.css';
 
 import Controls from './controls';
 import { example1 } from './examples';
@@ -83,6 +83,7 @@ const Project = () => {
   // }, []);
 
   return (
+    // TODO: add border back around container, and change parent container bg color
     <div style={styles.parentContainer}>
       <div style={styles.container}>
         {/* Title and links */}
@@ -95,6 +96,7 @@ const Project = () => {
           </div>
         }
         <MaterialLink style={{ marginTop: 10, marginBottom: 5 }} href={repo}><FontAwesomeIcon icon={faGithub} />&nbsp;&nbsp;python-ast</MaterialLink>
+        {/* TODO: consider moving this link so it doesn't blend in as much with the wikipedia link.. or just remove the link */}
         <MaterialLink href="/projects" style={{ alignSelf: 'start', marginBottom: 10 }}><FontAwesomeIcon icon={faArrowLeft} />&nbsp;&nbsp;Back to Projects</MaterialLink>
         {/* Description */}
         <Typography variant="lead">
@@ -106,6 +108,7 @@ const Project = () => {
         <div style={styles.wrapContainer}>
         <div>
           <div style={styles.editorWrapper}>
+            {/* TODO: change the prism css file so the editor border color is different */}
             <Editor
               value={inputCode}
               onValueChange={code => setInputCode(code)}
@@ -115,13 +118,12 @@ const Project = () => {
               padding={10}
               style={styles.editor} />
           </div>
+          {/* TODO: change error theme and button colors to match dracula theme */}
           <Controls
             generateAST={generateAST}
             setImgCode={setImgCode}
             setInputCode={setInputCode}
-            // setLoading={setLoading}
             setErr={setErr}
-            // setFocus={()=>{}}
             inputCode={inputCode} />
         </div>
         { !err && <div style={styles.imgParent}>
@@ -137,6 +139,7 @@ const Project = () => {
         { err && <div><Alert severity="error" variant="outlined" color="error" style={{ color: '#CF6679' }}>{err}</Alert></div> }
         {/* TODO: incorperate spinner  */}
         {/* { loading && <div style={styles.spinnerParent}><CircularProgress color="secondary" /></div>} */}
+        {/* TODO: currently this url exposes the api key. Change the endpoint so it doesn't require the api key */}
         { !err && <MaterialLink target="_blank" href={`${apiUrl}/${imgCode}?${apiUrlExt}`}>Download AST</MaterialLink>}
       </div>
       <div style={styles.container}>
@@ -255,10 +258,6 @@ const style = isDesktop => ({
     paddingBottom: 20,
     minWidth: '100%',
     boxSizing: "border-box"
-  },
-  link: {
-    color: '#03DAC6',
-    textDecoration: 'none'
   },
   editorWrapper: {
     display: 'flex',

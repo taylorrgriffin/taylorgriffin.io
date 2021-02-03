@@ -210,10 +210,6 @@ let styles = {
     minWidth: '100%',
     boxSizing: "border-box"
   },
-  link: {
-    color: '#03DAC6',
-    textDecoration: 'none'
-  },
 }
 
 export default Project;

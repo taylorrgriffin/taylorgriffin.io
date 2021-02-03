@@ -8,12 +8,9 @@ import {
   CardActions,
   Typography,
   CardActionArea,
-  Button,
-  // Icon,
-  // IconButton
+  Button
 } from '@material-ui/core';
-// import { faGithub } from '@fortawesome/free-brands-svg-icons';
-// import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { PAGE_BACKGROUND, BORDER, HEADER_BACKGROUND } from '../styles/colors';
 
 const ProjectPreview = ({ heading, caption, img, route, repo }) => {
   let history = useHistory();
@@ -50,7 +47,8 @@ const ProjectPreview = ({ heading, caption, img, route, repo }) => {
 const styles = {
   root: {
     maxWidth: 400,
-    backgroundColor: '#121212'
+    backgroundColor: PAGE_BACKGROUND,
+    border: `1px solid ${BORDER}`
   },
   imgContainer: {
     display: 'flex',

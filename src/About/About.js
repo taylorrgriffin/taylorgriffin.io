@@ -1,4 +1,6 @@
 import React from 'react';
+import { Link } from '@material-ui/core';
+import { BACKGROUND, PAGE_BACKGROUND, BORDER } from '../styles/colors';
 
 const About = () => {
   return (
@@ -13,11 +15,11 @@ const About = () => {
           I currently work as a Software Development Engineer at Cambia Health Solutions, where I focus on backend and database development.
         </p>
         <p>
-          If you wish to connect with me, please add me on <a style={styles.link} href="https://linkedin.com/in/taylor-randolph-griffin">LinkedIn</a>,
-          or get my contact information from my <a style={styles.link} href="/resume">resume</a>.
+          If you wish to connect with me, please add me on <Link color="secondary" underline="none" href="https://linkedin.com/in/taylor-randolph-griffin">LinkedIn</Link>,
+          or get my contact information from my <Link color="secondary" underline="none" href="/resume">resume</Link>.
         </p>
         <p>
-          In the meantime, feel free to take a look at some of my <a style={styles.link} href="/projects">projects</a>!.
+          In the meantime, feel free to take a look at some of my <Link color="secondary" underline="none" href="/projects">projects</Link>!
         </p>
       </div>
     </div>
@@ -26,7 +28,7 @@ const About = () => {
 
 let styles = {
   parentContainer: {
-    backgroundColor: '#000000',
+    backgroundColor: BACKGROUND,
     paddingLeft: '10vw',
     paddingRight: '10vw',
     display: 'flex',
@@ -43,19 +45,15 @@ let styles = {
     paddingLeft: '5vw',
     paddingRight: '5vw',
     textAlign: 'left',
-    // backgroundColor: '#18191a',
-    backgroundColor: '#121212',
+    backgroundColor: PAGE_BACKGROUND,
     width: '70vw',
-    borderRadius: 25
+    border: `1px solid ${BORDER}`,
+    borderRadius: 18
   },
   heading: {
     textAlign: 'center',
     fontSize: '2em',
     fontWeight: 'bolder',
-  },
-  link: {
-    color: '#03DAC6',
-    textDecoration: 'none'
   },
 }
 
