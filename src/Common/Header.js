@@ -4,14 +4,16 @@ import { useRouteMatch } from "react-router-dom";
 import { useMediaQuery } from 'react-responsive';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faGithub, faLinkedin } from '@fortawesome/free-brands-svg-icons';
-import { faTerminal } from '@fortawesome/free-solid-svg-icons'
+import { faTerminal } from '@fortawesome/free-solid-svg-icons';
+
+import { PRIMARY, HEADER_BACKGROUND } from '../styles/colors';
 
 const Link = styled.a`
   color: white;
   size: 10px;
   text-decoration: none;
   &:hover {
-    color: #BB86FC;
+    color: ${PRIMARY};
   }
 `;
 
@@ -20,7 +22,7 @@ const SocialLink = styled.a`
   size: 5px;
   text-decoration: none;
   &:hover {
-    color: #BB86FC;
+    color: ${PRIMARY};
   }
 `;
 
@@ -55,9 +57,9 @@ export const Header = () => {
             fontWeight: 500,
             lineHeight: 1.75,
             textTransform: "uppercase",
-            borderBottom: useRouteMatch({path: "/about"}) ? '#BB86FC 6px solid' : undefined
+            borderBottom: useRouteMatch({path: "/about"}) ? `${PRIMARY} 6px solid` : undefined
           }}>
-            <Link href="/" style={{color: useRouteMatch({path: "/about"}) ? '#BB86FC' : 'white',}}>About</Link>
+            <Link href="/" style={{color: useRouteMatch({path: "/about"}) ? PRIMARY : 'white',}}>About</Link>
           </h3>
           <h3 style={{
             margin: 0,
@@ -66,9 +68,9 @@ export const Header = () => {
             fontWeight: 500,
             lineHeight: 1.75,
             textTransform: "uppercase",
-            borderBottom: useRouteMatch({path: "/resume"}) ? '#BB86FC 6px solid' : undefined
+            borderBottom: useRouteMatch({path: "/resume"}) ? `${PRIMARY} 6px solid` : undefined
           }}>
-            <Link href="/resume" style={{color: useRouteMatch({path: "/resume"}) ? '#BB86FC' : 'white'}}>RESUME</Link></h3>
+            <Link href="/resume" style={{color: useRouteMatch({path: "/resume"}) ? PRIMARY : 'white'}}>RESUME</Link></h3>
             <h3 style={{
             margin: 0,
             padding: 20,
@@ -76,9 +78,9 @@ export const Header = () => {
             fontWeight: 500,
             lineHeight: 1.75,
             textTransform: "uppercase",
-            borderBottom: useRouteMatch({path: "/projects"}) ? '#BB86FC 6px solid' : undefined
+            borderBottom: useRouteMatch({path: "/projects"}) ? `${PRIMARY} 6px solid` : undefined
           }}>
-            <Link href="/projects" style={{color: useRouteMatch({path: "/projects"}) ? '#BB86FC' : 'white'}}>PROJECTS</Link>
+            <Link href="/projects" style={{color: useRouteMatch({path: "/projects"}) ? PRIMARY : 'white'}}>PROJECTS</Link>
           </h3>
         </div>
         {
@@ -107,7 +109,7 @@ const style = (isTabletOrMobile = false, isMobile = false) => {
       alignItems: 'center',
       justifyContent: 'center',
       // backgroundColor: '#121212',
-      backgroundColor: '#242526',
+      backgroundColor: HEADER_BACKGROUND,
       width: '100%',
       fontSize: 'calc(10px + 2vmin)',
       padding: 0,
@@ -151,7 +153,7 @@ const style = (isTabletOrMobile = false, isMobile = false) => {
     },
     text: {
       fontSize: isMobile ? 36 : 28,
-      color: '#BB86FC',
+      color: PRIMARY,
       textDecoration: 'none',
       fontWeight: 700,
       lineHeight: 1.75,

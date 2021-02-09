@@ -4,8 +4,10 @@ import { useMediaQuery } from 'react-responsive';
 // import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 // import { faBook, faBeer, faRocket, faUser } from '@fortawesome/free-solid-svg-icons';
 
+import { BACKGROUND } from '../styles/colors';
+
 import HALE from '../assets/HALE.png';
-import TB from '../assets/tastybeacon-cropped.png';
+// import TB from '../assets/tastybeacon-cropped.png';
 import AST from '../assets/python.png';
 // import taylorgriffin from '../assets/taylorgriffin.svg';
 
@@ -49,7 +51,7 @@ const Projects = () => {
           img={AST}
           repo={'https://github.com/taylorrgriffin/python-ast'}
         />
-        <ProjectPreview
+        {/* <ProjectPreview
           route="tastybeacon"
           heading="Tasty Beacon"
           caption={`Helping food truck vendors and patrons meet supply and demand through an easy to use find-and-order interface.
@@ -62,7 +64,7 @@ const Projects = () => {
           caption={`Simple journal application created with React Native and Expo, available for iOS and Android.
           Supports creating, editing, and deleting notes. Consumes Node.js backend, powered by MongoDB.`}
           repo={`https://github.com/taylorrgriffin/JournalApp`}
-        />
+        /> */}
         {/* <ProjectPreview
           route="HALE"
           title="High Altitude Liquid Engine"
@@ -109,7 +111,7 @@ const style = isSmallSize => {
       paddingLeft: '5%',
       paddingRight: '5%',
       justifyContent: isSmallSize ? 'center' : 'flex-start',
-      backgroundColor: '#000000',
+      backgroundColor: BACKGROUND,
       width: '99vw',
       alignSelf: 'center',
       boxSizing: "border-box",

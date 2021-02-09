@@ -8,7 +8,9 @@ import { faArrowLeft } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import Editor from 'react-simple-code-editor';
 import 'prismjs/components/prism-python';
-import '../../prism-alt.css';
+import '../../styles/prism.css';
+
+import { BACKGROUND, PAGE_BACKGROUND, BORDER } from '../../styles/colors';
 
 import Controls from './controls';
 import { example1 } from './examples';
@@ -42,7 +44,13 @@ const generateAST = (input, setImgCode, setErr) => {
   fetch(
     `${apiUrl}?${apiUrlExt}`, {
     method: 'POST',
-    body: JSON.stringify({ python: sourceCode }),
+    body: JSON.stringify({
+      python: sourceCode,
+      bgColor: PAGE_BACKGROUND,
+      edgeColor: '#FFFFFF',
+      nodeColor: '#FFFFFF',
+      orientation: 'horizontal',
+    }),
     headers: { 'Content-Type': 'application/json' }
   }).then((res) => {
     if (!res.ok) {
@@ -95,10 +103,11 @@ const Project = () => {
           </div>
         }
         <MaterialLink style={{ marginTop: 10, marginBottom: 5 }} href={repo}><FontAwesomeIcon icon={faGithub} />&nbsp;&nbsp;python-ast</MaterialLink>
+        {/* TODO: consider moving this link so it doesn't blend in as much with the wikipedia link.. or just remove the link */}
         <MaterialLink href="/projects" style={{ alignSelf: 'start', marginBottom: 10 }}><FontAwesomeIcon icon={faArrowLeft} />&nbsp;&nbsp;Back to Projects</MaterialLink>
         {/* Description */}
         <Typography variant="lead">
-        Visualize <MaterialLink href="https://en.wikipedia.org/wiki/Abstract_syntax_tree">abstract syntax tree</MaterialLink> from simplified Python syntax.
+        Visualize  from simplified Python syntax.
         Write some Python code in the editor and click "Generate Visualization", 
         or select one of the examples to try it out!
         </Typography>
@@ -106,6 +115,7 @@ const Project = () => {
         <div style={styles.wrapContainer}>
         <div>
           <div style={styles.editorWrapper}>
+            {/* TODO: change the prism css file so the editor border color is different */}
             <Editor
               value={inputCode}
               onValueChange={code => setInputCode(code)}
@@ -115,13 +125,12 @@ const Project = () => {
               padding={10}
               style={styles.editor} />
           </div>
+          {/* TODO: change error theme and button colors to match dracula theme */}
           <Controls
             generateAST={generateAST}
             setImgCode={setImgCode}
             setInputCode={setInputCode}
-            // setLoading={setLoading}
             setErr={setErr}
-            // setFocus={()=>{}}
             inputCode={inputCode} />
         </div>
         { !err && <div style={styles.imgParent}>
@@ -137,6 +146,7 @@ const Project = () => {
         { err && <div><Alert severity="error" variant="outlined" color="error" style={{ color: '#CF6679' }}>{err}</Alert></div> }
         {/* TODO: incorperate spinner  */}
         {/* { loading && <div style={styles.spinnerParent}><CircularProgress color="secondary" /></div>} */}
+        {/* TODO: currently this url exposes the api key. Change the endpoint so it doesn't require the api key */}
         { !err && <MaterialLink target="_blank" href={`${apiUrl}/${imgCode}?${apiUrlExt}`}>Download AST</MaterialLink>}
       </div>
       <div style={styles.container}>
@@ -201,7 +211,8 @@ const Project = () => {
         <br/>
         <Typography variant="h5">What is an Abstract Syntax Tree?</Typography>
         <Typography>
-          An abstract syntax tree (AST), is a data structure that can be used to represent code. The reason it is abstract, is because instead of dislaying every character that appears in the code,
+          An <MaterialLink href="https://en.wikipedia.org/wiki/Abstract_syntax_tree">abstract syntax tree</MaterialLink> (AST), 
+           is a data structure that can be used to represent code. The reason it is abstract, is because instead of dislaying every character that appears in the code,
            it merely represents syntax of each statement. ASTs are useful for a multitude of applications including compilers, algorithms, and program analysis.
         </Typography>
         <Typography variant="h5">Why did you make this...?</Typography>
@@ -229,9 +240,9 @@ const Project = () => {
 // TODO: move all styles out into seperate styles folder
 const style = isDesktop => ({
   parentContainer: {
-    backgroundColor: '#18191a',
-    paddingLeft: '10vw',
-    paddingRight: '6vw',
+    backgroundColor: BACKGROUND,
+    paddingLeft: '5vw',
+    paddingRight: '5vw',
     display: 'flex',
     flexDirection: 'column',
     justifyContent: 'center',
@@ -248,17 +259,16 @@ const style = isDesktop => ({
     fontSize: 'calc(8px + 2vmin)',
     paddingTop: 20,
     textAlign: 'left',
-    backgroundColor: '#18191a',
-    borderRadius: 25,
+    backgroundColor: PAGE_BACKGROUND,
+    borderRadius: 18,
     marginTop: 10,
     marginBottom: 20,
     paddingBottom: 20,
+    paddingLeft: 10,
+    paddingRight: 10,
     minWidth: '100%',
-    boxSizing: "border-box"
-  },
-  link: {
-    color: '#03DAC6',
-    textDecoration: 'none'
+    boxSizing: "border-box",
+    border: `1px solid ${BORDER}`
   },
   editorWrapper: {
     display: 'flex',
