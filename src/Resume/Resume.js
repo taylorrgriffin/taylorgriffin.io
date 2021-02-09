@@ -1,5 +1,5 @@
 import React from 'react';
-import { Button, Typography } from '@material-ui/core';
+import { Button } from '@material-ui/core';
 import { useMediaQuery } from 'react-responsive';
 import { pdfjs, Document, Page } from 'react-pdf';
 import { BACKGROUND, PAGE_BACKGROUND, BORDER } from '../styles/colors';

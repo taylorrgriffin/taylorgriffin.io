@@ -10,6 +10,8 @@ import Editor from 'react-simple-code-editor';
 import 'prismjs/components/prism-python';
 import '../../styles/prism.css';
 
+import { BACKGROUND, PAGE_BACKGROUND, BORDER } from '../../styles/colors';
+
 import Controls from './controls';
 import { example1 } from './examples';
 
@@ -42,7 +44,13 @@ const generateAST = (input, setImgCode, setErr) => {
   fetch(
     `${apiUrl}?${apiUrlExt}`, {
     method: 'POST',
-    body: JSON.stringify({ python: sourceCode }),
+    body: JSON.stringify({
+      python: sourceCode,
+      bgColor: PAGE_BACKGROUND,
+      edgeColor: '#FFFFFF',
+      nodeColor: '#FFFFFF',
+      orientation: 'horizontal',
+    }),
     headers: { 'Content-Type': 'application/json' }
   }).then((res) => {
     if (!res.ok) {
@@ -83,7 +91,6 @@ const Project = () => {
   // }, []);
 
   return (
-    // TODO: add border back around container, and change parent container bg color
     <div style={styles.parentContainer}>
       <div style={styles.container}>
         {/* Title and links */}
@@ -100,7 +107,7 @@ const Project = () => {
         <MaterialLink href="/projects" style={{ alignSelf: 'start', marginBottom: 10 }}><FontAwesomeIcon icon={faArrowLeft} />&nbsp;&nbsp;Back to Projects</MaterialLink>
         {/* Description */}
         <Typography variant="lead">
-        Visualize <MaterialLink href="https://en.wikipedia.org/wiki/Abstract_syntax_tree">abstract syntax tree</MaterialLink> from simplified Python syntax.
+        Visualize  from simplified Python syntax.
         Write some Python code in the editor and click "Generate Visualization", 
         or select one of the examples to try it out!
         </Typography>
@@ -204,7 +211,8 @@ const Project = () => {
         <br/>
         <Typography variant="h5">What is an Abstract Syntax Tree?</Typography>
         <Typography>
-          An abstract syntax tree (AST), is a data structure that can be used to represent code. The reason it is abstract, is because instead of dislaying every character that appears in the code,
+          An <MaterialLink href="https://en.wikipedia.org/wiki/Abstract_syntax_tree">abstract syntax tree</MaterialLink> (AST), 
+           is a data structure that can be used to represent code. The reason it is abstract, is because instead of dislaying every character that appears in the code,
            it merely represents syntax of each statement. ASTs are useful for a multitude of applications including compilers, algorithms, and program analysis.
         </Typography>
         <Typography variant="h5">Why did you make this...?</Typography>
@@ -232,9 +240,9 @@ const Project = () => {
 // TODO: move all styles out into seperate styles folder
 const style = isDesktop => ({
   parentContainer: {
-    backgroundColor: '#18191a',
-    paddingLeft: '10vw',
-    paddingRight: '6vw',
+    backgroundColor: BACKGROUND,
+    paddingLeft: '5vw',
+    paddingRight: '5vw',
     display: 'flex',
     flexDirection: 'column',
     justifyContent: 'center',
@@ -251,13 +259,16 @@ const style = isDesktop => ({
     fontSize: 'calc(8px + 2vmin)',
     paddingTop: 20,
     textAlign: 'left',
-    backgroundColor: '#18191a',
-    borderRadius: 25,
+    backgroundColor: PAGE_BACKGROUND,
+    borderRadius: 18,
     marginTop: 10,
     marginBottom: 20,
     paddingBottom: 20,
+    paddingLeft: 10,
+    paddingRight: 10,
     minWidth: '100%',
-    boxSizing: "border-box"
+    boxSizing: "border-box",
+    border: `1px solid ${BORDER}`
   },
   editorWrapper: {
     display: 'flex',

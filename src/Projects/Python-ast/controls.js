@@ -3,6 +3,7 @@ import React from 'react';
 import { example1, example2, example3 } from './examples';
 import { Button, ButtonGroup, MuiThemeProvider } from '@material-ui/core';
 
+import { BACKGROUND } from '../../styles/colors';
 import errorTheme from '../../styles/errorTheme';
 
 // TODO: implement glowing box
@@ -63,7 +64,7 @@ let styles = {
     // paddingLeft: '5vw',
     // paddingRight: '5vw',
     textAlign: 'left',
-    backgroundColor: '#18191a',
+    backgroundColor: BACKGROUND,
     // backgroundColor: '#121212',
     borderRadius: 25,
     marginTop: 10,

@@ -10,7 +10,7 @@ import {
   CardActionArea,
   Button
 } from '@material-ui/core';
-import { PAGE_BACKGROUND, BORDER, HEADER_BACKGROUND } from '../styles/colors';
+import { PAGE_BACKGROUND, BORDER } from '../styles/colors';
 
 const ProjectPreview = ({ heading, caption, img, route, repo }) => {
   let history = useHistory();
