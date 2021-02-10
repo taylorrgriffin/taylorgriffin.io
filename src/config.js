@@ -1,11 +1,11 @@
 module.exports = {
   dev: {
-    apiBaseUrl: 'http://localhost:9000/api'
+    apiBaseUrl: 'http://localhost:9000'
   },
   test: {
 
   },
   prod: {
-    apiBaseUrl: 'https://api.taylorgriffin.io/api'
+    apiBaseUrl: 'https://api.taylorgriffin.io'
   }
 }
