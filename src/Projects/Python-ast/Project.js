@@ -23,7 +23,6 @@ const ENV = process.env.REACT_APP_ENV ? process.env.REACT_APP_ENV : 'dev';
 
 // configure api url
 const apiBaseUrl = config[ENV].apiBaseUrl;
-const apiUrl = `${apiBaseUrl}/python-ast`
 const apiUrlExt = `apiKey=${apiKey}`;
 
 // TODO: consider moving this within main component
@@ -42,7 +41,7 @@ const generateAST = (input, setImgCode, setErr) => {
   // setLoading(true);
   setErr(null);
   fetch(
-    `${apiUrl}?${apiUrlExt}`, {
+    `${apiBaseUrl}/api/python-ast?${apiUrlExt}`, {
     method: 'POST',
     body: JSON.stringify({
       python: sourceCode,
@@ -136,7 +135,7 @@ const Project = () => {
         { !err && <div style={styles.imgParent}>
           <img
             alt="Python code AST visualization"
-            src={`${apiUrl}/${imgCode}?${apiUrlExt}`}
+            src={`${apiBaseUrl}/python-ast/${imgCode}`}
             onError={(e)=>{e.target.onerror = null; e.target.src=""}}
             style={styles.AST} />
         </div>}
@@ -147,7 +146,7 @@ const Project = () => {
         {/* TODO: incorperate spinner  */}
         {/* { loading && <div style={styles.spinnerParent}><CircularProgress color="secondary" /></div>} */}
         {/* TODO: currently this url exposes the api key. Change the endpoint so it doesn't require the api key */}
-        { !err && <MaterialLink target="_blank" href={`${apiUrl}/${imgCode}?${apiUrlExt}`}>Download AST</MaterialLink>}
+        { !err && <MaterialLink target="_blank" href={`${apiBaseUrl}/python-ast/${imgCode}`}>Download AST</MaterialLink>}
       </div>
       <div style={styles.container}>
         <Typography variant="h3">Supported Syntax</Typography>
