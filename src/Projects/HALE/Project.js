@@ -32,6 +32,15 @@ const Project = () => {
         Developed for Oregon State University American Insitute of 
         Aeronautics and Astronautics.
         </Typography>
+        <br/>
+        <Typography variant="body">
+          Value added:
+          <ul>
+            <li>Increase data availability to team members allowing for more streamlined analysis</li>
+            <li>Improve consistency and reliability of data</li>
+            <li>Enable programatic consumption of data via a RESTful webservice</li>
+          </ul>
+        </Typography>
       </div>
       <div style={styles.container}>
         <Typography variant="h3" component="h2">
@@ -40,7 +49,7 @@ const Project = () => {
         <ul>
           <li>Design and implement interface to acquire readings from sensors affixed to the liquid engingine testing apparatus</li>
           <li>Develop script to store sensor readings in a database within 10 seconds of collection</li>
-          <li>Create RESTful web service allowing users to programtically fetch sensor readings</li>
+          <li>Create RESTful web service allowing users to programtically fetch sensor readings from outside of the OSU network</li>
         </ul>
       </div>
       <div style={styles.container}>
@@ -57,47 +66,38 @@ const Project = () => {
         </Typography>
         <img src={diagram} style={styles.diagram} />
       </div>
-      {/* <div style={styles.container}>
-        <Typography variant="h3">
-          Duties
-        </Typography>
-        <Typography variant="body">
-          <br/><br/>
-          Some of the systems I was responsible for designing and developing include:
-          <ul>
-            <li>An interface to acquire data from sensors affixed to the test stand using Python and LabView</li>
-            <li>A Node.js RESTful webservice to make sensor data globally available</li>
-            <li>A MongoDB database in which to store sensor data</li>
-            <li>A Python interface used to programatically store sensor data on Google Drive</li>
-          </ul>
-          As the sole computer science team working on HALE, we had to be self-succifient, and learned to gather and define our own requirements with the help of senior HALE members.
-          I gained valuable leadership expereience in this role, as I was often the point of the contact representing the computer science team, and made the majority of the system architecture descisions for the data pipeline.
-        </Typography>
-      </div> */}
       <div style={styles.container}>
         <Typography variant="h3" component="h2">
           Implementation
         </Typography>
+        <br/>
         <Typography variant="body">
-          TODO: finish this section
+          As one can see from the architecture diagram above, after beginning work on the sensor data pipeline, we encountered roadblocks that caused us to pivot our plan and move in a different direction.
+          Due to OSU network security restrictions, we were unable to allow global access to the machine we were hosting the web service on, which prevented us from fulfilling the requirement of making the sensor data 
+          globally accessible.
+        </Typography>
+        <br/>
+        <Typography variant="body">
+          To account for this unforseen issue, along with developing the original implementation, we created a new implementation which stores the sensor data in programtically structured folders on the team's Google Drive.
+          The Drive has unlimited storage, so compression was not necessary. Additionally, we created a python service that can be used to fetch data from the Drive, including filtering by date collected.
         </Typography>
       </div>
-      {/* <div style={styles.container}>
-        <Typography variant="h3">
-          Learning outcomes
+      <div style={styles.container}>
+        <Typography variant="h3" component="h2">
+          Key Takeaways
         </Typography>
         <Typography variant="body">
           <br/><br/>
-          A few of the key skills I was able to practice while working on HALE were:
+          A few of the key skills I was able to practice while working on HALE include:
           <ul>
             <li>Leadership, communication, and collaberating with a large multi-disciplinary team of engineers, specifically in the context of aerospace</li>
             <li>Planning, designing, and developing a fully automated sensor-to-cloud data pipeline</li>
             <li>Working with the Google authentication and Google Drive APIs in Python</li>
-            <li>Implementing security-first features in a RESTful webservice including HTTPS, TLS certificates, and API keys.</li>
-            <li>Practice with MongoDb and Expresss for quick and easy data avaliablity through the REST pardigm</li>
+            <li>Implementing security-first features in a RESTful webservice including HTTPS, TLS certificates, and API keys</li>
+            <li>Practice with MongoDb and Expresss for quick and easy data avaliablity through the REST paradigm</li>
           </ul>
         </Typography>
-      </div> */}
+      </div>
       <div style={styles.container}>
         <Typography variant="h3">
           More
@@ -122,7 +122,8 @@ const style = isNarrow => {
       justifyContent: 'center',
       alignItems: 'center',
       flexWrap: 'wrap',
-      width: '100%'
+      width: '100%',
+      marginTop: 10
     },
     container: {
       display: 'flex',

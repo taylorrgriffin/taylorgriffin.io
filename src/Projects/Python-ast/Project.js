@@ -247,7 +247,8 @@ const style = isDesktop => ({
     justifyContent: 'center',
     alignItems: 'center',
     flexWrap: 'wrap',
-    width: '100%'
+    width: '100%',
+    marginTop: 10
   },
   container: {
     display: 'flex',
