@@ -1,6 +1,8 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 
+import { PAGE_BACKGROUND, SECONDARY } from '../styles/colors';
+
 const PageNotFound = () => {
   return (
     <div style={styles.container}>
@@ -11,7 +13,7 @@ const PageNotFound = () => {
         Go <NavLink
           to="/"
           activeStyle={{
-            color: "tomato",
+            color: SECONDARY,
             textDecoration: "none"
           }}
         >
@@ -34,7 +36,7 @@ let styles = {
     paddingRight: '10vw',
     textAlign: 'left',
     flex: '1 1 auto',
-    backgroundColor: '#282c34'
+    backgroundColor: PAGE_BACKGROUND
   },
   heading: {
     textAlign: 'center',

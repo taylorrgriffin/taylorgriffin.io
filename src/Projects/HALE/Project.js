@@ -64,7 +64,7 @@ const Project = () => {
           <br/><br/>
           For my role in the HALE project, I was a part of the CS capstone subteam, which worked closely with the Test Stand subteam. We were tasked with creating software and systems which supported the Test Stand, a liquid engine testing apparatus. */}
         </Typography>
-        <img src={diagram} style={styles.diagram} />
+        <img src={diagram} style={styles.diagram} alt="HALE System Architecture Diagram"/>
       </div>
       <div style={styles.container}>
         <Typography variant="h3" component="h2">

@@ -1,5 +1,4 @@
 import React from 'react';
-import { useHistory } from "react-router-dom";
 import {
   Grid,
   Card,
@@ -12,15 +11,11 @@ import {
 } from '@material-ui/core';
 import { PAGE_BACKGROUND, BORDER } from '../../styles/colors';
 
-const PostPreview = ({ heading, caption, img, route }) => {
-  let history = useHistory();
-
+const PostPreview = ({ heading, caption, img, route, onClick }) => {
   return(
     <Grid item xs={10} sm={6} lg={4} md={4}>
       <Card style={styles.root}>
-        <CardActionArea onClick={() => {
-          // history.push(`/blog/${route}`)
-          }}>
+        <CardActionArea onClick={onClick}>
           <CardMedia style={styles.imgContainer}>
             <img src={img} style={styles.img} alt="Project logo" />
           </CardMedia>
@@ -34,7 +29,7 @@ const PostPreview = ({ heading, caption, img, route }) => {
           </CardContent>
         </CardActionArea>
         <CardActions>
-          <Button size="small" color="primary" onClick={()=>{ history.push(`/projects/${route}`) }}>
+          <Button size="small" color="primary" onClick={onClick}>
             Read more
           </Button>
         </CardActions>

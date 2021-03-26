@@ -20,6 +20,7 @@ import Projects from './Projects/Projects';
 
 import HALE from './Projects/HALE/Project';
 import Blog from './Projects/Blog/Project';
+import Post from './Projects/Blog/Post';
 import Journal from './Projects/Journal/Project';
 import Beerbook from './Projects/Beerbook/Project';
 import PythonAST from './Projects/Python-ast/Project';
@@ -36,6 +37,9 @@ function App() {
           <Switch>
             <Route path="/resume">
               <Resume/>
+            </Route>
+            <Route path="/blog/:id">
+              <Post/>
             </Route>
             <Route path="/blog">
               <Blog/>
