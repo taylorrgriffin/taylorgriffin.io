@@ -3,6 +3,16 @@ import PostPreview from './PostPreview';
 import { useMediaQuery } from 'react-responsive';
 import { BACKGROUND, PAGE_BACKGROUND, BORDER } from '../../styles/colors';
 
+const paragraphRegex = /<p>.*<\/p>/g;
+
+
+// credit to Johs: https://stackoverflow.com/a/24350326
+function removeTags(string){
+  return string.replace(/<[^>]*>/g, ' ')
+               .replace(/\s{2,}/g, ' ')
+               .trim();
+}
+
 const Project = () => {
   const [posts, setPosts] = useState([]);
 
@@ -11,8 +21,25 @@ const Project = () => {
      .then((res) => res.json())
      .then((data) => {
          setPosts(data.items);
-         console.info(data.items);
       });
+  }
+
+  // TODO: use oop
+
+  const previewFromContent = content => {
+    let PREVIEW_LENGTH = 60;
+
+    let paragraphs = content.match(paragraphRegex);
+    let paragraphsWithoutMarkup = [];
+    for (let i = 0; i < paragraphs.length; i++) {
+      paragraphsWithoutMarkup.push(removeTags(paragraphs[i]));
+    }
+
+    let preview = paragraphsWithoutMarkup.join(" ")
+
+    let shortenedPreview = preview.substr(0, PREVIEW_LENGTH) + '...';
+
+    return shortenedPreview;
   }
 
   useEffect(() => {
@@ -31,6 +58,7 @@ const Project = () => {
             onClick={() => {
               window.open(post.link, '_blank');
             }}
+            caption={previewFromContent(post.content)}
           />
         })
       }

@@ -38,9 +38,11 @@ const PostPreview = ({ heading, caption, img, route, onClick }) => {
   );
 }
 
+// TODO: fix overflow on small screens
+// TODO: adjust ratio
 const styles = {
   root: {
-    maxWidth: 400,
+    maxWidth: 300,
     backgroundColor: PAGE_BACKGROUND,
     border: `1px solid ${BORDER}`
   },
@@ -49,7 +51,7 @@ const styles = {
     justifyContent: 'center'
   },
   img: {
-    width: '250px',
+    width: '100%',
     alignSelf: 'center',
     alignItems: 'center'
   },
