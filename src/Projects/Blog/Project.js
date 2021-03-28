@@ -1,11 +1,9 @@
 import React, { useState, useEffect } from 'react';
-import { useHistory } from "react-router-dom";
 import PostPreview from './PostPreview';
 import { useMediaQuery } from 'react-responsive';
 import { BACKGROUND, PAGE_BACKGROUND, BORDER } from '../../styles/colors';
 
 const Project = () => {
-  const history = useHistory();
   const [posts, setPosts] = useState([]);
 
   const fetchPosts = () => {
@@ -21,34 +19,18 @@ const Project = () => {
     fetchPosts();
   }, []);
 
-  const mediumUrlToId = url => {
-    // split url into "/"" seperated parts
-    let urlParts = url.split('/');
-    // last item in array will be the id
-    return urlParts[urlParts.length - 1];
-  }
-
-  const goToPost = ({ id, title, content }) => {
-    history.push({
-      pathname: `/blog/${id}`,
-      state: { id, title, content }
-    });
-  }
-
   const isNarrow = useMediaQuery({ query: '(max-width: 600px)' });
   const styles = style(isNarrow);
   return (
     <div style={styles.parentContainer}>
       {
-        posts.map((post) => {
+        posts && posts.map((post) => {
           return <PostPreview
             heading={post.title}
             img={post.thumbnail}
-            onClick={() => goToPost({
-              id: mediumUrlToId(post.guid),
-              title: post.title,
-              content: post.content
-            })}
+            onClick={() => {
+              window.open(post.link, '_blank');
+            }}
           />
         })
       }
