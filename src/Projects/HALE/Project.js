@@ -1,69 +1,105 @@
 import React from 'react';
 import { Link } from '@material-ui/core';
-import { Typography } from '@material-ui/core';
-import ProjectHeading from '../ProjectHeading';
+import { useMediaQuery } from 'react-responsive';
+import { Typography, Chip, Link as MaterialLink } from '@material-ui/core';
+import { faArrowLeft } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 import HALE from '../../assets/HALE.png';
+import diagram from '../../assets/HALE_Diagram.png';
+import { BACKGROUND, PAGE_BACKGROUND, BORDER } from '../../styles/colors';
+
+const labels=['Python', 'Javascript', 'Node.js', 'Socket I/O', 'Google APIs', 'MongoDB']
 
 const Project = () => {
+  const isNarrow = useMediaQuery({ query: '(max-width: 600px)' });
+  const styles = style(isNarrow);
   return (
     <div style={styles.parentContainer}>
-      <ProjectHeading
-        heading="High Altitude Liquid Engine"
-        subHeading={`Sensor data pipeline for liquid engine testing apparatus.
-        Developed for Oregon State University American Insitute of 
-        Aeronautics and Astronautics.`}
-        imgSrc={HALE}
-        labels={['Python', 'Javascript', 'Node.js', 'Socket I/O', 'Google APIs', 'MongoDB']}
-      />
       <div style={styles.container}>
-        <Typography variant="h3" component="h2">
-          Background
+        <Typography variant="h3" style={{ marginBottom: 20, fontSize: isNarrow ? 36 : undefined, textAlign: 'center' }}>High Altitude Liquid Engine Data Pipeline</Typography>
+        <img src={HALE} style={styles.img} alt="Project logo"/>
+        {
+          labels && <div style={styles.labels}>
+            {labels.map((label) => {
+              return <Chip color="secondary" label={label} variant="outlined" style={styles.label} />
+            })}
+          </div>
+        }
+        <MaterialLink href="/projects" style={{ alignSelf: 'start', marginBottom: 10 }}><FontAwesomeIcon icon={faArrowLeft} />&nbsp;&nbsp;Back to Projects</MaterialLink>
+        <Typography variant="lead">
+        Sensor data pipeline for liquid engine testing apparatus.
+        Developed for Oregon State University American Insitute of 
+        Aeronautics and Astronautics.
+        </Typography>
+        <br/>
+        <Typography variant="body">
+          Value added:
+          <ul>
+            <li>Increase data availability to team members allowing for more streamlined analysis</li>
+            <li>Improve consistency and reliability of data</li>
+            <li>Enable programatic consumption of data via a RESTful webservice</li>
+          </ul>
+        </Typography>
+      </div>
+      <div style={styles.container}>
+        <Typography variant="h3" component="h2" style={{ fontSize: isNarrow ? 36 : undefined }}>
+          Requirements
+        </Typography>
+        <ul>
+          <li>Design and implement interface to acquire readings from sensors affixed to the liquid engingine testing apparatus</li>
+          <li>Develop script to store sensor readings in a database within 10 seconds of collection</li>
+          <li>Create RESTful web service allowing users to programtically fetch sensor readings from outside of the OSU network</li>
+        </ul>
+      </div>
+      <div style={styles.container}>
+        <Typography variant="h3" component="h2" style={{ fontSize: isNarrow ? 36 : undefined }}>
+          System Architecture
         </Typography>
         <Typography variant="body">
-          <br/><br/>
+          {/* <br/><br/>
           The High Altitude Liquid Engine (HALE) project is a collaberation between OSU AIAA and various capstone teams including Aerospace Engineers, Mechanical Engineers, and Computer Scientists.
           <br/><br/>
           It is OSU's entry in the Base 11 space challange, a national challange in which the winning team will earn a $1 million prize for their institution by designing, building, and launching a liquid-propelled, single-stage rocket to an altitude of 100 kilometers (the Karman Line) by December 30, 2021.
           <br/><br/>
-          For my role in the HALE project, I was a part of the CS capstone subteam, which worked closely with the Test Stand subteam. We were tasked with creating software and systems which supported the Test Stand, a liquid engine testing apparatus.
+          For my role in the HALE project, I was a part of the CS capstone subteam, which worked closely with the Test Stand subteam. We were tasked with creating software and systems which supported the Test Stand, a liquid engine testing apparatus. */}
+        </Typography>
+        <img src={diagram} style={styles.diagram} alt="HALE System Architecture Diagram"/>
+      </div>
+      <div style={styles.container}>
+        <Typography variant="h3" component="h2" style={{ fontSize: isNarrow ? 36 : undefined }}>
+          Implementation
+        </Typography>
+        <br/>
+        <Typography variant="body">
+          As one can see from the architecture diagram above, after beginning work on the sensor data pipeline, we encountered roadblocks that caused us to pivot our plan and move in a different direction.
+          Due to OSU network security restrictions, we were unable to allow global access to the machine we were hosting the web service on, which prevented us from fulfilling the requirement of making the sensor data 
+          globally accessible.
+        </Typography>
+        <br/>
+        <Typography variant="body">
+          To account for this unforseen issue, along with developing the original implementation, we created a new implementation which stores the sensor data in programtically structured folders on the team's Google Drive.
+          The Drive has unlimited storage, so compression was not necessary. Additionally, we created a python service that can be used to fetch data from the Drive, including filtering by date collected.
         </Typography>
       </div>
       <div style={styles.container}>
-        <Typography variant="h3">
-          Duties
+        <Typography variant="h3" component="h2" style={{ fontSize: isNarrow ? 36 : undefined }}>
+          Key Takeaways
         </Typography>
         <Typography variant="body">
           <br/><br/>
-          Some of the systems I was responsible for designing and developing include:
-          <ul>
-            <li>An interface to acquire data from sensors affixed to the test stand using Python and LabView</li>
-            <li>A Node.js RESTful webservice to make sensor data globally available</li>
-            <li>A MongoDB database in which to store sensor data</li>
-            <li>A Python interface used to programatically store sensor data on Google Drive</li>
-          </ul>
-          As the sole computer science team working on HALE, we had to be self-succifient, and learned to gather and define our own requirements with the help of senior HALE members.
-          I gained valuable leadership expereience in this role, as I was often the point of the contact representing the computer science team, and made the majority of the system architecture descisions for the data pipeline.
-        </Typography>
-      </div>
-      <div style={styles.container}>
-        <Typography variant="h3">
-          Learning outcomes
-        </Typography>
-        <Typography variant="body">
-          <br/><br/>
-          A few of the key skills I was able to practice while working on HALE were:
+          A few of the key skills I was able to practice while working on HALE include:
           <ul>
             <li>Leadership, communication, and collaberating with a large multi-disciplinary team of engineers, specifically in the context of aerospace</li>
             <li>Planning, designing, and developing a fully automated sensor-to-cloud data pipeline</li>
             <li>Working with the Google authentication and Google Drive APIs in Python</li>
-            <li>Implementing security-first features in a RESTful webservice including HTTPS, TLS certificates, and API keys.</li>
-            <li>Practice with MongoDb and Expresss for quick and easy data avaliablity through the REST pardigm</li>
+            <li>Implementing security-first features in a RESTful webservice including HTTPS, TLS certificates, and API keys</li>
+            <li>Practice with MongoDb and Expresss for quick and easy data avaliablity through the REST paradigm</li>
           </ul>
         </Typography>
       </div>
       <div style={styles.container}>
-        <Typography variant="h3">
+        <Typography variant="h3" style={{ fontSize: isNarrow ? 36 : undefined }}>
           More
         </Typography>
         <Typography variant="body">
@@ -75,36 +111,49 @@ const Project = () => {
   );
 }
 
-let styles = {
-  parentContainer: {
-    backgroundColor: '#000000',
-    paddingLeft: '10vw',
-    paddingRight: '10vw',
-    display: 'flex',
-    flexDirection: 'column',
-    justifyContent: 'center',
-    alignItems: 'center',
-    flexWrap: 'wrap',
-    width: '100%'
-  },
-  container: {
-    display: 'flex',
-    flexDirection: 'column',
-    justifyContent: 'center',
-    alignItems: 'center',
-    color: 'white',
-    fontSize: 'calc(8px + 2vmin)',
-    paddingTop: 20,
-    paddingLeft: '5vw',
-    paddingRight: '5vw',
-    textAlign: 'left',
-    backgroundColor: '#121212',
-    borderRadius: 25,
-    marginTop: 10,
-    marginBottom: 20,
-    paddingBottom: 20,
-    boxSizing: "border-box"
-  },
+const style = isNarrow => {
+  return {
+    parentContainer: {
+      backgroundColor: PAGE_BACKGROUND,
+      paddingLeft: isNarrow? '3vw' : '10vw',
+      paddingRight: isNarrow ? '3vw' : '10vw',
+      display: 'flex',
+      flexDirection: 'column',
+      justifyContent: 'center',
+      alignItems: 'center',
+      flexWrap: 'wrap',
+      width: '100%',
+      marginTop: 10
+    },
+    container: {
+      display: 'flex',
+      flexDirection: 'column',
+      justifyContent: 'center',
+      alignItems: 'center',
+      color: 'white',
+      fontSize: 'calc(8px + 2vmin)',
+      paddingTop: 20,
+      paddingLeft: '5vw',
+      paddingRight: '5vw',
+      textAlign: 'left',
+      backgroundColor: BACKGROUND,
+      borderRadius: 25,
+      marginTop: 10,
+      marginBottom: 20,
+      paddingBottom: 20,
+      boxSizing: "border-box",
+      border: `1px solid ${BORDER}`
+    },
+    img: {
+      width: isNarrow ? 200 : 260
+    },
+    diagram: {
+      width: '80%'
+    },
+    label: {
+      margin: 5
+    }
+  }
 }
 
 export default Project;

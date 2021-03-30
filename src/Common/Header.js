@@ -61,16 +61,6 @@ export const Header = () => {
           }}>
             <Link href="/" style={{color: useRouteMatch({path: "/about"}) ? PRIMARY : 'white',}}>About</Link>
           </h3>
-          <h3 style={{
-            margin: 0,
-            padding: 20,
-            fontSize: 20,
-            fontWeight: 500,
-            lineHeight: 1.75,
-            textTransform: "uppercase",
-            borderBottom: useRouteMatch({path: "/resume"}) ? `${PRIMARY} 6px solid` : undefined
-          }}>
-            <Link href="/resume" style={{color: useRouteMatch({path: "/resume"}) ? PRIMARY : 'white'}}>RESUME</Link></h3>
             <h3 style={{
             margin: 0,
             padding: 20,
@@ -82,6 +72,27 @@ export const Header = () => {
           }}>
             <Link href="/projects" style={{color: useRouteMatch({path: "/projects"}) ? PRIMARY : 'white'}}>PROJECTS</Link>
           </h3>
+          <h3 style={{
+            margin: 0,
+            padding: 20,
+            fontSize: 20,
+            fontWeight: 500,
+            lineHeight: 1.75,
+            textTransform: "uppercase",
+            borderBottom: useRouteMatch({path: "/blog"}) ? `${PRIMARY} 6px solid` : undefined
+          }}>
+            <Link href="/blog" style={{color: useRouteMatch({path: "/blog"}) ? PRIMARY : 'white'}}>BLOG</Link>
+          </h3>
+          <h3 style={{
+            margin: 0,
+            padding: 20,
+            fontSize: 20,
+            fontWeight: 500,
+            lineHeight: 1.75,
+            textTransform: "uppercase",
+            borderBottom: useRouteMatch({path: "/resume"}) ? `${PRIMARY} 6px solid` : undefined
+          }}>
+            <Link href="/resume" style={{color: useRouteMatch({path: "/resume"}) ? PRIMARY : 'white'}}>RESUME</Link></h3>
         </div>
         {
           !isMobile && 
