@@ -17,7 +17,7 @@ const Project = () => {
   return (
     <div style={styles.parentContainer}>
       <div style={styles.container}>
-        <Typography variant="h3" style={{ marginBottom: 20 }}>High Altitude Liquid Engine Data Pipeline</Typography>
+        <Typography variant="h3" style={{ marginBottom: 20, fontSize: isNarrow ? 36 : undefined, textAlign: 'center' }}>High Altitude Liquid Engine Data Pipeline</Typography>
         <img src={HALE} style={styles.img} alt="Project logo"/>
         {
           labels && <div style={styles.labels}>
@@ -43,7 +43,7 @@ const Project = () => {
         </Typography>
       </div>
       <div style={styles.container}>
-        <Typography variant="h3" component="h2">
+        <Typography variant="h3" component="h2" style={{ fontSize: isNarrow ? 36 : undefined }}>
           Requirements
         </Typography>
         <ul>
@@ -53,7 +53,7 @@ const Project = () => {
         </ul>
       </div>
       <div style={styles.container}>
-        <Typography variant="h3" component="h2">
+        <Typography variant="h3" component="h2" style={{ fontSize: isNarrow ? 36 : undefined }}>
           System Architecture
         </Typography>
         <Typography variant="body">
@@ -67,7 +67,7 @@ const Project = () => {
         <img src={diagram} style={styles.diagram} alt="HALE System Architecture Diagram"/>
       </div>
       <div style={styles.container}>
-        <Typography variant="h3" component="h2">
+        <Typography variant="h3" component="h2" style={{ fontSize: isNarrow ? 36 : undefined }}>
           Implementation
         </Typography>
         <br/>
@@ -83,7 +83,7 @@ const Project = () => {
         </Typography>
       </div>
       <div style={styles.container}>
-        <Typography variant="h3" component="h2">
+        <Typography variant="h3" component="h2" style={{ fontSize: isNarrow ? 36 : undefined }}>
           Key Takeaways
         </Typography>
         <Typography variant="body">
@@ -99,7 +99,7 @@ const Project = () => {
         </Typography>
       </div>
       <div style={styles.container}>
-        <Typography variant="h3">
+        <Typography variant="h3" style={{ fontSize: isNarrow ? 36 : undefined }}>
           More
         </Typography>
         <Typography variant="body">
@@ -115,8 +115,8 @@ const style = isNarrow => {
   return {
     parentContainer: {
       backgroundColor: PAGE_BACKGROUND,
-      paddingLeft: '10vw',
-      paddingRight: '10vw',
+      paddingLeft: isNarrow? '3vw' : '10vw',
+      paddingRight: isNarrow ? '3vw' : '10vw',
       display: 'flex',
       flexDirection: 'column',
       justifyContent: 'center',
@@ -149,6 +149,9 @@ const style = isNarrow => {
     },
     diagram: {
       width: '80%'
+    },
+    label: {
+      margin: 5
     }
   }
 }

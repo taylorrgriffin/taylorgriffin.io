@@ -1,8 +1,12 @@
 import React from 'react';
 import { Link } from '@material-ui/core';
+import { useMediaQuery } from 'react-responsive';
 import { BACKGROUND, PAGE_BACKGROUND, BORDER } from '../styles/colors';
 
 const About = () => {
+  const isNarrow = useMediaQuery({ query: '(max-width: 600px)' });
+  const styles = style(isNarrow);
+
   return (
     <div style={styles.parentContainer}>
       <div style={styles.container}>
@@ -26,35 +30,39 @@ const About = () => {
   );
 }
 
-let styles = {
-  parentContainer: {
-    backgroundColor: BACKGROUND,
-    paddingLeft: '10vw',
-    paddingRight: '10vw',
-    display: 'flex',
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  container: {
-    display: 'flex',
-    flexDirection: 'column',
-    justifyContent: 'center',
-    alignItems: 'left',
-    color: 'white',
-    fontSize: 'calc(8px + 2vmin)',
-    paddingLeft: '5vw',
-    paddingRight: '5vw',
-    textAlign: 'left',
-    backgroundColor: PAGE_BACKGROUND,
-    width: '70vw',
-    border: `1px solid ${BORDER}`,
-    borderRadius: 18
-  },
-  heading: {
-    textAlign: 'center',
-    fontSize: '2em',
-    fontWeight: 'bolder',
-  },
+let style = isNarrow => {
+  return {
+    parentContainer: {
+      backgroundColor: BACKGROUND,
+      paddingLeft: '10vw',
+      paddingRight: '10vw',
+      paddingTop: '3vw',
+      paddingBottom: '1vw',
+      display: 'flex',
+      justifyContent: 'center',
+      alignItems: 'center',
+    },
+    container: {
+      display: 'flex',
+      flexDirection: 'column',
+      justifyContent: 'center',
+      alignItems: 'left',
+      color: 'white',
+      fontSize: 'calc(8px + 2vmin)',
+      paddingLeft: '5vw',
+      paddingRight: '5vw',
+      textAlign: 'left',
+      backgroundColor: PAGE_BACKGROUND,
+      width: '70vw',
+      border: `1px solid ${BORDER}`,
+      borderRadius: 18
+    },
+    heading: {
+      textAlign: 'center',
+      fontSize: '2em',
+      fontWeight: 'bolder',
+    },
+  }
 }
 
 export default About;

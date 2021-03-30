@@ -77,6 +77,7 @@ const Project = () => {
   const inputRef = useRef();
 
   const isDesktop = useMediaQuery({ minWidth: 984 });
+  const isNarrow = useMediaQuery({ query: '(max-width: 600px)' });
   const styles = style(isDesktop);
 
   const repo = "https://github.com/taylorrgriffin/python-ast";
@@ -93,7 +94,7 @@ const Project = () => {
     <div style={styles.parentContainer}>
       <div style={styles.container}>
         {/* Title and links */}
-        <Typography variant="h3" style={{ marginBottom: 20 }}>Python Abstract Syntax Tree Visualizer</Typography>
+        <Typography variant="h3" style={{ marginBottom: 20, fontSize: isNarrow ? 36 : undefined, textAlign: 'center' }}>Python Abstract Syntax Tree Visualizer</Typography>
         {
           labels && <div style={styles.labels}>
             {labels.map((label) => {
@@ -101,7 +102,7 @@ const Project = () => {
             })}
           </div>
         }
-        <MaterialLink style={{ marginTop: 10, marginBottom: 5 }} href={repo}><FontAwesomeIcon icon={faGithub} />&nbsp;&nbsp;python-ast</MaterialLink>
+        <MaterialLink style={{ textAlign: 'center', margin: 10 }} href={repo}><FontAwesomeIcon icon={faGithub} />&nbsp;&nbsp;python-ast</MaterialLink>
         {/* TODO: consider moving this link so it doesn't blend in as much with the wikipedia link.. or just remove the link */}
         <MaterialLink href="/projects" style={{ alignSelf: 'start', marginBottom: 10 }}><FontAwesomeIcon icon={faArrowLeft} />&nbsp;&nbsp;Back to Projects</MaterialLink>
         {/* Description */}
@@ -149,7 +150,7 @@ const Project = () => {
         { !err && <MaterialLink target="_blank" href={`${apiBaseUrl}/python-ast/${imgCode}`}>Download AST</MaterialLink>}
       </div>
       <div style={styles.container}>
-        <Typography variant="h3">Supported Syntax</Typography>
+        <Typography variant="h3" style={{ fontSize: isNarrow ? 30 : undefined, textAlign: 'center' }}>Supported Syntax</Typography>
         <div style={styles.listItems}>
           <div>
             <em><Typography variant="h5" fontS>Data Types</Typography></em>
@@ -191,7 +192,7 @@ const Project = () => {
         </div>
       </div>
       <div style={styles.container}>
-        <Typography variant="h3">Background</Typography>
+        <Typography variant="h3" style={{ fontSize: isNarrow ? 30 : undefined, textAlign: 'center' }}>Background</Typography>
         <Typography>
           <br/><br/>
           This project accepts code written with simple python syntax and creates a graphviz specification representing the source program.
@@ -206,7 +207,7 @@ const Project = () => {
         </Typography>
       </div>
       <div style={styles.container}>
-        <Typography variant="h4">Frequently Asked Questions (FAQ)</Typography>
+        <Typography variant="h4" style={{ fontSize: isNarrow ? 26 : undefined, textAlign: 'center' }}>Frequently Asked Questions (FAQ)</Typography>
         <br/>
         <Typography variant="h5">What is an Abstract Syntax Tree?</Typography>
         <Typography>
@@ -264,8 +265,8 @@ const style = isDesktop => ({
     marginTop: 10,
     marginBottom: 20,
     paddingBottom: 20,
-    paddingLeft: 10,
-    paddingRight: 10,
+    paddingLeft: '3vw',
+    paddingRight: '3vw',
     minWidth: '100%',
     boxSizing: "border-box",
     border: `1px solid ${BORDER}`
