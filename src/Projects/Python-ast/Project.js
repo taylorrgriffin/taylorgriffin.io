@@ -15,13 +15,14 @@ import { BACKGROUND, PAGE_BACKGROUND, BORDER } from '../../styles/colors';
 import Controls from './controls';
 import { example1 } from './examples';
 
-import { apiKey } from '../../secrets';
+import Secrets from '../../secrets';
 import config from '../../config';
 
 // configure environment for parsing config options
 const ENV = process.env.REACT_APP_ENV ? process.env.REACT_APP_ENV : 'dev';
 
-// configure api url
+// configure api options
+const apiKey = Secrets.apiKey;
 const apiBaseUrl = config[ENV].apiBaseUrl;
 const apiUrlExt = `apiKey=${apiKey}`;
 
