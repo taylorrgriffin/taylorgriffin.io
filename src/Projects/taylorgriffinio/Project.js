@@ -5,11 +5,11 @@ import styled from 'styled-components';
 import { faUser } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
-
+import { FONT } from '../../styles/colors';
 import Template from '../../Common/ProjectTemplate';
 
 const Paragraph = styled.p`
-  color: white;
+  color: ${FONT};
   text-align: left;
   padding-left: 10%;
   padding-right: 10%;

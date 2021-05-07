@@ -1,6 +1,6 @@
 import React from 'react';
 import logo from '../assets/logo.svg';
-import { PRIMARY, FOOTER_BACKGROUND, BORDER } from '../styles/colors';
+import { PRIMARY, FOOTER_BACKGROUND, BORDER, FONT } from '../styles/colors';
 
 export const Footer = () => {
   return (
@@ -25,7 +25,7 @@ let styles = {
     fontSize: 'calc(4px + 2vmin)',
     minHeight: '8vh',
     flexWrap: 'wrap',
-    color: 'white',
+    color: FONT,
     borderTop: `1px solid ${BORDER}`
   },
   link: {

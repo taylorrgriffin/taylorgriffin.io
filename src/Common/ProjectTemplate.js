@@ -4,23 +4,25 @@ import { faGithub } from '@fortawesome/free-brands-svg-icons';
 import { faArrowLeft } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
+import { FONT } from '../styles/colors';
+
 let Heading = styled.div`
   text-align: center;
 `;
 
 let Headline = styled.h1`
-  color: white;
+  color: ${FONT};
   font-size: 3em;
   font-weight: bolder;
 `;
 
 let SubHeadline = styled.h2`
-  color: white;
+  color: ${FONT};
   font-size: 1.8em;
 `;
 
 let Link = styled.a`
-  color: white;
+  color: ${FONT};
   float: left;
   margin-left: 10%;
   text-decoration: none;
@@ -45,7 +47,7 @@ const RepoHeadline = styled.p`
 `;
 
 const GitHubLink = styled.a`
-  color: white;
+  color: ${FONT};
   font-size: 1.5em;
   text-decoration: none;
   &:hover {

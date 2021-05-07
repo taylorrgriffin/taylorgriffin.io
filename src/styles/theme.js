@@ -4,6 +4,7 @@ import {
   PRIMARY,
   SECONDARY,
   PRIMARY_VARIANT,
+  FONT
 } from './colors';
 
 export default createMuiTheme({
@@ -18,38 +19,38 @@ export default createMuiTheme({
       main: PRIMARY_VARIANT
     },
     textPrimary: {
-      main: '#FFFFFF'
+      main: FONT
     },
     textSecondary: {
-      main: '#FFFFFF'
+      main: FONT
     }
   },
   typography: {
     h1: {
-      color: '#FFFFFF'
+      color: FONT
     },
     h2: {
-      color: '#FFFFFF',
+      color: FONT
     },
     h3: {
-      color: '#FFFFFF'
+      color: FONT
     },
     h5: {
-      color: '#FFFFFF'
+      color: FONT
     },
     h6: {
-      color: '#FFFFFF',
+      color: FONT,
     },
     body1: {
-      color: '#FFFFFF',
+      color: FONT,
       opacity: '60%'
     },
     body2: {
-      color: '#FFFFFF',
+      color: FONT,
       opacity: '83%'
     },
     body: {
-      color: '#FFFFFF',
+      color: FONT,
       padding: 0,
     }
   }

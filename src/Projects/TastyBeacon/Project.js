@@ -10,7 +10,7 @@ import tastybeacon_filters from '../../assets/tastybeacon_filters.png';
 import tastybeacon_truck from '../../assets/tastybeacon_truck.png';
 import tastybeacon_profile from '../../assets/tastybeacon_profile.png';
 
-
+import { FONT } from '../../styles/colors';
 import logo from '../../assets/tastybeacon-cropped.png';
 
 const screenshots = [
@@ -196,7 +196,7 @@ let styles = {
     flexDirection: 'column',
     justifyContent: 'center',
     alignItems: 'center',
-    color: 'white',
+    color: FONT,
     fontSize: 'calc(8px + 2vmin)',
     paddingTop: 20,
     paddingLeft: '5vw',

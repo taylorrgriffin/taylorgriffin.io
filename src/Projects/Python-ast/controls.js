@@ -3,7 +3,7 @@ import React from 'react';
 import { example1, example2, example3 } from './examples';
 import { Button, ButtonGroup, MuiThemeProvider } from '@material-ui/core';
 
-import { BACKGROUND } from '../../styles/colors';
+import { BACKGROUND, FONT } from '../../styles/colors';
 import errorTheme from '../../styles/errorTheme';
 
 // TODO: implement glowing box
@@ -58,7 +58,7 @@ let styles = {
     flexDirection: 'column',
     justifyContent: 'center',
     alignItems: 'center',
-    color: 'white',
+    color: FONT,
     fontSize: 'calc(8px + 2vmin)',
     paddingTop: 20,
     // paddingLeft: '5vw',

@@ -6,10 +6,10 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faGithub, faLinkedin } from '@fortawesome/free-brands-svg-icons';
 import { faTerminal } from '@fortawesome/free-solid-svg-icons';
 
-import { PRIMARY, HEADER_BACKGROUND } from '../styles/colors';
+import { PRIMARY, HEADER_BACKGROUND, FONT } from '../styles/colors';
 
 const Link = styled.a`
-  color: white;
+  color: ${FONT};
   size: 10px;
   text-decoration: none;
   &:hover {
@@ -18,7 +18,7 @@ const Link = styled.a`
 `;
 
 const SocialLink = styled.a`
-  color: white;
+  color: ${FONT};
   size: 5px;
   text-decoration: none;
   &:hover {
@@ -59,7 +59,7 @@ export const Header = () => {
             textTransform: "uppercase",
             borderBottom: useRouteMatch({path: "/about"}) ? `${PRIMARY} 6px solid` : undefined
           }}>
-            <Link href="/" style={{color: useRouteMatch({path: "/about"}) ? PRIMARY : 'white',}}>About</Link>
+            <Link href="/" style={{color: useRouteMatch({path: "/about"}) ? PRIMARY : FONT}}>About</Link>
           </h3>
             <h3 style={{
             margin: 0,
@@ -70,7 +70,7 @@ export const Header = () => {
             textTransform: "uppercase",
             borderBottom: useRouteMatch({path: "/projects"}) ? `${PRIMARY} 6px solid` : undefined
           }}>
-            <Link href="/projects" style={{color: useRouteMatch({path: "/projects"}) ? PRIMARY : 'white'}}>PROJECTS</Link>
+            <Link href="/projects" style={{color: useRouteMatch({path: "/projects"}) ? PRIMARY : FONT}}>PROJECTS</Link>
           </h3>
           <h3 style={{
             margin: 0,
@@ -81,7 +81,7 @@ export const Header = () => {
             textTransform: "uppercase",
             borderBottom: useRouteMatch({path: "/blog"}) ? `${PRIMARY} 6px solid` : undefined
           }}>
-            <Link href="/blog" style={{color: useRouteMatch({path: "/blog"}) ? PRIMARY : 'white'}}>BLOG</Link>
+            <Link href="/blog" style={{color: useRouteMatch({path: "/blog"}) ? PRIMARY : FONT}}>BLOG</Link>
           </h3>
           <h3 style={{
             margin: 0,
@@ -92,7 +92,7 @@ export const Header = () => {
             textTransform: "uppercase",
             borderBottom: useRouteMatch({path: "/resume"}) ? `${PRIMARY} 6px solid` : undefined
           }}>
-            <Link href="/resume" style={{color: useRouteMatch({path: "/resume"}) ? PRIMARY : 'white'}}>RESUME</Link></h3>
+            <Link href="/resume" style={{color: useRouteMatch({path: "/resume"}) ? PRIMARY : FONT}}>RESUME</Link></h3>
         </div>
         {
           !isMobile && 
@@ -119,7 +119,6 @@ const style = (isTabletOrMobile = false, isMobile = false) => {
       flexWrap: 'wrap',
       alignItems: 'center',
       justifyContent: 'center',
-      // backgroundColor: '#121212',
       backgroundColor: HEADER_BACKGROUND,
       width: '100%',
       fontSize: 'calc(10px + 2vmin)',
@@ -154,7 +153,7 @@ const style = (isTabletOrMobile = false, isMobile = false) => {
       width: isMobile ? '80%' : undefined
     },
     navLink: {
-      color: 'white',
+      color: FONT,
       textDecoration: 'none'
     },
     titleContainer: {

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import PostPreview from './PostPreview';
 import { useMediaQuery } from 'react-responsive';
-import { BACKGROUND, PAGE_BACKGROUND, BORDER } from '../../styles/colors';
+import { BACKGROUND, PAGE_BACKGROUND, BORDER, FONT } from '../../styles/colors';
 
 const paragraphRegex = /<p>.*<\/p>/g;
 
@@ -84,7 +84,7 @@ const style = isNarrow => {
       flexDirection: 'column',
       justifyContent: 'center',
       alignItems: 'center',
-      color: 'white',
+      color: FONT,
       fontSize: 'calc(8px + 2vmin)',
       paddingTop: 20,
       paddingLeft: '5vw',

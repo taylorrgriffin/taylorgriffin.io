@@ -2,7 +2,7 @@ import React from 'react';
 import { Button } from '@material-ui/core';
 import { useMediaQuery } from 'react-responsive';
 import { pdfjs, Document, Page } from 'react-pdf';
-import { BACKGROUND, PAGE_BACKGROUND, BORDER } from '../styles/colors';
+import { BACKGROUND, PAGE_BACKGROUND, BORDER, FONT } from '../styles/colors';
 
 // weird hack needed to enable react-pdf
 pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.js`;
@@ -40,7 +40,7 @@ let styles = {
     flexDirection: 'column',
     justifyContent: 'center',
     alignItems: 'center',
-    color: 'white',
+    color: FONT,
     paddingTop: '3vw',
     paddingBottom: '3vw',
     paddingLeft: '1vw',

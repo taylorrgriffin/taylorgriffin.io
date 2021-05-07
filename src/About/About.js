@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from '@material-ui/core';
 import { useMediaQuery } from 'react-responsive';
-import { BACKGROUND, PAGE_BACKGROUND, BORDER } from '../styles/colors';
+import { BACKGROUND, PAGE_BACKGROUND, BORDER, FONT } from '../styles/colors';
 
 const About = () => {
   const isNarrow = useMediaQuery({ query: '(max-width: 600px)' });
@@ -49,7 +49,7 @@ let style = isNarrow => {
       flexDirection: 'column',
       justifyContent: 'center',
       alignItems: 'left',
-      color: 'white',
+      color: FONT,
       fontSize: 'calc(8px + 2vmin)',
       paddingLeft: '5vw',
       paddingRight: '5vw',

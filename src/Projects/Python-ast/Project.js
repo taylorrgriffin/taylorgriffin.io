@@ -10,7 +10,7 @@ import Editor from 'react-simple-code-editor';
 import 'prismjs/components/prism-python';
 import '../../styles/prism.css';
 
-import { BACKGROUND, PAGE_BACKGROUND, BORDER } from '../../styles/colors';
+import { BACKGROUND, PAGE_BACKGROUND, BORDER, FONT } from '../../styles/colors';
 
 import Controls from './controls';
 import { example1 } from './examples';
@@ -41,6 +41,7 @@ const generateAST = (input, setImgCode, setErr) => {
   let sourceCode = resolvePyStr(input);
   // setLoading(true);
   setErr(null);
+  // TODO: parameterize colors
   fetch(
     `${apiBaseUrl}/api/python-ast?${apiUrlExt}`, {
     method: 'POST',
@@ -257,7 +258,7 @@ const style = isDesktop => ({
     flexDirection: 'column',
     justifyContent: 'center',
     alignItems: 'center',
-    color: 'white',
+    color: FONT,
     fontSize: 'calc(8px + 2vmin)',
     paddingTop: 20,
     textAlign: 'left',

@@ -7,7 +7,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 import HALE from '../../assets/HALE.png';
 import diagram from '../../assets/HALE_Diagram.png';
-import { BACKGROUND, PAGE_BACKGROUND, BORDER } from '../../styles/colors';
+import { BACKGROUND, PAGE_BACKGROUND, BORDER, FONT } from '../../styles/colors';
 
 const labels=['Python', 'Javascript', 'Node.js', 'Socket I/O', 'Google APIs', 'MongoDB']
 
@@ -53,6 +53,7 @@ const Project = () => {
         </ul>
       </div>
       <div style={styles.container}>
+        {/* TODO: update colors in diagram */}
         <Typography variant="h3" component="h2" style={{ fontSize: isNarrow ? 36 : undefined }}>
           System Architecture
         </Typography>
@@ -130,7 +131,7 @@ const style = isNarrow => {
       flexDirection: 'column',
       justifyContent: 'center',
       alignItems: 'center',
-      color: 'white',
+      color: FONT,
       fontSize: 'calc(8px + 2vmin)',
       paddingTop: 20,
       paddingLeft: '5vw',

@@ -1,7 +1,7 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 
-import { PAGE_BACKGROUND, SECONDARY } from '../styles/colors';
+import { PAGE_BACKGROUND, SECONDARY, FONT } from '../styles/colors';
 
 const PageNotFound = () => {
   return (
@@ -30,7 +30,7 @@ let styles = {
     flexDirection: 'column',
     justifyContent: 'center',
     alignItems: 'left',
-    color: 'white',
+    color: FONT,
     fontSize: 'calc(8px + 2vmin)',
     paddingLeft: '10vw',
     paddingRight: '10vw',
