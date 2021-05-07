@@ -13,17 +13,19 @@ const About = () => {
         <p style={styles.heading}>Welcome!</p>
         <p>
           My name is Taylor Griffin, and I am a Software Engineer based out of Portland, Oregon.
-          This past June I graduated from Oregon State University with a Bachelor's in Computer Science and Magna Cum Laude honors.
         </p>
         <p>
-          I currently work as a Software Development Engineer at Cambia Health Solutions, where I focus on backend and database development.
+          I currently work at Cambia Health Solutions, where I develop and support infrastructure enabling value based arrangements, a transformative billing model that compensates health care providers based on patient outcomes.
+        </p>
+        <p>
+          Value Based Programs as an initiative at Regence have led to 6% lower costs for members, 200% higher patient satisfaction scores, and 14% less opioid scripts filled.
         </p>
         <p>
           If you wish to connect with me, please add me on <Link color="secondary" underline="none" href="https://linkedin.com/in/taylor-randolph-griffin">LinkedIn</Link>,
           or get my contact information from my <Link color="secondary" underline="none" href="/resume">resume</Link>.
         </p>
         <p>
-          In the meantime, feel free to take a look at some of my <Link color="secondary" underline="none" href="/projects">projects</Link>!
+          In the meantime, feel free to take a look at some of my <Link color="secondary" underline="none" href="/projects">projects</Link>, or my programming <Link color="secondary" underline="none" href="/blog" >blog</Link>!
         </p>
       </div>
     </div>
