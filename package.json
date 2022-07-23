@@ -15,7 +15,7 @@
     "@testing-library/react": "^9.5.0",
     "@testing-library/user-event": "^7.2.1",
     "bootstrap": "^4.6.0",
-    "file-type": "^15.0.1",
+    "file-type": "^16.5.4",
     "js-file-download": "^0.4.12",
     "prismjs": "^1.23.0",
     "react": "^16.14.0",
